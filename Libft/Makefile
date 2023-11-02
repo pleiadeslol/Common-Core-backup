@@ -6,7 +6,7 @@
 #    By: rzarhoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 16:18:43 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/02 16:26:11 by rzarhoun         ###   ########.fr        #
+#    Updated: 2023/11/02 16:56:21 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ files = ft_atoi.c \
        	ft_memcpy.c \
       	ft_strlcat.c \
        	ft_strnstr.c \
+	ft_calloc.c \
+	ft_strdup.c \
 Compiler	= gcc
 
 CmpFlags	= -Wall -Wextra -Werror
