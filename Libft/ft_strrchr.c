@@ -6,7 +6,7 @@
 /*   By: rzarhoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:44:18 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/02 11:48:07 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:17:28 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strrchr(const char *s, int c)
 	const char	*last;
 	int			i;
 
-	*last = NULL;
+	last = NULL;
 	i = 0;
 	while (s[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: rzarhoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:28:34 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/01 20:34:40 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:19:12 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ size_t	ft_strlcat(char *dest, const char *src, size_t n)
 	size_t	s_len;
 
 	i = 0;
-	d_len = ft_strlen(dest);
-	s_len = ft_strlen(src);
+	d_len = ft_strlen((char *)dest);
+	s_len = ft_strlen((char *)src);
 	j = d_len;
 	if (n == 0 || n <= d_len)
 		return (s_len + n);
