@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memset_test.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 11:23:33 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/02 14:20:51 by rzarhoun         ###   ########.fr       */
+/*   Created: 2023/11/02 13:46:26 by rzarhoun          #+#    #+#             */
+/*   Updated: 2023/11/02 13:59:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
+#include <stdio.h>
 
-void	ft_bzero(void *s, size_t n)
+int	main()
 {
-	ft_memset(s, 0, n);
+	char	buf[12];
+
+	ft_memset(buf, 0, 12);
+	ft_memset(buf, 'A', 3);
+	ft_memset(buf + 3, 'B', 2);
+	printf("%s\n", buf);
+	return (0);
 }

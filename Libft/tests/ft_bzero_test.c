@@ -5,14 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 11:23:33 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/02 14:20:51 by rzarhoun         ###   ########.fr       */
+/*   Created: 2023/11/02 14:03:41 by rzarhoun          #+#    #+#             */
+/*   Updated: 2023/11/02 14:08:21 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
+#include <stdio.h>
 
-void	ft_bzero(void *s, size_t n)
+int	main()
 {
-	ft_memset(s, 0, n);
+	char	buf[10];
+
+	ft_memset(buf, 'a', 10);
+	printf("%s\n", buf);
+	ft_bzero(buf, 2);
+	printf("%s\n", buf);
+	ft_bzero(buf, 10);
+	printf("%s\n", buf);
+	return (0);
 }
