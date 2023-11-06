@@ -6,7 +6,7 @@
 /*   By: rzarhoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:51:05 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/02 16:53:25 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:29:55 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strdup(const char *s)
 	char	*str;
 
 	i = 0;
-	j = ft_strlen(s);
+	j = ft_strlen((char *)s);
 	str = (char *)malloc(sizeof(*str) * (j + 1));
 	while (i < j)
 	{
