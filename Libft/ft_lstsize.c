@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 00:19:20 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/07 00:27:53 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:21:05 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_lstsize(t_list *lst)
 	int		count;
 
 	current = lst;
+	count = 0;
 	while (current != NULL)
 	{
 		count++;
@@ -25,3 +26,50 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (count);
 }
+
+/**#include <stdio.h>
+#include <stddef.h>
+
+int main()
+{
+	t_list *root = NULL;
+
+    // Create and add nodes to the list
+    for (int i = 1; i <= 0; i++)
+    {
+        t_list *new = malloc(sizeof(t_list));
+        new->content = malloc(sizeof(int)); // Allocate memory for the integer
+        *(int*)(new->content) = i; // Store the integer value
+        new->next = NULL;
+
+        // Add the new node to the end of the list
+        if (root == NULL)
+        {
+            root = new;
+        }
+        else
+        {
+            t_list *tmp = root;
+            while (tmp->next != NULL)
+            {
+                tmp = tmp->next;
+            }
+            tmp->next = new;
+        }
+    }
+
+    // Calculate the size of the list using ft_lstsize
+    int size = ft_lstsize(root);
+    printf("Size of the list: %d\n", size);
+
+    // Free allocated memory
+    while (root != NULL)
+    {
+        t_list *tmp = root;
+        root = root->next;
+        free(tmp->content); // Free the integer value
+        free(tmp);
+    }
+
+    return 0;
+}**/
