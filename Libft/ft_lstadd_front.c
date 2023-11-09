@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:56:38 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/07 00:14:33 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/09 08:38:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (new == NULL)
-		reurn(NULL);
+		return;
 	new->next = *lst;
 	*lst = new;
 }
