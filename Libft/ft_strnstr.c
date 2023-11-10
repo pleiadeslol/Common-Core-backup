@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarhoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:02:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/02 12:13:27 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/10 23:27:03 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,32 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	i = 0;
 	j = 0;
-	if (little == NULL || little[0] == '\0')
+	if (little[0] == '\0')
 		return ((char *)big);
 	while (big[i] && i < len)
 	{
-		if (big[i] == little[j])
+		if (big[i] == little[0])
 		{
-			while (big[i + 1] == little[j] && i + j < len)
+			while (i + j < len && little[j])
 			{
-				if (little[j + 1] == '\0')
-					return ((char *)big + i);
+				if (big[i + j] != little[j])
+					break ;
 				j++;
 			}
-			j = 0;
+			if (little[j] == '\0')
+				return ((char *)big + i);
 		}
 		i++;
 	}
 	return (NULL);
 }
+
+/**#include <stdio.h>
+#include <string.h>
+
+int main ()
+{
+	char *str = "Foo Bar Baz";
+	printf("%s\n", ft_strnstr(str, "Bar", 4));
+	return 0;
+}**/
