@@ -6,11 +6,11 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 16:18:43 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/10 15:29:37 by rzarhoun         ###   ########.fr        #
+#    Updated: 2023/11/10 21:00:56 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-Files = ft_atoi.c \
+SRCS = ft_atoi.c \
 		ft_itoa.c \
 		ft_lstsize.c \
 		ft_putnbr_fd.c \
@@ -25,7 +25,6 @@ Files = ft_atoi.c \
 		ft_calloc.c \
 		ft_lstadd_front.c \
 		ft_memcmp.c \
-		ft_split.c \
 		ft_strmapi.c \
 		ft_isalnum.c \
 		ft_lstclear.c \
@@ -52,4 +51,25 @@ Files = ft_atoi.c \
 		ft_putendl_fd.c \
 		ft_strlcat.c \
 		ft_substr.c 
-Objects = 
+OBJS = $(SRCS:.c=.o)
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
+NAME = libft.a
+
+all : $(NAME)
+
+$(NAME): $(OBJS)
+	ar rcs $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f *.o
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

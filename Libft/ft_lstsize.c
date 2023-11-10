@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 00:19:20 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/09 08:38:05 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/10 20:59:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	ft_lstsize(t_list *lst)
 
 	current = lst;
 	count = 0;
-	if (current == NULL)
-		return (NULL);
 	while (current != NULL)
 	{
 		count++;

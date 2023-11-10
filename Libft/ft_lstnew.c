@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:34:23 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/07 00:03:13 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:02:49 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*tmp;
 
-	tmp = (t_list)malloc(sizeof(struct));
+	tmp = malloc(sizeof(t_list));
 	if (tmp == NULL)
 		return (NULL);
 	tmp->content = content;
