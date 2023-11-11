@@ -6,7 +6,7 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 16:18:43 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/11 17:34:18 by rzarhoun         ###   ########.fr        #
+#    Updated: 2023/11/11 20:06:29 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRCS = ft_atoi.c \
 		ft_isprint.c \
 		ft_putendl_fd.c \
 		ft_strlcat.c \
-		ft_substr.c 
+		ft_substr.c \
+		ft_split.c
 SRCS_BONUS = ft_lstnew.c \
 				ft_lstadd_front.c \
 				ft_lstsize.c \
@@ -61,9 +62,9 @@ NAME = libft.a
 all : $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_BONUS)
-	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS) 
+	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $*.c -o $*.o
 
 clean:
 	rm -f *.o
