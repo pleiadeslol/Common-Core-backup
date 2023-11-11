@@ -6,7 +6,7 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 16:18:43 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/11 16:47:30 by rzarhoun         ###   ########.fr        #
+#    Updated: 2023/11/11 17:34:18 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,15 +54,14 @@ SRCS_BONUS = ft_lstnew.c \
 				ft_lstmap.c
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = libft.a
 
 all : $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_BONUS)
-	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
-
+	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS) 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
