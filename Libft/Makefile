@@ -6,7 +6,7 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 16:18:43 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/11 15:23:42 by rzarhoun         ###   ########.fr        #
+#    Updated: 2023/11/11 16:47:30 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRCS_BONUS = ft_lstnew.c \
 				ft_lstadd_back.c \
 				ft_lstdelone.c \
 				ft_lstclear.c \
-				ft_lstiter.c 
+				ft_lstiter.c \
+				ft_lstmap.c
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 CC = gcc
