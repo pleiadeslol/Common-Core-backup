@@ -6,7 +6,7 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 16:18:43 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/11 20:06:29 by rzarhoun         ###   ########.fr        #
+#    Updated: 2023/11/12 16:03:44 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,9 @@ $(NAME): $(OBJS) $(OBJS_BONUS)
 	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $*.c -o $*.o
+
+bonus:
+	ar rcs $(NAME) $(OBJS_BONUS)
 
 clean:
 	rm -f *.o
