@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:19:09 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/12 15:49:00 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:17:41 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	t_list	*tmp;
 
 	if (!lst || !new)
-        return;
+		return ;
 	if (*lst == NULL)
 	{
 		*lst = new;
