@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:47:23 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/11 15:14:33 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:33:13 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,17 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		}
 	}
 	return (dest);
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	char dest[] = "jjhang";
+	char src[] = "abcdef";
+	size_t n = 4;
+	printf("%s\n", (char *)ft_memmove(dest, src, n));
+	printf("%s\n", (char *)ft_memmove(dest, src, n));
+	return 0;
 }
