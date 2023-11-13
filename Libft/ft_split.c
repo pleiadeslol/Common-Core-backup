@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:44:31 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/13 23:07:17 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:22:32 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**ft_split(char const *s, char c)
 		str_f[i] = fill_words(s, c);
 		if (!str_f[i])
 		{
-			while (i--)
+		  	while (i--)
 				free(str_f[i]);
 			free(str_f);
 			return (NULL);
