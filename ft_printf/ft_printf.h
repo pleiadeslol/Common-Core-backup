@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:06:22 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/13 15:07:55 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:45:21 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <unistd.h>
 
-int ft_printf(const char *, ...);
-
+int		ft_printf(const char *, ...);
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
+void	ft_putnbr(int n);
 #endif
