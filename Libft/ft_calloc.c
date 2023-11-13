@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:45:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/12 14:41:12 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:23:10 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 int main()
 {
-	void *p = ft_calloc(SIZE_MAX, SIZE_MAX);
-	void *p1 = calloc(SIZE_MAX, SIZE_MAX);
+	void *p = ft_calloc(10, 0);
+	void *p1 = calloc(10, 0);
 	printf("%p\n", p);
 	printf("%p\n", p1);
 	return (0);
