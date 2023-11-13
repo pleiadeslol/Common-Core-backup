@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:13:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/13 15:24:27 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:21:30 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);
-	while (s[i])
+	while (s[i++])
 	{
-		if (i >= start && j < len)
+		if (i - 1 >= start && j < len)
 		{
-			str[j] = s[i];
+			str[j] = s[i - 1];
 			j++;
 		}
-		i++;
 	}
 	str[j] = '\0';
 	return (str);

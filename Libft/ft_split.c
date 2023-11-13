@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:44:31 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/13 14:49:20 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:18:28 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ char	**ft_split(char const *s, char c)
 		str_f[i] = fill_words(s, c);
 		if (!str_f[i])
 		{
-			while(i--)
-				free(str_f[i]);
 			free(str_f);
 			return (NULL);
 		}
@@ -83,7 +81,7 @@ char	**ft_split(char const *s, char c)
 
 /**#include <stdio.h>
 
-int main()
+int	main(void)
 {
 	char *str = "    g ";
 	char c = ' ';
@@ -92,7 +90,7 @@ int main()
 	while (str_f[i])
 	{
 		printf("%s\n", str_f[i]);
-		i++;	
+		i++;
 	}
 	return (0);
 }**/
