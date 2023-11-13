@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:44:31 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/13 17:18:28 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:07:17 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	**ft_split(char const *s, char c)
 		str_f[i] = fill_words(s, c);
 		if (!str_f[i])
 		{
+			while (i--)
+				free(str_f[i]);
 			free(str_f);
 			return (NULL);
 		}
@@ -83,8 +85,8 @@ char	**ft_split(char const *s, char c)
 
 int	main(void)
 {
-	char *str = "    g ";
-	char c = ' ';
+	char *str = "^^^1^^2a,^^^^3^^^^--h^^^^";
+	char c = '^';
 	char **str_f = ft_split(str, c);
 	int i = 0;
 	while (str_f[i])
@@ -92,5 +94,7 @@ int	main(void)
 		printf("%s\n", str_f[i]);
 		i++;
 	}
+	if (!str)
+		printf("")
 	return (0);
 }**/
