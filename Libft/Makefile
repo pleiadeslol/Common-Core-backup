@@ -6,7 +6,7 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 16:18:43 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/13 23:12:11 by rzarhoun         ###   ########.fr        #
+#    Updated: 2023/11/14 20:13:49 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,13 +62,11 @@ NAME = libft.a
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
-%.o: %.c
-	$(CC) $(CFLAGS) -c $*.c -o $*.o
-
-bonus: $(OBJS_BONUS)
+	ar rcs $(NAME) $(OBJS)	
+	
+bonus : $(OBJS_BONUS)
 	ar rcs $(NAME) $(OBJS_BONUS)
-
+	
 clean:
 	rm -f *.o
 
@@ -77,4 +75,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
