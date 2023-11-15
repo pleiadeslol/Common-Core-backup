@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:23:14 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/13 17:53:54 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:24:55 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,3 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-
-/**#include <stdio.h>
-#include <string.h>
-
-int	main(void)
-{
-	char src[] = "segfaulter tu dois";
-	size_t n = 17;
-	printf("%s\n", (char *)ft_memcpy(((void *)0), src, n));
-	printf("%s\n", (char *)memcpy(((void *)0), src, n));
-	return (0);
-}**/
