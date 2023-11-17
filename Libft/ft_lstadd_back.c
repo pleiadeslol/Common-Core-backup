@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:19:09 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/16 17:55:01 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/17 11:03:00 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = new;
-}
-
-#include <stdio.h>
-
-int main()
-{
-	t_list **lst;
-	t_list *new;
-	
-	return 0;
 }
