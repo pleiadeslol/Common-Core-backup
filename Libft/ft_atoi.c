@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:22:24 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/14 20:32:54 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:23:22 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static void	handle_sign(const char *str, int *i, int *j, int *sign)
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	j;
-	int	sign;
-	int	res;
+	int			i;
+	int			j;
+	int			sign;
+	long long	res;
 
 	i = 0;
 	j = 0;
