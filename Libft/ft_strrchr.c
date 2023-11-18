@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:44:18 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/11 23:17:23 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 18:19:52 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,3 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)&s[i]);
 	return (0);
 }
-
-/**#include <stdio.h>
-#include <string.h>
-
-int main()
-{
-	char s[]= "tripouille";
-	printf("%s\n", ft_strrchr(s, 't' + 256));
-	printf("%s\n", strrchr(s, 't' + 256));
-	return 0;
-}**/

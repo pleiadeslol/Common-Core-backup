@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:44:31 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/16 17:52:10 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 18:19:27 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,3 @@ char	**ft_split(char const *s, char c)
 	str_f[i] = 0;
 	return (str_f);
 }
-
-/**#include <stdio.h>
-
-int	main(void)
-{
-	char *str = "^^^1^^2a,^^^^3^^^^--h^^^^";
-	char c = '^';
-	char **str_f = ft_split(str, c);
-	int i = 0;
-	while (str_f[i])
-	{
-		printf("%s\n", str_f[i]);
-		i++;
-	}
-	return (0);
-}**/

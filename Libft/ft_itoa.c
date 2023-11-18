@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:56:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/15 16:25:27 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 18:18:37 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-
-/**#include <stdio.h>
-
-int main()
-{
-	int n = 123;
-	char *str = ft_itoa(n);
-	printf("%s\n", str);
-	return 0;
-}**/

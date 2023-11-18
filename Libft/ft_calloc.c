@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:45:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/15 12:21:13 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 18:16:38 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	size_t	s;
 	void	*p;
-
-	if (nmemb == 0 || size == 0)
-	{
-		nmemb = 1;
-		size = 1;
-	}
+	
 	if (SIZE_MAX / nmemb < size)
 		return (NULL);
 	s = nmemb * size;
