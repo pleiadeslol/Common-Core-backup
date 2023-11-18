@@ -6,29 +6,11 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:22:24 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/17 11:30:01 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 21:16:17 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/**static void	handle_sign(const char *str, int *i, int *j, int *sign)
-{
-	while (str[*i] == ' ' || (str[*i] >= 9 && str[*i] <= 13))
-		(*i)++;
-	if (str[*i] == '-' || str[*i] == '+')
-	{
-		if (str[(*i)++] == '-')
-		{
-			*sign = -1;
-		}
-		else
-		{
-			*sign = 1;
-		}
-		(*j)++;
-	}
-}**/
 
 int	ft_atoi(const char *str)
 {

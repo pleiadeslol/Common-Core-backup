@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:13:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/18 18:19:58 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 21:15:40 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	while (s[i++])
 	{
 		if (i - 1 >= start && j < len)
-		{
-			str[j] = s[i - 1];
-			j++;
-		}
+			str[j++] = s[i - 1];
 	}
 	str[j] = '\0';
 	return (str);

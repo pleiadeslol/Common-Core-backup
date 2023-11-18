@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:31:59 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/11 16:57:53 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 21:45:33 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	current = lst;
 	lst_new = NULL;
-	while (current)
+	while (current && f)
 	{
 		new_node = ft_lstnew(f(current->content));
 		if (!new_node)

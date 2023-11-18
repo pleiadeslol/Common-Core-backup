@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:23:14 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/15 15:24:55 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 21:15:01 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	c_src = (unsigned char *)src;
 	if (dest == NULL && src == NULL)
 		return (NULL);
+	if (dest == src)
+		return (dest);
 	while (i < n)
 	{
 		c_dest[i] = c_src[i];

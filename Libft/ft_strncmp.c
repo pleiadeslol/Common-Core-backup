@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:56:19 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/10 23:35:19 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 22:21:25 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	i = 0;
 	if (!n)
 		return (0);
-	while (s1[i] - s2[i] == 0 && s1[i] && s2[i] && i < n)
+	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n)
 		i++;
 	if (i == n)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 21:26:04 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/18 18:19:14 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 21:54:08 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	char	*t;
+	unsigned char	*t;
 	size_t	i;
 
-	t = (char *)s;
+	t = (unsigned char *)s;
 	i = 0;
 	while (i < n)
 	{

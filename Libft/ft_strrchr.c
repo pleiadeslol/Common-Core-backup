@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:44:18 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/18 18:19:52 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/18 22:30:55 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strrchr(const char *s, int c)
 {
 	int			i;
 
+	if (s == NULL)
+		return (NULL);
 	i = ft_strlen(s);
 	while (i >= 0)
 	{
