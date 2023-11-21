@@ -6,11 +6,12 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:45:11 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/09 10:01:23 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:37:29 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
