@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 21:30:32 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/22 17:19:59 by rzarhoun         ###   ########.fr       */
+/*   Created: 2023/11/22 17:12:14 by rzarhoun          #+#    #+#             */
+/*   Updated: 2023/11/22 17:24:53 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <unistd.h>
-# include <stdarg.h>
+#include "ft_printf.h"
 
-int		ft_printf(const char *str, ...);
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-void	ft_print_void(void *p);
-void	ft_putnbr_base(int nbr, char *base);
-size_t	ft_strlen(const char *str);
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
 
-#endif
+	while (str[i])
+		i++;
+	return (i);
+}
