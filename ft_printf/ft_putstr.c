@@ -5,21 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 18:52:45 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/13 18:59:30 by rzarhoun         ###   ########.fr       */
+/*   Created: 2023/11/21 23:32:47 by rzarhoun          #+#    #+#             */
+/*   Updated: 2023/11/21 23:36:51 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char *str)
+void ft_putstr(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
+    int i = 0;
+    while (str[i])
+    {
+        ft_putchar(str[i]);
+        i++;
+    }
 }

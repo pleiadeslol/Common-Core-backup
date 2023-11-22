@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 15:06:22 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/13 20:45:21 by rzarhoun         ###   ########.fr       */
+/*   Created: 2023/11/21 21:30:32 by rzarhoun          #+#    #+#             */
+/*   Updated: 2023/11/21 23:36:37 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
+# ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <unistd.h>
 
-int		ft_printf(const char *, ...);
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-void	ft_putnbr(int n);
+int ft_printf(const char *, ...);
+void    ft_putchar(char c);
+void    ft_putstr(char *str);
+
 #endif

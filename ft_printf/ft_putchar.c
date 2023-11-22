@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 18:50:02 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/13 20:45:31 by rzarhoun         ###   ########.fr       */
+/*   Created: 2023/11/21 23:26:03 by rzarhoun          #+#    #+#             */
+/*   Updated: 2023/11/21 23:30:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+void    ft_putchar(char c)
 {
-	write(1, &c, 1);
+    write(1, &c, 1);
 }

@@ -5,8 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/18 19:24:19 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/18 19:24:20 by rzarhoun         ###   ########.fr        #
+#    Created: 2023/11/21 21:41:21 by rzarhoun          #+#    #+#              #
+#    Updated: 2023/11/21 21:44:30 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+SRCS = 
+
+OBJ = 
+
+NAME = libftprintf.a 
