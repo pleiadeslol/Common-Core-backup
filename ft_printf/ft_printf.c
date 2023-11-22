@@ -6,11 +6,10 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 21:41:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/21 21:43:37 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:50:12 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printf(const char *, ...)
+int	ft_printf(const char *, ...)
 {
-    
 }

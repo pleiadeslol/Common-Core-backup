@@ -6,10 +6,12 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:38:34 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/22 00:39:40 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:47:40 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-void    ft_printvoidptr()
+void	ft_printvoidptr(void)
+{
+}
