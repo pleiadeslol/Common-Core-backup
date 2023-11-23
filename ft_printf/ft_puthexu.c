@@ -6,37 +6,61 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:56 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 14:08:20 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:37:42 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_puthexu(unsigned int n)
+static int count_hexu_digits(unsigned int n)
 {
-	char	*str;
-	int		nbr;
-	int		len;
+	int	len;
+	
+	len = 0;
+    while (n != 0){
+        n /= 16;
+        len++;
+    }
+	return (len);
+}
+
+static char	*convert_int_hexu(unsigned int n, int len)
+{
+	unsigned int		nbr;
 	int		i;
-	int		str_len;
-	char	HEXU[] = "0123456789ABCDEF";
+	char	*str;
+	char	HEX[] = "0123456789ABCDEF";
 
 	nbr = n;
-	len = 0;
+	str = malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
 	i = 0;
-    if (!n)
-        ft_putchar('0');
-	while (nbr)
-	{
-		nbr /= 16;
-		len++;
-	}
+	
+	len = count_hexu_digits(n);
 	while (i < len)
 	{
-        str[len - 1 - i] = HEXU[n % 16];
+        str[len - 1 - i] = HEX[n % 16];
         n /= 16;
 		i++;
     }
 	str[len] = '\0';
-	ft_putstr(str);
+	return (str);
+	
+}
+
+void	ft_puthexu(unsigned int n)
+{
+	char	*str;
+	int		len;
+
+	len = count_hexu_digits(n);
+	str = convert_int_hexu(n, len);
+	if (!n)
+		ft_putchar('0');
+	if (str)
+	{
+		ft_putstr(str);
+		free(str);
+	}
 }
