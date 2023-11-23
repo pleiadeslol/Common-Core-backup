@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_print_pec()
+void	ft_print_pec(void)
 {
 	ft_putchar('%');
 }
