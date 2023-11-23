@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:21:23 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/22 17:24:23 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/22 23:46:24 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,12 @@ void	ft_putnbr_base(int nbr, char *base)
 		ft_putnbr_base(nbr / b_len, base);
 		ft_putnbr_base(nbr % b_len, base);
 	}
+}
+
+int main()
+{
+	unsigned long p = 11;
+	char HEX[] = "0123456789abcdef";
+	ft_putnbr_base(p, HEX);
+	return 0;
 }
