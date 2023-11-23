@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:32:47 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/21 23:36:51 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:25:21 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putstr(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		ft_putstr("(null)");
 	while (str[i])
 	{
 		ft_putchar(str[i]);

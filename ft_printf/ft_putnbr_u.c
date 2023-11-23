@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 23:38:34 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 14:14:26 by rzarhoun         ###   ########.fr       */
+/*   Created: 2023/11/23 12:04:24 by rzarhoun          #+#    #+#             */
+/*   Updated: 2023/11/23 12:28:27 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_print_ptr(unsigned long p)
+void	ft_putnbr_u(unsigned int n)
 {
-	unsigned char	tmp;
-	char			*str;
+	int div;
+	unsigned int num;
 
-	if (p == 0)
-		ft_putstr("(nil)");
-	else
+	div = 1;
+
+	num = n;
+
+	while ( num / div > 9)
+		div *= 10;
+
+	while (div != 0)
 	{
-		ft_putstr("0x");
-		ft_puthex(p);
+		ft_putchar('0' + num / div);
+		num %= div;
+		div /= 10;
 	}
-}
-#include <stdio.h>
-
-int main()
-{
-	unsigned long i = 10;
-	ft_print_ptr(i);
-	printf("\n");
-	printf("%p\n", (void *)i);
-	return 0;
 }

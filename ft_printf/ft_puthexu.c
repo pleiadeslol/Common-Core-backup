@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_puthexu.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 23:38:34 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 14:14:26 by rzarhoun         ###   ########.fr       */
+/*   Created: 2023/11/23 14:00:56 by rzarhoun          #+#    #+#             */
+/*   Updated: 2023/11/23 14:08:20 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_print_ptr(unsigned long p)
+void	ft_puthexu(unsigned int n)
 {
-	unsigned char	tmp;
-	char			*str;
+	char	*str;
+	int		nbr;
+	int		len;
+	int		i;
+	int		str_len;
+	char	HEXU[] = "0123456789ABCDEF";
 
-	if (p == 0)
-		ft_putstr("(nil)");
-	else
+	nbr = n;
+	len = 0;
+	i = 0;
+    if (!n)
+        ft_putchar('0');
+	while (nbr)
 	{
-		ft_putstr("0x");
-		ft_puthex(p);
+		nbr /= 16;
+		len++;
 	}
-}
-#include <stdio.h>
-
-int main()
-{
-	unsigned long i = 10;
-	ft_print_ptr(i);
-	printf("\n");
-	printf("%p\n", (void *)i);
-	return 0;
+	while (i < len)
+	{
+        str[len - 1 - i] = HEXU[n % 16];
+        n /= 16;
+		i++;
+    }
+	str[len] = '\0';
+	ft_putstr(str);
 }

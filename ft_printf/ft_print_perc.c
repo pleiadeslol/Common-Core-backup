@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_print_perc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 23:38:34 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 14:14:26 by rzarhoun         ###   ########.fr       */
+/*   Created: 2023/11/23 14:04:15 by rzarhoun          #+#    #+#             */
+/*   Updated: 2023/11/23 14:05:58 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_print_ptr(unsigned long p)
+void	ft_print_pec()
 {
-	unsigned char	tmp;
-	char			*str;
-
-	if (p == 0)
-		ft_putstr("(nil)");
-	else
-	{
-		ft_putstr("0x");
-		ft_puthex(p);
-	}
-}
-#include <stdio.h>
-
-int main()
-{
-	unsigned long i = 10;
-	ft_print_ptr(i);
-	printf("\n");
-	printf("%p\n", (void *)i);
-	return 0;
+	ft_putchar('%');
 }
