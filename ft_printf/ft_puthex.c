@@ -6,13 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:25:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 20:20:32 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:03:42 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_puthex(unsigned int n, char x, int *ptr)
+void	ft_puthex(unsigned long n, char x, int *ptr)
 {
 	char	*str;
 
