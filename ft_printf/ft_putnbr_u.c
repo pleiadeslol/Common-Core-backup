@@ -6,13 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:04:24 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 12:28:27 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:15:07 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_u(unsigned int n)
+void	ft_putnbr_u(unsigned int n, int *ptr)
 {
 	int				div;
 	unsigned int	num;
@@ -23,7 +23,7 @@ void	ft_putnbr_u(unsigned int n)
 		div *= 10;
 	while (div != 0)
 	{
-		ft_putchar('0' + num / div);
+		ft_putchar('0' + num / div, ptr);
 		num %= div;
 		div /= 10;
 	}

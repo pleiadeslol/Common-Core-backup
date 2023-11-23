@@ -6,24 +6,63 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 21:41:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 14:54:56 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:38:16 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-// int	ft_printf(const char *str, ...){}
-// int main()
-// {
-//     int u = 1;
-//     int i = 1;
-//     while(u < 20 && i < 20)
-//     {
-//         printf("hex : %X\n", u);
-//         printf("int : %i\n", i);
-//         u++;
-//         i++;
-//     }
-//     return (0);
-// }
+void	check_flags(char c, va_list args, int *ptr)
+{
+	if (c == 'd' || c == 'i')
+	{
+		ft_putnbr(va_arg(args, int), ptr);
+	}
+	else if (c == 's')
+	{
+		ft_putstr(va_arg(args, char *), ptr);
+	}
+	else if (c == 'u')
+		ft_putnbr_u(va_arg(args, unsigned int), ptr);
+	else if (c == 'x')
+		ft_puthex(va_arg(args, unsigned int), 'x', ptr);
+	else if (c == 'X')
+		ft_puthex(va_arg(args, unsigned int), 'X', ptr);
+	else if (c == 'c')
+		ft_putchar((char)va_arg(args, int), ptr);
+	else if (c == 'p')
+		ft_print_ptr(va_arg(args, unsigned long), ptr);
+	else if (c == '%')
+		ft_putchar('%', ptr);
+	else
+		*ptr = -1;
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list	args;
+	int		length;
+	int		i;
+
+	if (!str)
+		return (-1);
+	length = 0;
+	va_start(args, str);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '%' && ft_strchr("csdiupxX%", str[i + 1]))
+		{
+			check_flags(str[i + 1], args, &length);
+			if (length == -1)
+				return (length);
+			i++;
+		}
+		else
+		{
+			ft_putchar(str[i], &length);
+		}
+		i++;
+	}
+	return (length);
+}

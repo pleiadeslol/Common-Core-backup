@@ -6,13 +6,14 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:26:03 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/22 23:46:59 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:08:54 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+void	ft_putchar(char c, int *ptr)
 {
 	write(1, &c, 1);
+	(*ptr)++;
 }

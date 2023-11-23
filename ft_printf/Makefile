@@ -6,14 +6,12 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 21:41:21 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/23 14:54:33 by rzarhoun         ###   ########.fr        #
+#    Updated: 2023/11/23 20:19:53 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = 	ft_printf.c \
-		ft_print_perc.c \
 		ft_putchar.c \
-		ft_puthexu.c \
 		ft_putnbr_u.c \
 		ft_strlen.c \
 		ft_print_ptr.c \

@@ -6,57 +6,27 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:25:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 14:50:39 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:20:32 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count_hex_digits(unsigned int n)
-{
-	int	len;
-
-	len = 0;
-	while (n != 0)
-	{
-		n /= 16;
-		len++;
-	}
-	return (len);
-}
-
-static char	*convert_int_hex(unsigned int n, int len)
-{
-	int				i;
-	char			*str;
-
-	str = malloc((len + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	i = 0;
-	len = count_hex_digits(n);
-	while (i < len)
-	{
-		str[len - 1 - i] = HEX[n % 16];
-		n /= 16;
-		i++;
-	}
-	str[len] = '\0';
-	return (str);
-}
-
-void	ft_puthex(unsigned int n)
+void	ft_puthex(unsigned int n, char x, int *ptr)
 {
 	char	*str;
-	int		len;
 
-	len = count_hex_digits(n);
-	str = convert_int_hex(n, len);
-	if (!n)
-		ft_putchar('0');
-	if (str)
+	if (x == 'x')
+		str = "0123456789abcdef";
+	else
+		str = "0123456789ABCDEF";
+	if (n < 16)
 	{
-		ft_putstr(str);
-		free(str);
+		ft_putchar(str[n], ptr);
+	}
+	else
+	{
+		ft_puthex(n / 16, x, ptr);
+		ft_puthex(n % 16, x, ptr);
 	}
 }
