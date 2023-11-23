@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 21:30:32 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 14:08:04 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:48:43 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
+# define HEX "0123456789abcdef"
+# define HEXU "0123456789ABCDEF"
 
 int		ft_printf(const char *str, ...);
 void	ft_putchar(char c);

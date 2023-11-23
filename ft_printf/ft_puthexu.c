@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:56 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 14:42:17 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:50:04 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,9 @@ static int	count_hexu_digits(unsigned int n)
 
 static char	*convert_int_hexu(unsigned int n, int len)
 {
-	unsigned int	nbr;
 	int				i;
 	char			*str;
-	char			hexu[17];
 
-	hexu[17] = "0123456789ABCDEF";
-	nbr = n;
 	str = malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
@@ -41,7 +37,7 @@ static char	*convert_int_hexu(unsigned int n, int len)
 	len = count_hexu_digits(n);
 	while (i < len)
 	{
-		str[len - 1 - i] = hexu[n % 16];
+		str[len - 1 - i] = HEXU[n % 16];
 		n /= 16;
 		i++;
 	}
