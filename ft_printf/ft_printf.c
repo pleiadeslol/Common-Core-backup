@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 21:41:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/23 21:22:42 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:23:27 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,9 @@
 void	check_flags(char c, va_list args, int *ptr)
 {
 	if (c == 'd' || c == 'i')
-	{
 		ft_putnbr(va_arg(args, int), ptr);
-	}
 	else if (c == 's')
-	{
 		ft_putstr(va_arg(args, char *), ptr);
-	}
 	else if (c == 'u')
 		ft_putnbr_u(va_arg(args, unsigned int), ptr);
 	else if (c == 'x')
