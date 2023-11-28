@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:12:14 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/22 17:24:53 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/28 20:55:33 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
