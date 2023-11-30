@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:44:31 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/18 18:19:27 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/11/25 00:02:06 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ char	**ft_split(char const *s, char c)
 		}
 		s += ft_strlen(str_f[i++]);
 	}
-	str_f[i] = 0;
+	str_f[i] = '\0';
 	return (str_f);
 }
