@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:58:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/03 11:51:58 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/03 14:57:51 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	str[i + j] = '\0';
+	free (s1);
 	return (str);
 }
 
@@ -69,7 +70,7 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	int		i;
 	int		j;
@@ -86,6 +87,7 @@ char	*ft_strdup(const char *s)
 		i++;
 	}
 	str[i] = '\0';
+	free(s);
 	return (str);
 }
 
