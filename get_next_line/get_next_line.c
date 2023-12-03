@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:40:00 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/03 15:39:36 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/03 20:59:07 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*get_next_line(int fd)
 		{
 			free(line);
 			free(buffer);
-			return NULL;
+			return (NULL);
 		}
 		line[end] = '\0';
 		buffer = ft_strjoin(buffer, line);
@@ -68,16 +68,16 @@ char	*get_next_line(int fd)
 	return (clean_line);
 }
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
+int	main(void)
+{
+	int		fd;
+	char	*line;
 
-// 	fd = open("get_next_line.c", O_RDONLY | O_CREAT);
-// 	while (line = get_next_line(fd))
-// 	{
-// 		printf("%s", line);
-// 		free(line);
-// 	}
-// 	printf("%s", line);
-// }
+	fd = open("get_next_line.c", O_RDONLY | O_CREAT);
+	while (line = get_next_line(fd))
+	{
+		printf("%s", line);
+		free(line);
+	}
+	printf("%s", line);
+}
