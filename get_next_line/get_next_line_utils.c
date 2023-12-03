@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:58:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/30 22:35:41 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/03 11:51:58 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,52 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)&str[i]);
 	}
 	return (0);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	j = ft_strlen((char *)s);
+	str = (char *)malloc(sizeof(*str) * (j + 1));
+	if (!str)
+		return (NULL);
+	while (i < j)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	size_t	s_len;
+	char	*str;
+
+	i = 0;
+	j = 0;
+	if (s == NULL)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (start + len > s_len)
+		len = s_len - start;
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	while (s[i++])
+	{
+		if (i - 1 >= start && j < len)
+			str[j++] = s[i - 1];
+	}
+	str[j] = '\0';
+	return (str);
 }
