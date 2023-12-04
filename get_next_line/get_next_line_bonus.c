@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:40:00 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/04 20:15:41 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:15:35 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*get_clean_line(char *buffer)
 {
@@ -47,7 +47,7 @@ static char	*get_clean_buffer(char *buffer)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*buffer;
+	static char	*buffer[4096];
 	char		*clean_line;
 	ssize_t		end;
 
@@ -61,12 +61,12 @@ char	*get_next_line(int fd)
 	{
 		end = read(fd, line, BUFFER_SIZE);
 		if (end < 0)
-			return (free(line), free(buffer), NULL);
+			return (free(line), free(buffer[fd]), NULL);
 		line[end] = '\0';
-		buffer = ft_strjoin(buffer, line);
+		buffer[fd] = ft_strjoin(buffer[fd], line);
 	}
-	clean_line = get_clean_line(buffer);
-	buffer = get_clean_buffer(buffer);
+	clean_line = get_clean_line(buffer[fd]);
+	buffer[fd] = get_clean_buffer(buffer[fd]);
 	free(line);
 	return (clean_line);
 }
