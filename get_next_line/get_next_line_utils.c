@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:58:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/03 20:59:50 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:55:55 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	j = 0;
 	if (!s1)
-	{
-		s1 = malloc(1);
-		s1[0] = '\0';
-	}
+		s1 = ft_strdup("");
 	str = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1)
 				+ ft_strlen((char *)s2) + 1));
 	if (str == NULL)
@@ -50,7 +47,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	str[i + j] = '\0';
-	free (s1);
+	free(s1);
 	return (str);
 }
 
@@ -77,7 +74,7 @@ char	*ft_strdup(char *s)
 	char	*str;
 
 	i = 0;
-	j = ft_strlen((char *)s);
+	j = ft_strlen(s);
 	str = (char *)malloc(sizeof(*str) * (j + 1));
 	if (!str)
 		return (NULL);
@@ -87,7 +84,6 @@ char	*ft_strdup(char *s)
 		i++;
 	}
 	str[i] = '\0';
-	free(s);
 	return (str);
 }
 

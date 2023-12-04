@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:40:00 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/03 20:59:07 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:05:30 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,22 @@ char	*get_clean_line(char *buffer)
 
 char	*get_clean_buffer(char *buffer)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
+	if (!*buffer)
+	{
+		free(buffer);
+		return (NULL);
+	}
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	if (buffer[i] == '\n')
 		i++;
-	return (ft_strdup(buffer + i));
+	str = ft_strdup(buffer + i);
+	free (buffer);
+	return (str);
 }
 
 char	*get_next_line(int fd)
@@ -54,11 +62,7 @@ char	*get_next_line(int fd)
 	{
 		end = read(fd, line, BUFFER_SIZE);
 		if (end < 0)
-		{
-			free(line);
-			free(buffer);
-			return (NULL);
-		}
+			return (free(line), free(buffer), NULL);
 		line[end] = '\0';
 		buffer = ft_strjoin(buffer, line);
 	}
@@ -66,18 +70,4 @@ char	*get_next_line(int fd)
 	buffer = get_clean_buffer(buffer);
 	free(line);
 	return (clean_line);
-}
-
-int	main(void)
-{
-	int		fd;
-	char	*line;
-
-	fd = open("get_next_line.c", O_RDONLY | O_CREAT);
-	while (line = get_next_line(fd))
-	{
-		printf("%s", line);
-		free(line);
-	}
-	printf("%s", line);
 }
