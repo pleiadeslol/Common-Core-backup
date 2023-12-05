@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:40:00 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/04 20:17:21 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:00:26 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*get_clean_buffer(char *buffer)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*buffer[4096];
+	static char	*buffer[BUFFER_SIZE];
 	char		*clean_line;
 	ssize_t		end;
 
