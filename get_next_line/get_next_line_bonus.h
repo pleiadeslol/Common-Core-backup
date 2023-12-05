@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:39:09 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/04 20:17:30 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:20:52 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # endif
 
 char	*get_next_line(int fd);
+size_t	ft_strlen(const char *c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup( char *s);
