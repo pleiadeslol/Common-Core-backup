@@ -6,13 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:29:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/11/20 20:23:07 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:20:23 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *c)
+size_t	ft_strlen(const char *c)
 {
 	size_t	i;
 
