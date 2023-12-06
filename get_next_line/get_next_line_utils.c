@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:58:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/05 17:19:49 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:50:41 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,20 @@ char	*ft_strjoin(char *s1, char *s2)
 
 char	*ft_strchr(const char *s, int c)
 {
-	unsigned int	i;
-	unsigned char	*str;
+	size_t	i;
 
 	i = 0;
-	str = (unsigned char *)s;
-	while (str[i] != '\0' && str[i] != (unsigned char)c)
-		i++;
-	if (str[i] == (unsigned char)c)
+	if (s == NULL)
+		return (NULL);
+	while (s[i])
 	{
-		return ((char *)&str[i]);
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
+		i++;
 	}
-	return (0);
+	if (s[i] == (char)c)
+		return ((char *)(s + i));
+	return (NULL);
 }
 
 char	*ft_strdup(char *s)

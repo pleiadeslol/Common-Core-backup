@@ -6,13 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:58:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/04 20:17:42 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:31:04 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int	ft_strlen(const char *c)
+size_t	ft_strlen(const char *c)
 {
 	size_t	i;
 
@@ -56,6 +56,8 @@ char	*ft_strchr(const char *s, int c)
 	unsigned int	i;
 	unsigned char	*str;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	str = (unsigned char *)s;
 	while (str[i] != '\0' && str[i] != (unsigned char)c)

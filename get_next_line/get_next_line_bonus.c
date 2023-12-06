@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:40:00 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/05 15:00:26 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:36:52 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*get_next_line(int fd)
 	line = (char *)malloc(BUFFER_SIZE + 1);
 	if (!line)
 		return (NULL);
+	line[0] = 0;
 	while (end > 0 && !ft_strchr(line, '\n'))
 	{
 		end = read(fd, line, BUFFER_SIZE);
