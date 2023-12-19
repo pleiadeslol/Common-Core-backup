@@ -29,7 +29,7 @@ ulog=$(users | wc -w)
 ip=$(hostname -I)
 mac=$(ip link | grep "link/ether" | awk '{print $2}')
 
-# cmnd=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+cmnd=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
 
 wall "	#Architecture: $arch
 		#PU physical: $cpuf
