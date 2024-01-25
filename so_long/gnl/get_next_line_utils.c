@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/gnl.h"
 
 size_t	ft_strlen(const char *c)
 {

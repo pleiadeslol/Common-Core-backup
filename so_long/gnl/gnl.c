@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/gnl.h"
 
 static char	*get_clean_line(char *buffer)
 {
