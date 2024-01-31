@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   gnl_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:58:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/05 18:50:41 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:57:37 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/gnl.h"
+#include "../includes/get_next_line.h"
 
 size_t	ft_strlen(const char *c)
 {

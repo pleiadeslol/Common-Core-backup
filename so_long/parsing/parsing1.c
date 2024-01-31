@@ -1,4 +1,27 @@
-#include "includes/gnl.h"
+#include "../includes/so_long.h"
+#include "../includes/get_next_line.h"
+
+int check_ber(char *str)
+{
+	int i = 0;
+	if (ft_strchr1(str, '.') && ft_strchr1(str, 'b') && ft_strchr1(str, 'e') && ft_strchr1(str, 'r'))
+		return (1);
+	else
+		return (0);
+}
+
+int check_len(char **str)
+{
+	int i = 0;
+	int count = ft_strlen(str[0]);
+	while (str[i])
+	{
+		if (count != ft_strlen(str[i]))
+			return 0;
+		i++;
+	}
+	return 1;
+}
 
 /**void map_parsing(int fd)
 {

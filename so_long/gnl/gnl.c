@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:40:00 by rzarhoun          #+#    #+#             */
-/*   Updated: 2023/12/06 16:45:30 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:57:30 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/gnl.h"
+#include "../includes/get_next_line.h"
 
 static char	*get_clean_line(char *buffer)
 {
