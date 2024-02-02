@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 21:39:09 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/01 15:33:11 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/02/01 15:32:35 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/02/01 16:49:57 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
+#include "../includes/so_long.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
 
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *c);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strdup( char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-
-#endif
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n)
+		i++;
+	if (i == n)
+		return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}

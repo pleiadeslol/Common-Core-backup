@@ -1,55 +1,86 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing1.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/01 15:33:22 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/02/02 20:12:59 by rzarhoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 #include "../includes/get_next_line.h"
 
-int check_ber(char *str)
+// the map should be a .ber file
+int	check_ber(char *str)
 {
-	int i = 0;
-	if (ft_strchr1(str, '.') && ft_strchr1(str, 'b') && ft_strchr1(str, 'e') && ft_strchr1(str, 'r'))
+	int	i;
+
+	i = 0;
+	if (ft_strncmp(ft_strchr(str, '.'), "ber", 4) == 0)
 		return (1);
 	else
 		return (0);
 }
 
-int check_len(char **str)
+// the map should be rectangular
+int	check_len(char **str)
 {
-	int i = 0;
-	int count = ft_strlen(str[0]);
+	int	i;
+	int	count;
+
+	i = 0;
+	count = ft_strlen(str[0]);
 	while (str[i])
 	{
 		if (count != ft_strlen(str[i]))
-			return 0;
+			return (0);
 		i++;
 	}
-	return 1;
+	return (1);
 }
 
-/**void map_parsing(int fd)
+//the map must contain 1 e, 1 c, and 1 p
+int	check_e(char *str)
 {
-	char	*line;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	while ((line = get_next_line(fd)))
+	while (str[i])
 	{
-		while (line[i])
-		{
-			if (line[i] == '1')
-				draw_wall();
-			else if (line[i] == '0')
-				draw_floor();
-			else if (line[i] == 'P')
-				draw_player();
-			else if (line[i] == 'C')
-				draw_collectible();
-			else if (line[i] == 'E')
-				draw_exit();
-			else
-				error();
+		if (str[i] != 'e')
 			i++;
-		}
-		j++;
+		return (1);
 	}
-}**/
+	return (0);
+}
 
+int	check_c(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != 'c')
+			i++;
+		return (1);
+	}
+	return (0);
+}
+
+int	check_p(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != 'p')
+			i++;
+		return (1);
+	}
+	return (0);
+}
