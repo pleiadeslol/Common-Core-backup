@@ -60,7 +60,7 @@ int	check_char(char **str)
 		while (str[i][j])
 		{
 			if (str[i][j] != '0' && str[i][j] != '1' && str[i][j] != 'E' 
-				&& str[i][j] != 'C' && str[i][j] != 'P')
+				&& str[i][j] != 'C' && str[i][j] != 'P' && str[i][j] != '\n')
 				return (0);
 			j++;
 		}
