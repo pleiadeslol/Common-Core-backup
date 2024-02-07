@@ -24,5 +24,6 @@ int check_walls(char **str);
 int	check_e(char **str);
 int	check_c(char **str);
 int	check_p(char **str);
+int	check_char(char **str);
 
 #endif

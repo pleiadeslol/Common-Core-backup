@@ -47,7 +47,27 @@ int	check_walls(char **str)
 }
 
 // the map can be composed of only the 5 characters
+int	check_char(char **str)
+{
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] != '0' && str[i][j] != '1' && str[i][j] != 'E' 
+				&& str[i][j] != 'C' && str[i][j] != 'P')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 /**void map_parsing(int fd)
 {

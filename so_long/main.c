@@ -55,6 +55,11 @@ int main(int ac, char **av)
 		printf("Error\nMap isn't rectangular\n");
 		return (0);
 	}
+	if (!check_char(str))
+	{
+		printf("Error\nMap contains different characters");
+		return (0);
+	}
 	if (check_e(str) != 1)
 	{
 		if (check_e(str) == 0)
