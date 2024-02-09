@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/06 16:46:40 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/07 21:10:55 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,26 @@ int main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	while ((str[i] = get_next_line(fd)))
 	{
+		str[i] = ft_strtrim(str[i], "\n");
 		i++;
 	}
+	printf("%s", str[6]);
+	// i = 0;
+	// while (str[i])
+	// {
+	// 	printf("%s", str[i]);
+	// 	i++;
+	// }
 	if (!check_len(str))
 	{
 		printf("Error\nMap isn't rectangular\n");
 		return (0);
 	}
-	if (!check_char(str))
-	{
-		printf("Error\nMap contains different characters");
-		return (0);
-	}
+	// if (!check_char(str))
+	// {
+	// 	printf("Error\nMap contains different characters");
+	// 	return (0);
+	// }
 	if (check_e(str) != 1)
 	{
 		if (check_e(str) == 0)

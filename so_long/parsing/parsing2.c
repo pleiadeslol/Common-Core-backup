@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/06 16:51:57 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:20:53 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_char(char **str)
 		while (str[i][j])
 		{
 			if (str[i][j] != '0' && str[i][j] != '1' && str[i][j] != 'E' 
-				&& str[i][j] != 'C' && str[i][j] != 'P' && str[i][j] != '\n')
+				&& str[i][j] != 'C' && str[i][j] != 'P')
 				return (0);
 			j++;
 		}
