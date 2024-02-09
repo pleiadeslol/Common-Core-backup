@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:22 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/06 16:42:38 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:38:23 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ int	check_ber(char *str)
 }
 
 // the map should be rectangular
-int	check_len(char **str)
+int	check_len(char **str, int count)
 {
 	int	i;
-	int	count;
+	int	len;
 
 	i = 0;
-	count = ft_strlen(str[0]);
+	len = ft_strlen(str[0]);
 	// printf("%d\n", count);
 	// printf("%d\n", ft_strlen(str[0]));
-	// printf("%d\n", count);
-	while (str[i])
+	// printf("%d\n", len);
+	while (i < count)
 	{
-		if (count != ft_strlen(str[i]))
+		if (len != ft_strlen(str[i]))
 			return (0);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/07 16:32:41 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:54:08 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_strcmp(const char *s1, const char *s2);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 char	*ft_strtrim(char const *s1, char const *s2);
 int check_ber(char *str);
-int check_len(char **str);
+int check_len(char **str, int count);
 int check_walls(char **str);
 int	check_e(char **str);
 int	check_c(char **str);

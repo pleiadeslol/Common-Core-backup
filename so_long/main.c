@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/09 17:28:04 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:53:54 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(int ac, char **av)
 			i++;
 		}
 	}
-	if (!check_len(str))
+	if (!check_len(str, count))
 	{
 		printf("Error\nMap isn't rectangular\n");
 		return (0);
