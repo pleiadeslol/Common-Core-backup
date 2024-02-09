@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/07 16:20:53 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:27:06 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_walls(char **str)
 	int		len;
 	char	*s;
 
-	len = ft_strlen(str[0]) - 1;
+	len = ft_strlen(str[0]);
 	s = (char *)malloc(len + 1);
 	i = 0;
 	while (i < len)
@@ -28,7 +28,7 @@ int	check_walls(char **str)
 		s[i] = '1';
 		i++;
 	}
-	s[i] = '\n';
+	// s[i] = '\n';
 	i = 0;
 	while (str[i])
 		i++;
