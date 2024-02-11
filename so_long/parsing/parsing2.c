@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/09 17:30:00 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:59:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	check_char(char **str)
 	}
 	return (1);
 }
+
+// void flood_fill(int i, int j, )
 
 /**void map_parsing(int fd)
 {

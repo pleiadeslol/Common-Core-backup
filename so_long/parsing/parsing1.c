@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:22 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/09 20:38:23 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/10 15:11:31 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 // the map should be a .ber file
 int	check_ber(char *str)
 {
-	if (ft_strncmp(ft_strchr(str, '.'), ".ber", 4) == 0)
+	if (ft_strchr(str, '.') == NULL)
+		return 0;
+	else if (ft_strncmp(ft_strchr(str, '.'), ".ber", 4) == 0)
 		return (1);
 	else
 		return (0);

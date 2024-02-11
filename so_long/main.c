@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/09 18:53:54 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:00:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int main(int ac, char **av)
 		printf("Error\nMap isn't rectangular\n");
 		return (0);
 	}
+	if (!check_walls(str))
+	{
+		printf("Error\nMap isn't surrounded by walls\n");
+		return (0);
+	}
 	if (!check_char(str))
 	{
 		printf("Error\nMap contains different characters");
@@ -85,11 +90,6 @@ int main(int ac, char **av)
 			printf("Error\nMap doesn't contain a starting position\n");
 		else
 			printf("Error\nMap contains more than one starting position\n");
-		return (0);
-	}
-	if (!check_walls(str))
-	{
-		printf("Error\nMap isn't surrounded by walls\n");
 		return (0);
 	}
 }
