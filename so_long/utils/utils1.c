@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/10 15:10:47 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/18 14:41:12 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,10 @@ char	*ft_strtrim(char const *s1, char const *s2)
 			ft_strlcpy(str, &s1[i], j - i + 1);
 	}
 	return (str);
+}
+
+int count_line(int fd)
+{
+	char *line;
+	
 }
