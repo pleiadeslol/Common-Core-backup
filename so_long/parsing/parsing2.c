@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/18 20:43:48 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:14:10 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_char(char **str)
 	return (1);
 }
 
-void flood_fill(int i, int j, )
+void	flood_fill()
 {
 	
 }
