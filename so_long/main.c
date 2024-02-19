@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/18 20:51:20 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:44:39 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,7 @@ int main(int ac, char **av)
 		perror("Error opening file");
 		return (0);
 	}
-	char *line;
-	int count = 0;
-	while ((line = get_next_line(fd)))
-	{
-		if (ft_strlen(ft_strtrim(line, "\n")) != 0)
-		{
-			line = ft_strtrim(line, "\n");
-			count++;
-		}
-	}
+	int count = count_line(fd);
 	char **str = malloc(sizeof(char **) * (count + 1));
 	if (!str)
 	{
@@ -52,14 +43,20 @@ int main(int ac, char **av)
 	}
 	close(fd);
 	fd = open(av[1], O_RDONLY);
-	while ((str[i] = get_next_line(fd)))
+	char *line;
+	line = get_next_line(fd);
+	while (ft_strlen(ft_strtrim(line, "\n")) == 0)
 	{
-		if (ft_strlen(ft_strtrim(str[i], "\n")) != 0)
-		{
-			str[i] = ft_strtrim(str[i], "\n");
-			i++;
-		}
+		line = get_next_line(fd);
 	}
+	str[0] = ft_strtrim(ft_strdup(line), "\n");
+	i = 1;
+	while ((str[i] = get_next_line(fd)) && i < count)
+	{
+		str[i] = ft_strtrim(str[i], "\n");
+		i++;
+	}
+	str[i] = NULL;
 	if (!check_len(str, count))
 	{
 		printf("Error\nMap isn't rectangular\n");

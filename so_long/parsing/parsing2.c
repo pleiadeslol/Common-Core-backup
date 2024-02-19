@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/19 20:38:40 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:47:19 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	check_walls(char **str)
 		s[i] = '1';
 		i++;
 	}
+	s[i] = '\0';
 	i = 0;
 	while (str[i])
 		i++;
@@ -73,42 +74,8 @@ void	flood_fill(char **tab, t_point size, t_point cur, char to_fill)
 		return;
 
 	tab[cur.y][cur.x] = 'F';
-	fill(tab, size, (t_point){cur.x - 1, cur.y}, to_fill);
-	fill(tab, size, (t_point){cur.x + 1, cur.y}, to_fill);
-	fill(tab, size, (t_point){cur.x, cur.y - 1}, to_fill);
-	fill(tab, size, (t_point){cur.x, cur.y + 1}, to_fill);
+	flood_fill(tab, size, (t_point){cur.x - 1, cur.y}, to_fill);
+	flood_fill(tab, size, (t_point){cur.x + 1, cur.y}, to_fill);
+	flood_fill(tab, size, (t_point){cur.x, cur.y - 1}, to_fill);
+	flood_fill(tab, size, (t_point){cur.x, cur.y + 1}, to_fill);
 }
-
-// void	flood_fill(char **tab, t_point size, t_point begin)
-// {
-// 	fill(tab, size, begin, tab[begin.y][begin.x]);
-// }
-/**void map_parsing(int fd)
-{
-	char	*line;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while ((line = get_next_line(fd)))
-	{
-		while (line[i])
-		{
-			if (line[i] == '1')
-				draw_wall();
-			else if (line[i] == '0')
-				draw_floor();
-			else if (line[i] == 'P')
-				draw_player();
-			else if (line[i] == 'C')
-				draw_collectible();
-			else if (line[i] == 'E')
-				draw_exit();
-			else
-				error();
-			i++;
-		}
-		j++;
-	}
-}**/
