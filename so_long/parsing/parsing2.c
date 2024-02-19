@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/10 17:59:14 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/18 20:43:48 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ int	check_walls(char **str)
 	i = 0;
 	while (str[i])
 		i++;
-	// first line and last line should be all walls
 	if (ft_strcmp(str[0], s) != 0 || ft_strcmp(str[i - 1], s) != 0)
 		return (0);
-	// there should be walls in  corners of each line
 	i = 0;
 	while (str[i])
 	{
@@ -68,8 +66,10 @@ int	check_char(char **str)
 	return (1);
 }
 
-// void flood_fill(int i, int j, )
-
+void flood_fill(int i, int j, )
+{
+	
+}
 /**void map_parsing(int fd)
 {
 	char	*line;

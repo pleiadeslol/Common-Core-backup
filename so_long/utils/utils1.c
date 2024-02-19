@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/18 14:41:12 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:34:43 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,17 @@ char	*ft_strtrim(char const *s1, char const *s2)
 	return (str);
 }
 
-int count_line(int fd)
-{
-	char *line;
-	
-}
+// int count_line(int fd)
+// {
+// 	char *line;
+// 	line = ft_strtrim(get_next_line(fd), "\n");
+// 	while (ft_strlen(line) == 0)
+// 	{
+// 		line = ft_strtrim(get_next_line(fd), "\n");
+// 	}
+// 	while (line)
+// 	{
+// 		count ++;
+// 		line = get_next_line(fd);
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/18 14:40:29 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/18 20:51:20 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ int main(int ac, char **av)
 	int fd;
 	int i = 0;
 
-	//first let's check if the map is a .ber file
+	if (ac == 1)
+	{
+		printf("Error\nNo map in argument\n");
+		return (0);
+	}
 	if (!check_ber(av[1]))
 	{
 		printf("Error\nFile isn't a .ber file\n");
@@ -30,20 +34,16 @@ int main(int ac, char **av)
 		perror("Error opening file");
 		return (0);
 	}
-	int count = count_line(fd);
-	// char *line;
-	// line = ft_strtrim(get_next_line(fd), "\n");
-	// while (ft_strlen(line) == 0)
-	// {
-	// 	line = ft_strtrim(get_next_line(fd), "\n");
-	// }
-	// printf("%s\n", line);
-	// while (line)
-	// {
-	// 	count += 1;
-	// 	line = get_next_line(fd);
-	// }
-	printf("%d\n", count);
+	char *line;
+	int count = 0;
+	while ((line = get_next_line(fd)))
+	{
+		if (ft_strlen(ft_strtrim(line, "\n")) != 0)
+		{
+			line = ft_strtrim(line, "\n");
+			count++;
+		}
+	}
 	char **str = malloc(sizeof(char **) * (count + 1));
 	if (!str)
 	{
