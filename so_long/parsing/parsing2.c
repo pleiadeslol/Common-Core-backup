@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/19 18:14:10 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:38:40 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,23 @@ int	check_char(char **str)
 	return (1);
 }
 
-void	flood_fill()
+void	flood_fill(char **tab, t_point size, t_point cur, char to_fill)
 {
-	
+	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x
+		|| tab[cur.y][cur.x] != to_fill)
+		return;
+
+	tab[cur.y][cur.x] = 'F';
+	fill(tab, size, (t_point){cur.x - 1, cur.y}, to_fill);
+	fill(tab, size, (t_point){cur.x + 1, cur.y}, to_fill);
+	fill(tab, size, (t_point){cur.x, cur.y - 1}, to_fill);
+	fill(tab, size, (t_point){cur.x, cur.y + 1}, to_fill);
 }
+
+// void	flood_fill(char **tab, t_point size, t_point begin)
+// {
+// 	fill(tab, size, begin, tab[begin.y][begin.x]);
+// }
 /**void map_parsing(int fd)
 {
 	char	*line;
