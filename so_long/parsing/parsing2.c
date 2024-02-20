@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/20 17:48:24 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:50:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ int	check_char(char **str)
 
 char **copy_str(char **str, int count)
 {
-	int i = 0;
-	char **tab = malloc(sizeof(char **) * (count + 1));
+	int i;
+	char **tab;
+
+	i = 0;
+	tab = malloc(sizeof(char **) * (count + 1));
 	while (str[i])
 	{
 		tab[i] = str[i];

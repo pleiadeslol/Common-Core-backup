@@ -17,6 +17,11 @@ void	fill_c(char **tab, t_point size, t_point cur, int *count, int req_c)
 	fill_c(tab, size, (t_point){cur.x, cur.y + 1}, count, req_c);
 }
 
+// void    fill_e(char **tab, t_point size, t_point cur, int *count)
+// {
+//     if ()
+// }
+
 void flood_fill(char **tab, t_point size, t_point cur, int req_c)
 {
 	int count;
