@@ -6,12 +6,12 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:22 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/10 15:11:31 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:52:52 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
-#include "../includes/get_next_line.h"
+#include "../headers/so_long.h"
+#include "../headers/get_next_line.h"
 
 // the map should be a .ber file
 int	check_ber(char *str)

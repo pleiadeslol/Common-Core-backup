@@ -6,12 +6,12 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/19 21:27:27 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:52:44 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
-#include "../includes/get_next_line.h"
+#include "../headers/so_long.h"
+#include "../headers/get_next_line.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

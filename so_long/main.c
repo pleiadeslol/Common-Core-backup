@@ -6,18 +6,23 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/19 21:44:39 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:53:10 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
-#include "includes/get_next_line.h"
+#include "headers/so_long.h"
+#include "headers/get_next_line.h"
 
 int main(int ac, char **av)
 {
 	int fd;
-	int i = 0;
+	int i;
+	int	count;
+	char	*line;
 
+	fd = open(av[1], O_RDONLY);
+	i = 1;
+	count = count_line(fd);
 	if (ac == 1)
 	{
 		printf("Error\nNo map in argument\n");
@@ -28,13 +33,11 @@ int main(int ac, char **av)
 		printf("Error\nFile isn't a .ber file\n");
 		return (0);
 	}
-	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 	{
 		perror("Error opening file");
 		return (0);
 	}
-	int count = count_line(fd);
 	char **str = malloc(sizeof(char **) * (count + 1));
 	if (!str)
 	{
@@ -43,14 +46,12 @@ int main(int ac, char **av)
 	}
 	close(fd);
 	fd = open(av[1], O_RDONLY);
-	char *line;
 	line = get_next_line(fd);
 	while (ft_strlen(ft_strtrim(line, "\n")) == 0)
 	{
 		line = get_next_line(fd);
 	}
 	str[0] = ft_strtrim(ft_strdup(line), "\n");
-	i = 1;
 	while ((str[i] = get_next_line(fd)) && i < count)
 	{
 		str[i] = ft_strtrim(str[i], "\n");
