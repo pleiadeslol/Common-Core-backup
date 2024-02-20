@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/20 14:53:10 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:46:28 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int main(int ac, char **av)
 	int i;
 	int	count;
 	char	*line;
+	t_point size;
+	t_point cur;
 
 	fd = open(av[1], O_RDONLY);
 	i = 1;
@@ -94,4 +96,24 @@ int main(int ac, char **av)
 			printf("Error\nMap contains more than one starting position\n");
 		return (0);
 	}
+	i = 0;
+	int j = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] == 'P'){
+				cur.x = j;
+				cur.y = i;
+			}
+			j++;
+		}
+		i++;
+	}
+	size.x = j;
+	size.y = i;
+	int req_c = check_c(str);
+	char **tab = copy_str(str, count);
+	flood_fill(tab, size, cur, req_c);
 }

@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/20 14:52:31 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:48:24 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,15 @@ int	check_char(char **str)
 	return (1);
 }
 
-void	flood_fill(char **tab, t_point size, t_point cur, char to_fill)
+char **copy_str(char **str, int count)
 {
-	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x
-		|| tab[cur.y][cur.x] != to_fill)
-		return;
-	tab[cur.y][cur.x] = '0';
-	flood_fill(tab, size, (t_point){cur.x - 1, cur.y}, to_fill);
-	flood_fill(tab, size, (t_point){cur.x + 1, cur.y}, to_fill);
-	flood_fill(tab, size, (t_point){cur.x, cur.y - 1}, to_fill);
-	flood_fill(tab, size, (t_point){cur.x, cur.y + 1}, to_fill);
+	int i = 0;
+	char **tab = malloc(sizeof(char **) * (count + 1));
+	while (str[i])
+	{
+		tab[i] = str[i];
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
 }

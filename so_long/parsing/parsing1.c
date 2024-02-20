@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:22 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/20 14:52:52 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:59:37 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ int	check_len(char **str, int count)
 
 	i = 0;
 	len = ft_strlen(str[0]);
-	// printf("%d\n", count);
-	// printf("%d\n", ft_strlen(str[0]));
-	// printf("%d\n", len);
 	while (i < count)
 	{
 		if (len != ft_strlen(str[i]))

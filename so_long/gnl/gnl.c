@@ -6,11 +6,11 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:40:00 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/01 15:33:48 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:49:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "../headers/get_next_line.h"
 
 static char	*get_clean_line(char *buffer)
 {

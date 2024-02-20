@@ -6,11 +6,11 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:58:12 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/01 16:45:30 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:49:53 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "../headers/get_next_line.h"
 
 size_t	ft_strlen(const char *c)
 {
