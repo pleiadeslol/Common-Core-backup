@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/21 01:51:13 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:13:32 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	check_c(char **str);
 int	check_p(char **str);
 int	check_char(char **str);
 char **copy_str(char *av, int count);
+void free_str(char **str);
 void	fill_c(char **tab, t_point size, t_point cur, int *count, int req_c);
 void    fill_e(char **tab, t_point size, t_point cur, int *count);
 void flood_fill(char **tab1, char **tab2, t_point size, t_point cur, int req_c);

@@ -55,4 +55,6 @@ void flood_fill(char **tab1, char **tab2, t_point size, t_point cur, int req_c)
 		if (count == 0)
 			printf("Error\nInvalid path\n");
 	}
+	free_str(tab1);
+	free_str(tab2);
 }

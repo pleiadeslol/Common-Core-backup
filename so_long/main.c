@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/21 03:56:40 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:02:16 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,9 @@ int main(int ac, char **av)
 		perror("Error opening file");
 		return (0);
 	}
-	char **str = malloc(sizeof(char **) * (count + 1));
-	if (!str)
-	{
-		printf("Error\nError allocating!\n");
-		return (0);
-	}
+	char **str;
 	close(fd);
-	fd = open(av[1], O_RDONLY);
-	line = get_next_line(fd);
-	while (ft_strlen(ft_strtrim(line, "\n")) == 0)
-	{
-		line = get_next_line(fd);
-	}
-	str[0] = ft_strtrim(ft_strdup(line), "\n");
-	free(line);
-	while ((str[i] = get_next_line(fd)) && i < count)
-	{
-		str[i] = ft_strtrim(str[i], "\n");
-		i++;
-	}
-	str[i] = NULL;
+	str = copy_str(av[1], count);
 	if (!check_len(str, count))
 	{
 		printf("Error\nMap isn't rectangular\n");
@@ -118,5 +100,6 @@ int main(int ac, char **av)
 	char **tab_c = copy_str(av[1], count);
 	char **tab_e = copy_str(av[1], count); //fixed
 	flood_fill(tab_c, tab_e, size, cur, req_c);
+	free_str(str);
 	// system("leaks a.out");
 }

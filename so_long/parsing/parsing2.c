@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/21 03:16:33 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:01:41 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,22 @@ char **copy_str(char *av, int count)
 	fd = open(av, O_RDONLY);
 	line = get_next_line(fd);
 	str = malloc(sizeof(char **) * (count + 1));
+	if (!str)
+	{
+		printf("Error\nError allocating!\n");
+		return (0);
+	}
 	while (ft_strlen(ft_strtrim(line, "\n")) == 0)
 	{
+		free(line);
 		line = get_next_line(fd);
 	}
 	str[0] = ft_strtrim(ft_strdup(line), "\n");
 	free (line);
-	while ((str[i] = get_next_line(fd)) && i < count)
+	while ((line = get_next_line(fd)) && i < count)
 	{
-		str[i] = ft_strtrim(str[i], "\n");
+		str[i] = ft_strtrim(line, "\n");
+		free(line);
 		i++;
 	}
 	str[i] = NULL;

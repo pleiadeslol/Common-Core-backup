@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/21 03:14:59 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:13:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,15 @@ int count_line(int fd)
 		line = get_next_line(fd);
 	}
 	return(count);
+}
+
+void free_str(char **str)
+{
+	int i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
