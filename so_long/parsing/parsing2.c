@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/20 17:50:59 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/21 01:55:21 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,27 @@ int	check_char(char **str)
 	return (1);
 }
 
-char **copy_str(char **str, int count)
+char **copy_str(char *av, int count)
 {
 	int i;
-	char **tab;
+	char **str;
+	char *line;
+	int fd;
 
-	i = 0;
-	tab = malloc(sizeof(char **) * (count + 1));
-	while (str[i])
+	i = 1;
+	fd = open(av, O_RDONLY);
+	line = get_next_line(fd);
+	str = malloc(sizeof(char **) * (count + 1));
+	while (ft_strlen(ft_strtrim(line, "\n")) == 0)
 	{
-		tab[i] = str[i];
+		line = get_next_line(fd);
+	}
+	str[0] = ft_strtrim(ft_strdup(line), "\n");
+	while ((str[i] = get_next_line(fd)) && i < count)
+	{
+		str[i] = ft_strtrim(str[i], "\n");
 		i++;
 	}
-	tab[i] = NULL;
-	return (tab);
+	str[i] = NULL;
+	return (str);
 }
