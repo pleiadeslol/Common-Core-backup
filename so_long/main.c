@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/21 15:02:16 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/22 00:32:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ int main(int ac, char **av)
 	char **tab_e = copy_str(av[1], count); //fixed
 	flood_fill(tab_c, tab_e, size, cur, req_c);
 	free_str(str);
-	// system("leaks a.out");
+	system("leaks a.out");
 }

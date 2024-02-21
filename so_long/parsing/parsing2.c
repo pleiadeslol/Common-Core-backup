@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/21 15:01:41 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/22 00:30:32 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,18 @@ int	check_walls(char **str)
 	while (str[i])
 		i++;
 	if (ft_strcmp(str[0], s) != 0 || ft_strcmp(str[i - 1], s) != 0)
-		return (0);
+		{
+			free(s);
+			return (0);
+		}
 	i = 0;
 	while (str[i])
 	{
 		if (str[i][0] != '1' || str[i][len - 1] != '1')
+		{
+			free(s);
 			return (0);
+		}
 		i++;
 	}
 	free(s);
@@ -89,7 +95,9 @@ char **copy_str(char *av, int count)
 		free(line);
 		line = get_next_line(fd);
 	}
-	str[0] = ft_strtrim(ft_strdup(line), "\n");
+	char *a = ft_strdup(line);
+	str[0] = ft_strtrim(a, "\n");
+	free(a);
 	free (line);
 	while ((line = get_next_line(fd)) && i < count)
 	{
@@ -97,6 +105,7 @@ char **copy_str(char *av, int count)
 		free(line);
 		i++;
 	}
+	free(line);
 	str[i] = NULL;
 	return (str);
 }

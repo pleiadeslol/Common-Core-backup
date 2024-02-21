@@ -22,10 +22,7 @@ void    fill_e(char **tab, t_point size, t_point cur, int *count)
 
     if (*count == 1 || cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x
 		|| tab[cur.y][cur.x] == '1' || tab[cur.y][cur.x] == 'V')
-	{
-
 		return;
-	}
 	if (tab[cur.y][cur.x] == 'E')
 	{
 
