@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/20 14:52:44 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/21 03:14:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int count_line(int fd)
 	{
 		if (ft_strncmp(line, "\n", 2) != 0)
 			count++;
+		free (line);
 		line = get_next_line(fd);
 	}
 	return(count);

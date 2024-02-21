@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/21 01:56:20 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/21 03:56:40 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int main(int ac, char **av)
 		line = get_next_line(fd);
 	}
 	str[0] = ft_strtrim(ft_strdup(line), "\n");
+	free(line);
 	while ((str[i] = get_next_line(fd)) && i < count)
 	{
 		str[i] = ft_strtrim(str[i], "\n");
@@ -117,4 +118,5 @@ int main(int ac, char **av)
 	char **tab_c = copy_str(av[1], count);
 	char **tab_e = copy_str(av[1], count); //fixed
 	flood_fill(tab_c, tab_e, size, cur, req_c);
+	// system("leaks a.out");
 }

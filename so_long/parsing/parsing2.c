@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/21 01:55:21 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/21 03:16:33 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	check_walls(char **str)
 			return (0);
 		i++;
 	}
+	free(s);
 	return (1);
 }
 
@@ -83,6 +84,7 @@ char **copy_str(char *av, int count)
 		line = get_next_line(fd);
 	}
 	str[0] = ft_strtrim(ft_strdup(line), "\n");
+	free (line);
 	while ((str[i] = get_next_line(fd)) && i < count)
 	{
 		str[i] = ft_strtrim(str[i], "\n");
