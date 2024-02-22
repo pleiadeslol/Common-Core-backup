@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/22 00:30:32 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/22 02:53:06 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char **copy_str(char *av, int count)
 		line = get_next_line(fd);
 	}
 	char *a = ft_strdup(line);
-	str[0] = ft_strtrim(a, "\n");
+	str[0] = ft_strtrim(a, "\n"); // LEAK HERE!!
 	free(a);
 	free (line);
 	while ((line = get_next_line(fd)) && i < count)

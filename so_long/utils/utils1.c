@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/22 00:30:41 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/22 02:53:25 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n)
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+char *ft_strcpy(char *s1, char *s2)
+{
+	int i = 0;
+	while (s1[i])
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	return (s2);
 }
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t n)
@@ -99,3 +110,13 @@ void free_str(char **str)
 	}
 	free(str);
 }
+
+// char *free_trim(char *s)
+// {
+// 	char *str = (char *)malloc(ft_strlen(s) + 1);
+// 	if (str != NULL)
+// 	{
+// 		ft_strcpy(s, str);
+// 	}
+// 	return (str);
+// }
