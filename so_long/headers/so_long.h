@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/22 02:53:16 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:03:35 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char *ft_strcpy(char *s1, char *s2);
 int count_line(int fd);
 int check_ber(char *str);
 int check_len(char **str, int count);
-int check_walls(char **str);
+int check_walls(char **str, int count);
 int	check_e(char **str);
 int	check_c(char **str);
 int	check_p(char **str);
