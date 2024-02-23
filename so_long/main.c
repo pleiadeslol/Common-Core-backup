@@ -6,21 +6,21 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/23 16:38:22 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:25:15 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/so_long.h"
 #include "headers/get_next_line.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int fd;
-	int i;
-	int	count;
+	int		fd;
+	int		i;
+	int		count;
 	char	*line;
-	t_point size;
-	t_point cur;
+	t_point	size;
+	t_point	cur;
 
 	fd = open(av[1], O_RDONLY);
 	i = 1;
@@ -96,10 +96,9 @@ int main(int ac, char **av)
 	}
 	size.x = j;
 	size.y = i;
-	int req_c = check_c(str);
 	char **tab_c = copy_str(av[1], count);
-	char **tab_e = copy_str(av[1], count); //fixed
-	flood_fill(tab_c, tab_e, size, cur, req_c);
+	char **tab_e = copy_str(av[1], count);
+	flood_fill(tab_c, tab_e, size, cur);
 	free_str(str);
 	// system("leaks a.out");
 }

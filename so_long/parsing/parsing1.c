@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:22 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/23 16:19:06 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:43:25 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	check_ber(char *str)
 {
 	if (ft_strchr(str, '.') == NULL)
-		return 0;
+		return (0);
 	else if (ft_strncmp(ft_strchr(str, '.'), ".ber", 4) == 0)
 		return (1);
 	else

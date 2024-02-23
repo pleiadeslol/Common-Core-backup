@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/23 16:37:54 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:59:04 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-char *ft_strcpy(char *s1, char *s2)
+char	*ft_strcpy(char *s1, char *s2)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (s1[i])
 	{
 		s2[i] = s1[i];
@@ -85,40 +87,3 @@ char	*ft_strtrim(char const *s1, char const *s2)
 	free ((void *)s1);
 	return (str);
 }
-
-int count_line(int fd)
-{
-	char *line;
-	int count = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (ft_strncmp(line, "\n", 2) != 0)
-			count++;
-		free (line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	return(count);
-}
-
-void free_str(char **str)
-{
-	int i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
-// char *free_trim(char *s)
-// {
-// 	char *str = (char *)malloc(ft_strlen(s) + 1);
-// 	if (str != NULL)
-// 	{
-// 		ft_strcpy(s, str);
-// 	}
-// 	return (str);
-// }
