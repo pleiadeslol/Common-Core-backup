@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/22 16:25:08 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:36:10 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,20 @@ int	check_walls(char **str, int count)
 	int		len;
 
 	len = ft_strlen(str[0]);
-	// s = (char *)malloc(len + 1);
-	// i = 0;
-	// while (i < len)
-	// {
-	// 	s[i] = '1';
-	// 	i++;
-	// }
-	// s[i] = '\0';
 	i = 0;
-		printf("hhhhhhhhhhhhhhh\n");
-		while (str[0][i])
-		{
-			if (str[0][i] != '1')
-				return (0);
-			i++;
-		}
+	while (str[0][i])
+	{
+		if (str[0][i] != '1')
+			return (0);
+		i++;
+	}
 	i = 0;
-		while (str[count - 1][i])
-		{
-			if (str[count - 1][i] != '1')
-				return (0);
-			i++;
-		}
-	// if (ft_strcmp(str[0], s) != 0 || ft_strcmp(str[i - 1], s) != 0)
-	// 	{
-	// 		free(s);
-	// 		return (0);
-	// 	}
+	while (str[count - 1][i])
+	{
+		if (str[count - 1][i] != '1')
+			return (0);
+		i++;
+	}
 	i = 1;
 	while (str[i])
 	{
@@ -92,26 +78,26 @@ char **copy_str(char *av, int count)
 
 	i = 1;
 	fd = open(av, O_RDONLY);
-	line = get_next_line(fd);
+	line = ft_strtrim(get_next_line(fd), "\n");
 	str = malloc(sizeof(char **) * (count + 1));
 	if (!str)
 	{
 		printf("Error\nError allocating!\n");
 		return (0);
 	}
-	while (ft_strlen(ft_strtrim(line, "\n")) == 0)
+	while (ft_strlen(line) == 0)
 	{
 		free(line);
-		line = get_next_line(fd);
+		line = ft_strtrim(get_next_line(fd), "\n");
 	}
-	// char *a = ft_strtrim(ft_strdup(line), "\n");
-	str[0] = ft_strtrim(ft_strdup(line), "\n"); // LEAK HERE!!
-	// free(a);
+	str[0] = ft_strdup(line); // LEAK HERE!!
 	free (line);
-	while ((line = get_next_line(fd)) && i < count)
+	line = ft_strtrim(get_next_line(fd), "\n");
+	while (line && i < count)
 	{
-		str[i] = ft_strtrim(ft_strdup(line), "\n");
+		str[i] = ft_strdup(line);
 		free(line);
+		line = ft_strtrim(get_next_line(fd), "\n");
 		i++;
 	}
 	free(line);

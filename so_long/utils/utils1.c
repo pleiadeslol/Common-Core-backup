@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/22 15:23:55 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:37:54 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ char	*ft_strtrim(char const *s1, char const *s2)
 		if (str)
 			ft_strlcpy(str, &s1[i], j - i + 1);
 	}
+	free ((void *)s1);
 	return (str);
 }
 
