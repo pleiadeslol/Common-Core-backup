@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/23 17:25:15 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/24 22:04:44 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,89 +16,15 @@
 int	main(int ac, char **av)
 {
 	int		fd;
-	int		i;
 	int		count;
-	char	*line;
-	t_point	size;
-	t_point	cur;
+	char	**str;
 
 	fd = open(av[1], O_RDONLY);
-	i = 1;
 	count = count_line(fd);
-	if (ac == 1)
-	{
-		printf("Error\nNo map in argument\n");
-		return (0);
-	}
-	if (!check_ber(av[1]))
-	{
-		printf("Error\nFile isn't a .ber file\n");
-		return (0);
-	}
-	if (fd < 0)
-	{
-		perror("Error opening file");
-		return (0);
-	}
-	char **str;
 	close(fd);
 	str = copy_str(av[1], count);
-	if (!check_len(str, count))
-	{
-		printf("Error\nMap isn't rectangular\n");
+	if (errors(ac, av, str, count) == 0)
 		return (0);
-	}
-	if (!check_walls(str, count))
-	{
-		printf("Error\nMap isn't surrounded by walls\n");
-		return (0);
-	}
-	if (!check_char(str))
-	{
-		printf("Error\nMap contains different characters");
-		return (0);
-	}
-	if (check_e(str) != 1)
-	{
-		if (check_e(str) == 0)
-			printf("Error\nMap doesn't contain an exit\n");
-		else
-			printf("Error\nMap contains more than one exit\n");
-		return (0);
-	}
-	if (check_c(str) < 1)
-	{
-		printf("Error\nMap doesn't contain a collectible\n");
-		return (0);
-	}
-	if (check_p(str) != 1)
-	{
-		if (check_p(str) == 0)
-			printf("Error\nMap doesn't contain a starting position\n");
-		else
-			printf("Error\nMap contains more than one starting position\n");
-		return (0);
-	}
-	i = 0;
-	int j = 0;
-	while (str[i])
-	{
-		j = 0;
-		while (str[i][j])
-		{
-			if (str[i][j] == 'P'){
-				cur.x = j;
-				cur.y = i;
-			}
-			j++;
-		}
-		i++;
-	}
-	size.x = j;
-	size.y = i;
-	char **tab_c = copy_str(av[1], count);
-	char **tab_e = copy_str(av[1], count);
-	flood_fill(tab_c, tab_e, size, cur);
 	free_str(str);
-	// system("leaks a.out");
+	system("leaks a.out");
 }

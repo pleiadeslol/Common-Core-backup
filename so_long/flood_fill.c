@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:01:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/23 17:21:24 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/24 20:54:54 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	fill_e(char **tab, t_point size, t_point cur, int *count)
 	fill_e(tab, size, (t_point){cur.x, cur.y + 1}, count);
 }
 
-void	flood_fill(char **tab1, char **tab2, t_point size, t_point cur)
+int	flood_fill(char **tab1, char **tab2, t_point size, t_point cur)
 {
 	int	count;
 	int	req_c;
@@ -61,14 +61,19 @@ void	flood_fill(char **tab1, char **tab2, t_point size, t_point cur)
 	i = 0;
 	fill_c(tab1, size, cur, &count);
 	if (req_c != count)
+	{
 		printf("Error\nInvalid path\n");
+		return (free_str(tab1), 0);
+	}
 	else
 	{
 		count = 0;
 		fill_e(tab2, size, cur, &count);
 		if (count == 0)
+		{
 			printf("Error\nInvalid path\n");
+			return (free_str(tab1), free_str(tab2), 0);
+		}
 	}
-	free_str(tab1);
-	free_str(tab2);
+	return (free_str(tab1), free_str(tab2), 1);
 }

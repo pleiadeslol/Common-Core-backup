@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:57:19 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/23 17:00:30 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/24 22:02:28 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,49 @@ void	free_str(char **str)
 		i++;
 	}
 	free(str);
+}
+
+t_point	find_cur(char **str)
+{
+	int		i;
+	int		j;
+	t_point	cur;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] == 'P')
+			{
+				cur.x = j;
+				cur.y = i;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (cur);
+}
+
+t_point	find_size(char **str)
+{
+	int		i;
+	int		j;
+	t_point	size;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+			j++;
+		i++;
+	}
+	size.x = j;
+	size.y = i;
+	return (size);
 }
