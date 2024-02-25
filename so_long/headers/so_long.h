@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/24 22:02:19 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/25 18:53:33 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <fcntl.h>
 # include <stdio.h>
+# include <mlx.h>
+
+# define HEIGHT 1080
+# define WIDTH 1920
 
 typedef struct s_point
 {
@@ -49,5 +53,6 @@ int		map_errors3(char **av, char **str, int count);
 t_point	find_cur(char **str);
 t_point	find_size(char **str);
 int		errors(int ac, char **av, char **str, int count);
+void    draw_window();
 
 #endif

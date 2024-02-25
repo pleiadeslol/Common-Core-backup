@@ -6,12 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:01:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/24 20:54:54 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/25 22:14:00 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/so_long.h"
 #include "headers/get_next_line.h"
+#include "ft_printf/ft_printf.h"
 
 void	fill_c(char **tab, t_point size, t_point cur, int *count)
 {
@@ -71,7 +72,7 @@ int	flood_fill(char **tab1, char **tab2, t_point size, t_point cur)
 		fill_e(tab2, size, cur, &count);
 		if (count == 0)
 		{
-			printf("Error\nInvalid path\n");
+			ft_printf("Error\nInvalid path\n");
 			return (free_str(tab1), free_str(tab2), 0);
 		}
 	}

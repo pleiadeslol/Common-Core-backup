@@ -6,12 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:11:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/23 16:54:37 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/25 22:13:51 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/get_next_line.h"
 #include "../headers/so_long.h"
+#include "../ft_printf/ft_printf.h"
 
 // the map must be closed/surrounded bt walls
 int	check_corners(char **str, int len)
@@ -106,7 +107,7 @@ char	**copy_str(char *av, int count)
 	str = malloc(sizeof(char **) * (count + 1));
 	if (!str)
 	{
-		printf("Error\nError allocating!\n");
+		ft_printf("Error\nError allocating!\n");
 		return (0);
 	}
 	while (ft_strlen(line) == 0)
