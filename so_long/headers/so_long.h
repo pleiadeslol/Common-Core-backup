@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/25 18:53:33 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:08:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <fcntl.h>
 # include <stdio.h>
-# include <mlx.h>
 
 # define HEIGHT 1080
 # define WIDTH 1920
