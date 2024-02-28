@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/27 16:08:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/28 18:17:34 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int		map_errors3(char **av, char **str, int count);
 t_point	find_cur(char **str);
 t_point	find_size(char **str);
 int		errors(int ac, char **av, char **str, int count);
-void    draw_window();
+void    draw_wall(char **str, int count);
 
 #endif
