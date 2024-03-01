@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/28 18:17:34 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:05:51 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,21 @@ typedef struct s_point
 	int	x;
 	int	y;
 }	t_point;
+
+typedef struct s_mlx
+{
+	void	*ptr;
+	void	*win;
+}	t_mlx;
+
+typedef struct s_map
+{
+	void	*wall;
+	void	*empty;
+	void	*collectible;
+	void	*player;
+	void	*exit;
+}	t_map;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -52,6 +67,9 @@ int		map_errors3(char **av, char **str, int count);
 t_point	find_cur(char **str);
 t_point	find_size(char **str);
 int		errors(int ac, char **av, char **str, int count);
-void    draw_wall(char **str, int count);
+void    draw_game(char **str, int count);
+void	draw_map(char **str, t_map map, t_mlx mlx);
+void	mlx_image_win(t_mlx	mlx, void	*map, int j, int i);
+void	*mlx_xpm_img(void *ptr, char *path, int x, int y);
 
 #endif
