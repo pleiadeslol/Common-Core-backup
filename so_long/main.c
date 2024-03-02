@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/03 00:17:17 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/03 00:31:33 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 	if (errors(ac, av, str, count) == 0)
 		return (0);
 	mlx.map = str;
-	draw_game(mlx.map, count);
+	draw_game(&mlx, count);
 	free_str(str);
 	system("leaks a.out");
 }

@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/03 00:13:30 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/03 00:23:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_mlx
 	void	*ptr;
 	void	*win;
 	char	**map;
-	t_map	*map_img;
+	t_map	*img;
 }	t_mlx;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -77,7 +77,7 @@ int		map_errors3(char **av, char **str, int count);
 t_point	find_cur(char **str);
 t_point	find_size(char **str);
 int		errors(int ac, char **av, char **str, int count);
-void	draw_game(char **str, int count);
+void	draw_game(t_mlx *mlx, int count);
 int	draw_map(t_mlx *mlx);
 void	mlx_image_win(t_mlx *mlx, void *map, int j, int i);
 void	*mlx_xpm_img(void *ptr, char *path, int x, int y);

@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:49:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/03 00:16:08 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/03 00:34:44 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ int	draw_map(t_mlx *mlx)
 		while (mlx->map[i][j])
 		{
 			if (mlx->map[i][j] == '1')
-				mlx_image_win(mlx, mlx->map_img->wall, j, i);
+				mlx_image_win(mlx, mlx->img->wall, j, i);
 			else if (mlx->map[i][j] == 'E')
-				mlx_image_win(mlx, mlx->map_img->exit, j, i);
+				mlx_image_win(mlx, mlx->img->exit, j, i);
 			else if (mlx->map[i][j] == '0')
-				mlx_image_win(mlx, mlx->map_img->empty, j, i);
+				mlx_image_win(mlx, mlx->img->empty, j, i);
 			else if (mlx->map[i][j] == 'C')
-				mlx_image_win(mlx, mlx->map_img->collectible, j, i);
+				mlx_image_win(mlx, mlx->img->collectible, j, i);
 			else if (mlx->map[i][j] == 'P')
-				mlx_image_win(mlx, mlx->map_img->player, j, i);
+				mlx_image_win(mlx, mlx->img->player, j, i);
 			j++;
 		}
 		i++;
@@ -78,27 +78,24 @@ void	get_img(t_mlx *mlx)
 	map->collectible = mlx_xpm_img(mlx->ptr, "textures/xpm/c.xpm", x, y);
 	map->player = mlx_xpm_img(mlx->ptr, "textures/xpm/cat_down_0.xpm", x, y);
 	map->exit = mlx_xpm_img(mlx->ptr, "textures/xpm/exit_0.xpm", x, y);
-	mlx->map_img = map;
+	mlx->img = map;
 }
 
-void	draw_game(char **str, int count)
+void	draw_game(t_mlx *mlx, int count)
 {
-	t_mlx	mlx;
-	t_map	map;
-
-	mlx.ptr = mlx_init();
-	if (mlx.ptr == NULL)
+	mlx->ptr = mlx_init();
+	if (mlx->ptr == NULL)
 		return ;
-	mlx.win = mlx_new_window(mlx.ptr, (ft_strlen(str[0]) * 64),
+	mlx->win = mlx_new_window(mlx->ptr, (ft_strlen(mlx->map[0]) * 64),
 			count * 64, "so_long");
-	if (mlx.win == NULL)
+	if (mlx->win == NULL)
 		return ;
-	get_img(&mlx);
-	if (map.wall == NULL || map.empty == NULL)
+	get_img(mlx);
+	if (mlx->img->wall == NULL || mlx->img->empty == NULL)
 		return ;
-	mlx_loop_hook(mlx.ptr, &draw_map, &mlx);
-	mlx_hook(mlx.win, 2, 1L<<0, &move_player, &mlx);
-	mlx_loop(mlx.ptr);
+	mlx_loop_hook(mlx->ptr, &draw_map, mlx);
+	mlx_hook(mlx->win, 2, 1L<<0, &move_player, mlx);
+	mlx_loop(mlx->ptr);
 	// free_draw(mlx, map);
 	return ;
 }
