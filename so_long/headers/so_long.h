@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/01 18:51:13 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/03 00:13:30 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@
 
 # define HEIGHT 1080
 # define WIDTH 1920
+# define UP 126
+# define DOWN 125
+# define RIGHT 124
+# define LEFT 123
+# define W 13
+# define S 1
+# define D 2
+# define A 0
 
 typedef struct s_point
 {
 	int	x;
 	int	y;
 }	t_point;
-
-typedef struct s_mlx
-{
-	void	*ptr;
-	void	*win;
-}	t_mlx;
 
 typedef struct s_map
 {
@@ -39,6 +41,14 @@ typedef struct s_map
 	void	*player;
 	void	*exit;
 }	t_map;
+
+typedef struct s_mlx
+{
+	void	*ptr;
+	void	*win;
+	char	**map;
+	t_map	*map_img;
+}	t_mlx;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -68,8 +78,9 @@ t_point	find_cur(char **str);
 t_point	find_size(char **str);
 int		errors(int ac, char **av, char **str, int count);
 void	draw_game(char **str, int count);
-void	draw_map(char **str, t_map map, t_mlx mlx);
-void	mlx_image_win(t_mlx mlx, void *map, int j, int i);
+int	draw_map(t_mlx *mlx);
+void	mlx_image_win(t_mlx *mlx, void *map, int j, int i);
 void	*mlx_xpm_img(void *ptr, char *path, int x, int y);
+int		move_player(int keycode, void *mlx);
 
 #endif
