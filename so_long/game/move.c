@@ -6,13 +6,20 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:36:59 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/03 21:29:56 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/03 23:53:02 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
 #include "../headers/get_next_line.h"
 #include "../minilibx/mlx.h"
+
+int	exit_mlx(void	*mlx)
+{
+	t_mlx *mlx_ptr = mlx;
+	mlx_destroy_window(mlx_ptr->ptr, mlx_ptr->win);
+	exit(0);
+}
 
 int	move_player(int keycode, void *mlx_ptr)
 {
@@ -28,11 +35,21 @@ int	move_player(int keycode, void *mlx_ptr)
 	y = cur.y;
 	count = 0;
 	collec = check_c(mlx->map);
+	if (keycode == ESC)
+	{
+		mlx_destroy_window(mlx->ptr, mlx->win);
+		exit(0);
+	}
 	if (keycode == UP || keycode == W)
 	{
 		if (mlx->map[y - 1][x] == '1' || (mlx->map[y - 1][x] == 'E'
 			&& count != collec))
 			return (0);
+		if (mlx->map[y - 1][x] == 'E' && count == collec)
+		{
+			mlx_destroy_window(mlx->ptr, mlx->win);
+			exit(0);
+		}
 		if (mlx->map[y - 1][x] == 'C')
 			count++;
 		mlx->map[y][x] = '0';
@@ -53,6 +70,11 @@ int	move_player(int keycode, void *mlx_ptr)
 		if (mlx->map[y][x + 1] == '1' || (mlx->map[y][x + 1] == 'E'
 			&& count != collec))
 			return (0);
+		if (mlx->map[y][x + 1] == 'E' && count == collec)
+		{
+			mlx_destroy_window(mlx->ptr, mlx->win);
+			exit(0);
+		}
 		if (mlx->map[y][x + 1] == 'C')
 			count++;
 		mlx->map[y][x] = '0';
@@ -63,6 +85,11 @@ int	move_player(int keycode, void *mlx_ptr)
 		if (mlx->map[y][x - 1] == '1' || (mlx->map[y][x - 1] == 'E'
 			&& count != collec))
 			return (0);
+		if (mlx->map[y][x - 1] == 'E' && count == collec)
+		{
+			mlx_destroy_window(mlx->ptr, mlx->win);
+			exit(0);
+		}
 		if (mlx->map[y][x - 1] == 'C')
 			count++;
 		mlx->map[y][x] = '0';
@@ -70,7 +97,5 @@ int	move_player(int keycode, void *mlx_ptr)
 	}
 	if (count == collec)
 		mlx->img->exit = mlx_xpm_img(mlx->ptr, "textures/xpm/exit_3.xpm", x, y);
-	// if (mlx->map[y][x] == 'E' && count == collec)
-	// 	mlx_destroy_window(mlx->ptr, mlx->win);
 	return(0);
 }

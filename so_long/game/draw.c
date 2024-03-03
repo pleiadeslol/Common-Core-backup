@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:49:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/03 21:19:28 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/04 00:08:38 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ void	*mlx_xpm_img(void *ptr, char *path, int x, int y)
 	return(img);
 }
 
-void	free_draw(t_mlx mlx, t_map map)
+void	free_draw(t_mlx *mlx, t_map *map)
 {
-	mlx_destroy_image(mlx.ptr, map.wall);
-	mlx_destroy_image(mlx.ptr, map.empty);
-	mlx_destroy_image(mlx.ptr, map.collectible);
-	mlx_destroy_image(mlx.ptr, map.exit);
-	mlx_destroy_image(mlx.ptr, map.player);
-	mlx_destroy_window(mlx.ptr, mlx.win);
-	free(mlx.ptr);
+	mlx_destroy_image(mlx->ptr, map->wall);
+	mlx_destroy_image(mlx->ptr, map->empty);
+	mlx_destroy_image(mlx->ptr, map->collectible);
+	mlx_destroy_image(mlx->ptr, map->exit);
+	mlx_destroy_image(mlx->ptr, map->player);
+	mlx_destroy_window(mlx->ptr, mlx->win);
+	free(mlx->ptr);
 }
 
 void	get_img(t_mlx *mlx)
@@ -97,7 +97,8 @@ void	draw_game(t_mlx *mlx, int count)
 		return ;
 	mlx_loop_hook(mlx->ptr, &draw_map, mlx);
 	mlx_hook(mlx->win, 2, 1L<<0, &move_player, mlx);
+	mlx_hook(mlx->win, 17, 1L<<17, &exit_mlx, mlx);
 	mlx_loop(mlx->ptr);
-	// free_draw(mlx, map);
+	free_draw(mlx, mlx->img);
 	return ;
 }
