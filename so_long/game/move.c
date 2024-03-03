@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:36:59 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/03 21:24:05 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/03 21:29:56 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	move_player(int keycode, void *mlx_ptr)
 	collec = check_c(mlx->map);
 	if (keycode == UP || keycode == W)
 	{
-		if (mlx->map[y - 1][x] == '1')
+		if (mlx->map[y - 1][x] == '1' || (mlx->map[y - 1][x] == 'E'
+			&& count != collec))
 			return (0);
 		if (mlx->map[y - 1][x] == 'C')
 			count++;
@@ -39,7 +40,8 @@ int	move_player(int keycode, void *mlx_ptr)
 	}
 	else if (keycode == DOWN || keycode == S)
 	{
-		if (mlx->map[y + 1][x] == '1')
+		if (mlx->map[y + 1][x] == '1' || (mlx->map[y + 1][x] == 'E'
+			&& count != collec))
 			return (0);
 		if (mlx->map[y + 1][x] == 'C')
 			count++;
@@ -48,7 +50,8 @@ int	move_player(int keycode, void *mlx_ptr)
 	}
 	else if (keycode == RIGHT || keycode == D)
 	{
-		if (mlx->map[y][x + 1] == '1')
+		if (mlx->map[y][x + 1] == '1' || (mlx->map[y][x + 1] == 'E'
+			&& count != collec))
 			return (0);
 		if (mlx->map[y][x + 1] == 'C')
 			count++;
@@ -57,7 +60,8 @@ int	move_player(int keycode, void *mlx_ptr)
 	}
 	else if (keycode == LEFT || keycode == A)
 	{
-		if (mlx->map[y][x - 1] == '1')
+		if (mlx->map[y][x - 1] == '1' || (mlx->map[y][x - 1] == 'E'
+			&& count != collec))
 			return (0);
 		if (mlx->map[y][x - 1] == 'C')
 			count++;
@@ -66,5 +70,7 @@ int	move_player(int keycode, void *mlx_ptr)
 	}
 	if (count == collec)
 		mlx->img->exit = mlx_xpm_img(mlx->ptr, "textures/xpm/exit_3.xpm", x, y);
+	// if (mlx->map[y][x] == 'E' && count == collec)
+	// 	mlx_destroy_window(mlx->ptr, mlx->win);
 	return(0);
 }
