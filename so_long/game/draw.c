@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:49:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/03 00:34:44 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/03 21:19:28 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	get_img(t_mlx *mlx)
 	int		y;
 
 	map = malloc(sizeof(t_map));
+	if (map == NULL)
+		return ;
 	map->wall = mlx_xpm_img(mlx->ptr, "textures/xpm/wall.xpm", x, y);
 	map->empty = mlx_xpm_img(mlx->ptr, "textures/xpm/floor.xpm", x, y);
 	map->collectible = mlx_xpm_img(mlx->ptr, "textures/xpm/c.xpm", x, y);
