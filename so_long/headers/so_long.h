@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 22:23:33 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/04 22:40:28 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_mlx
 	void	*win;
 	char	**map;
 	t_map	*img;
+	int		moves;
 }	t_mlx;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

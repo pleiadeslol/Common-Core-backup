@@ -6,12 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:36:59 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 22:12:09 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/04 22:42:16 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
 #include "../headers/get_next_line.h"
+#include "../ft_printf/ft_printf.h"
 #include "../minilibx/mlx.h"
 
 int	exit_mlx(void	*mlx)
@@ -42,6 +43,8 @@ void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos)
 		c.count++;
 	mlx->map[y][x] = '0';
 	mlx->map[y + p.y][x + p.x] = 'P';
+	mlx->moves++;
+	ft_printf("Moves: %d\n", mlx->moves);
 }
 
 int	move_player(int keycode, void *mlx_ptr)
