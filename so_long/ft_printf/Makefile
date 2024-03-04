@@ -6,19 +6,17 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 21:41:21 by rzarhoun          #+#    #+#              #
-#    Updated: 2023/11/30 20:16:43 by rzarhoun         ###   ########.fr        #
+#    Updated: 2024/03/04 22:17:39 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = 	ft_printf.c \
 		ft_putchar.c \
 		ft_putnbr_u.c \
-		ft_strlen.c \
 		ft_print_ptr.c \
 		ft_puthex.c \
 		ft_putnbr.c \
-		ft_putstr.c \
-		ft_strchr.c
+		ft_putstr.c 
 
 OBJS = $(SRCS:.c=.o)
 CC = cc
@@ -31,7 +29,7 @@ $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 clean:
-	rm -f *.o
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)

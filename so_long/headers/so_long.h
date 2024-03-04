@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 21:59:19 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/04 22:23:33 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		errors(int ac, char **av, char **str, int count);
 void	draw_game(t_mlx *mlx, int count);
 int		draw_map(t_mlx *mlx);
 void	mlx_image_win(t_mlx *mlx, void *map, int j, int i);
-void	*mlx_xpm_img(void *ptr, char *path, int x, int y);
+void	*mlx_xpm_img(void *ptr, char *path);
 int		move_player(int keycode, void *mlx);
 int		exit_mlx(void	*mlx);
 void	free_game(t_mlx *mlx, t_map *map);

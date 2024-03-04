@@ -6,12 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:33:29 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 21:07:27 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/04 22:24:46 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/so_long.h"
 #include "headers/get_next_line.h"
+#include "ft_printf/ft_printf.h"
 
 int	main(int ac, char **av)
 {
@@ -21,6 +22,11 @@ int	main(int ac, char **av)
 	t_mlx	mlx;
 
 	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("Error\nNo such file or directory\n");
+		return (1);
+	}
 	count = count_line(fd);
 	close(fd);
 	str = copy_str(av[1], count);

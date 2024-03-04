@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:49:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 21:57:35 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/04 22:11:26 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,27 @@ int	draw_map(t_mlx *mlx)
 	return (0);
 }
 
-void	*mlx_xpm_img(void *ptr, char *path, int x, int y)
+void	*mlx_xpm_img(void *ptr, char *path)
 {
 	void	*img;
+	int		x;
 
-	img = mlx_xpm_file_to_image(ptr, path, &x, &y);
+	img = mlx_xpm_file_to_image(ptr, path, &x, &x);
 	return (img);
 }
 
 void	get_img(t_mlx *mlx)
 {
 	t_map	*map;
-	int		x;
-	int		y;
 
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		return ;
-	map->wall = mlx_xpm_img(mlx->ptr, "textures/xpm/wall.xpm", x, y);
-	map->empty = mlx_xpm_img(mlx->ptr, "textures/xpm/floor.xpm", x, y);
-	map->collectible = mlx_xpm_img(mlx->ptr, "textures/xpm/c.xpm", x, y);
-	map->player = mlx_xpm_img(mlx->ptr, "textures/xpm/cat_down_0.xpm", x, y);
-	map->exit = mlx_xpm_img(mlx->ptr, "textures/xpm/exit_0.xpm", x, y);
+	map->wall = mlx_xpm_img(mlx->ptr, "textures/xpm/wall.xpm");
+	map->empty = mlx_xpm_img(mlx->ptr, "textures/xpm/floor.xpm");
+	map->collectible = mlx_xpm_img(mlx->ptr, "textures/xpm/c.xpm");
+	map->player = mlx_xpm_img(mlx->ptr, "textures/xpm/cat_down_0.xpm");
+	map->exit = mlx_xpm_img(mlx->ptr, "textures/xpm/exit_0.xpm");
 	mlx->img = map;
 }
 

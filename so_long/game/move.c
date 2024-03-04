@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:36:59 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 21:58:54 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/04 22:12:09 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int	move_player(int keycode, void *mlx_ptr)
 		handle_action(mlx, c, (t_point){-1, 0}, cur);
 	if (c.count == c.req_c)
 		mlx->img->exit = mlx_xpm_img(mlx->ptr,
-				"textures/xpm/exit_3.xpm", cur.x, cur.y);
+				"textures/xpm/exit_3.xpm");
 	return (0);
 }
