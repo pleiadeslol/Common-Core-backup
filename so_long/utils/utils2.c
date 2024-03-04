@@ -6,12 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:57:19 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/02/24 22:02:28 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/04 21:59:47 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
 #include "../headers/get_next_line.h"
+#include "../minilibx/mlx.h"
 
 int	count_line(int fd)
 {
@@ -87,4 +88,17 @@ t_point	find_size(char **str)
 	size.x = j;
 	size.y = i;
 	return (size);
+}
+
+void	free_game(t_mlx *mlx, t_map *map)
+{
+	mlx_destroy_image(mlx->ptr, map->wall);
+	mlx_destroy_image(mlx->ptr, map->empty);
+	mlx_destroy_image(mlx->ptr, map->collectible);
+	mlx_destroy_image(mlx->ptr, map->exit);
+	mlx_destroy_image(mlx->ptr, map->player);
+	mlx_destroy_window(mlx->ptr, mlx->win);
+	free(mlx->ptr);
+	free(mlx->img);
+	free_str(mlx->map);
 }

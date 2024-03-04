@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/03 23:51:32 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/04 21:59:19 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct s_point
 	int	x;
 	int	y;
 }	t_point;
+
+typedef struct s_collec
+{
+	int	count;
+	int	req_c;
+}	t_collec;
 
 typedef struct s_map
 {
@@ -68,7 +74,7 @@ int		check_char(char **str);
 void	trim_line(char **str, int count, int fd, char *line);
 char	**copy_str(char *av, int count);
 void	free_str(char **str);
-void	fill_c(char **tab, t_point size, t_point cur, int *count);
+void	fill_c(char **tab, t_point size, t_point cur, t_collec *c);
 void	fill_e(char **tab, t_point size, t_point cur, int *count);
 int		flood_fill(char **tab1, char **tab2, t_point size, t_point cur);
 int		av_errors(int ac, char **av);
@@ -84,5 +90,7 @@ void	mlx_image_win(t_mlx *mlx, void *map, int j, int i);
 void	*mlx_xpm_img(void *ptr, char *path, int x, int y);
 int		move_player(int keycode, void *mlx);
 int		exit_mlx(void	*mlx);
+void	free_game(t_mlx *mlx, t_map *map);
+void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos);
 
 #endif
