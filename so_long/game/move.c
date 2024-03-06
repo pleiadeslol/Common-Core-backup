@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:36:59 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 22:42:16 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:56:50 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos)
 		exit(0);
 	}
 	if (mlx->map[y + p.y][x + p.x] == 'C')
+	{
 		c.count++;
+		if (c.count == c.req_c)
+			mlx->img->exit = mlx_xpm_img(mlx->ptr,
+					"textures/xpm/exit_3.xpm");
+	}
 	mlx->map[y][x] = '0';
 	mlx->map[y + p.y][x + p.x] = 'P';
 	mlx->moves++;
@@ -70,8 +75,5 @@ int	move_player(int keycode, void *mlx_ptr)
 		handle_action(mlx, c, (t_point){1, 0}, cur);
 	else if (keycode == LEFT || keycode == A)
 		handle_action(mlx, c, (t_point){-1, 0}, cur);
-	if (c.count == c.req_c)
-		mlx->img->exit = mlx_xpm_img(mlx->ptr,
-				"textures/xpm/exit_3.xpm");
 	return (0);
 }
