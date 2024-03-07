@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 23:15:43 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/07 03:36:22 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <stdio.h>
+# include <time.h>
 
 # define HEIGHT 1080
 # define WIDTH 1920
@@ -45,9 +46,12 @@ typedef struct s_map
 	void	*wall;
 	void	*empty;
 	void	*collectible;
-	void	*player;
-	void	*exit;
-	void	*enemy;
+	void	player_up[4];
+	void	player_down[4];
+	void	player_right[4];
+	void	player_left[4];
+	void	exit[4];
+	void	enemy[2];
 }	t_map;
 
 typedef struct s_mlx
@@ -95,5 +99,11 @@ int		move_player(int keycode, void *mlx);
 int		exit_mlx(void	*mlx);
 void	free_game(t_mlx *mlx, t_map *map);
 void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos);
+void	move_enemy(t_mlx *mlx);
+t_point	find_enemy(char **str);
+void	handle_enemy(t_mlx *mlx,t_point p, t_point enemy);
+void	player_sprites(t_map *player);
+void	enemy_sprites(t_map *enemy);
+void	exit_sprites(t_map *exit);
 
 #endif

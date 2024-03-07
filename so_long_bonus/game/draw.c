@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:49:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 23:17:03 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/07 03:20:38 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	draw_map(t_mlx *mlx)
 	int	j;
 
 	i = 0;
+	usleep(100000);
 	while (mlx->map[i])
 	{
 		j = 0;
@@ -46,6 +47,7 @@ int	draw_map(t_mlx *mlx)
 		}
 		i++;
 	}
+	move_enemy(mlx);
 	return (0);
 }
 
@@ -68,7 +70,6 @@ void	get_img(t_mlx *mlx)
 	map->wall = mlx_xpm_img(mlx->ptr, "textures/xpm/wall.xpm");
 	map->empty = mlx_xpm_img(mlx->ptr, "textures/xpm/floor.xpm");
 	map->collectible = mlx_xpm_img(mlx->ptr, "textures/xpm/c.xpm");
-	map->player = mlx_xpm_img(mlx->ptr, "textures/xpm/cat_down_0.xpm");
 	map->exit = mlx_xpm_img(mlx->ptr, "textures/xpm/exit_0.xpm");
 	map->enemy = mlx_xpm_img(mlx->ptr, "textures/xpm/enemy_0.xpm");
 	mlx->img = map;

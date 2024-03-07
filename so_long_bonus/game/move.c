@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:36:59 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/04 23:00:44 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/07 03:38:28 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,41 @@ int	exit_mlx(void	*mlx)
 	mlx_ptr = mlx;
 	free_game(mlx_ptr, mlx_ptr->img);
 	exit(0);
+}
+
+void	handle_enemy(t_mlx *mlx,t_point p, t_point enemy)
+{
+	int	x;
+	int	y;
+
+	x = enemy.x;
+	y = enemy.y;
+	if (mlx->map[y + p.y][x + p.x] == '1' ||
+			mlx->map[y + p.y][x + p.x] == 'C' ||
+			mlx->map[y + p.y][x + p.x] == 'E')
+			return ;
+	if (mlx->map[y + p.y][x + p.x] == 'P')
+		exit_mlx(mlx);
+	mlx->map[y][x] ='0';
+	mlx->map[y + p.y][x + p.x] = 'X';
+}
+
+void	move_enemy(t_mlx *mlx)
+{
+	t_point	enemy;
+	int		dir;
+
+	enemy = find_enemy(mlx->map);
+	dir = rand() % 4;
+	if (dir == 0)
+		handle_enemy(mlx, (t_point){1,0}, enemy);
+	else if (dir == 1)
+		handle_enemy(mlx, (t_point){-1,0}, enemy);
+	else if (dir == 2)
+		handle_enemy(mlx, (t_point){0,1}, enemy);
+	else if (dir == 3)
+		handle_enemy(mlx, (t_point){0,-1}, enemy);
+
 }
 
 void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos)
@@ -40,7 +75,12 @@ void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos)
 		exit(0);
 	}
 	if (mlx->map[y + p.y][x + p.x] == 'C')
+	{
 		c.count++;
+		if (c.count == c.req_c)
+				mlx->img->exit = mlx_xpm_img(mlx->ptr,
+						"textures/xpm/exit_3.xpm");
+	}
 	mlx->map[y][x] = '0';
 	mlx->map[y + p.y][x + p.x] = 'P';
 	mlx->moves++;
@@ -70,8 +110,5 @@ int	move_player(int keycode, void *mlx_ptr)
 		handle_action(mlx, c, (t_point){1, 0}, cur);
 	else if (keycode == LEFT || keycode == A)
 		handle_action(mlx, c, (t_point){-1, 0}, cur);
-	if (c.count == c.req_c)
-		mlx->img->exit = mlx_xpm_img(mlx->ptr,
-				"textures/xpm/exit_3.xpm");
 	return (0);
 }
