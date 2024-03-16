@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:32:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/07 03:36:22 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:37:06 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ typedef struct s_map
 	void	*wall;
 	void	*empty;
 	void	*collectible;
-	void	player_up[4];
-	void	player_down[4];
-	void	player_right[4];
-	void	player_left[4];
-	void	exit[4];
-	void	enemy[2];
+	void	*player_up[4];
+	void	*player_down[4];
+	void	*player_right[4];
+	void	*player_left[4];
+	void	*exit[4];
+	void	*enemy;
 }	t_map;
 
 typedef struct s_mlx
@@ -61,6 +61,7 @@ typedef struct s_mlx
 	char	**map;
 	t_map	*img;
 	int		moves;
+	int		dir;
 }	t_mlx;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -102,8 +103,8 @@ void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos);
 void	move_enemy(t_mlx *mlx);
 t_point	find_enemy(char **str);
 void	handle_enemy(t_mlx *mlx,t_point p, t_point enemy);
-void	player_sprites(t_map *player);
-void	enemy_sprites(t_map *enemy);
-void	exit_sprites(t_map *exit);
+void	player_sprites(t_map *player, t_mlx *mlx);
+void	exit_sprites(t_map *exit, t_mlx *mlx);
+int	init_sprites(t_map *img, t_mlx *mlx);
 
 #endif

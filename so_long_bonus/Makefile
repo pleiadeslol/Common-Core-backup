@@ -6,7 +6,7 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 22:02:54 by rzarhoun          #+#    #+#              #
-#    Updated: 2024/03/07 03:36:39 by rzarhoun         ###   ########.fr        #
+#    Updated: 2024/03/15 01:58:07 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS = 	main.c \
 
 OBJS = $(SRCS:.c=.o)
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME = so_long 
 
 all : $(NAME)

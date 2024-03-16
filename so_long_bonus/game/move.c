@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:36:59 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/07 03:38:28 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/15 02:22:46 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,12 @@ void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos)
 		|| (mlx->map[y + p.y][x + p.x] == 'E' && c.count != c.req_c))
 		return ;
 	if (mlx->map[y + p.y][x + p.x] == 'E' && c.count == c.req_c)
-	{
-		free_game(mlx, mlx->img);
-		exit(0);
-	}
+		exit_mlx(mlx);
 	if (mlx->map[y + p.y][x + p.x] == 'C')
 	{
 		c.count++;
 		if (c.count == c.req_c)
-				mlx->img->exit = mlx_xpm_img(mlx->ptr,
+				mlx->img->exit[0] = mlx_xpm_img(mlx->ptr,
 						"textures/xpm/exit_3.xpm");
 	}
 	mlx->map[y][x] = '0';
@@ -103,12 +100,24 @@ int	move_player(int keycode, void *mlx_ptr)
 		exit(0);
 	}
 	if (keycode == UP || keycode == W)
+	{
+		mlx->dir = 1;
 		handle_action(mlx, c, (t_point){0, -1}, cur);
+	}
 	else if (keycode == DOWN || keycode == S)
+	{
+		mlx->dir = 2;
 		handle_action(mlx, c, (t_point){0, 1}, cur);
+	}	
 	else if (keycode == RIGHT || keycode == D)
+	{
+		mlx->dir = 3;
 		handle_action(mlx, c, (t_point){1, 0}, cur);
+	}
 	else if (keycode == LEFT || keycode == A)
+	{
+		mlx->dir = 4;
 		handle_action(mlx, c, (t_point){-1, 0}, cur);
+	}
 	return (0);
 }

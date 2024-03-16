@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:49:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/07 03:20:38 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:43:07 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	draw_map(t_mlx *mlx)
 {
 	int	i;
 	int	j;
-
+	static int count_player;
+	
 	i = 0;
-	usleep(100000);
+	// usleep(200000);
 	while (mlx->map[i])
 	{
 		j = 0;
@@ -34,15 +35,46 @@ int	draw_map(t_mlx *mlx)
 			if (mlx->map[i][j] == '1')
 				mlx_image_win(mlx, mlx->img->wall, j, i);
 			else if (mlx->map[i][j] == 'E')
-				mlx_image_win(mlx, mlx->img->exit, j, i);
+				mlx_image_win(mlx, mlx->img->exit[0], j, i);
 			else if (mlx->map[i][j] == '0')
 				mlx_image_win(mlx, mlx->img->empty, j, i);
 			else if (mlx->map[i][j] == 'C')
 				mlx_image_win(mlx, mlx->img->collectible, j, i);
-			else if (mlx->map[i][j] == 'P')
-				mlx_image_win(mlx, mlx->img->player, j, i);
+			else if ( mlx->map[i][j] == 'P')
+			{
+				if (mlx->dir == 1)
+				{
+					mlx_image_win(mlx, mlx->img->player_up[count_player], j, i);
+					count_player++;
+					if (count_player > 3)
+						count_player = 0;
+				}
+				else if (mlx->dir == 2)
+				{
+					mlx_image_win(mlx, mlx->img->player_down[count_player], j, i);
+					count_player++;
+					if (count_player > 3)
+						count_player = 0;
+				}
+				else if (mlx->dir == 3)
+				{
+					mlx_image_win(mlx, mlx->img->player_right[count_player], j, i);
+					count_player++;
+					if (count_player > 3)
+						count_player = 0;
+				}
+				else if (mlx->dir == 4)
+				{
+					mlx_image_win(mlx, mlx->img->player_left[count_player], j, i);
+					count_player++;
+					if (count_player > 3)
+						count_player = 0;
+				}
+			}
 			else if (mlx->map[i][j] == 'X')
-				mlx_image_win(mlx, mlx->img->enemy, j, i);
+			{
+				mlx_image_win(mlx, mlx->img->enemy, j, i);	
+			}
 			j++;
 		}
 		i++;
@@ -70,9 +102,9 @@ void	get_img(t_mlx *mlx)
 	map->wall = mlx_xpm_img(mlx->ptr, "textures/xpm/wall.xpm");
 	map->empty = mlx_xpm_img(mlx->ptr, "textures/xpm/floor.xpm");
 	map->collectible = mlx_xpm_img(mlx->ptr, "textures/xpm/c.xpm");
-	map->exit = mlx_xpm_img(mlx->ptr, "textures/xpm/exit_0.xpm");
-	map->enemy = mlx_xpm_img(mlx->ptr, "textures/xpm/enemy_0.xpm");
+	map->enemy = mlx_xpm_img(mlx->ptr, "textures/xpm/enemy.xpm");
 	mlx->img = map;
+	init_sprites(map, mlx);
 }
 
 void	draw_game(t_mlx *mlx, int count)
