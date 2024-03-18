@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:36:59 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/15 02:22:46 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/18 23:03:11 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos)
 {
 	int	x;
 	int	y;
+	static int count_exit;
 
 	x = pos.x;
 	y = pos.y;
@@ -75,8 +76,13 @@ void	handle_action(t_mlx *mlx, t_collec c, t_point p, t_point pos)
 	{
 		c.count++;
 		if (c.count == c.req_c)
-				mlx->img->exit[0] = mlx_xpm_img(mlx->ptr,
-						"textures/xpm/exit_3.xpm");
+		{
+			mlx->img->exit[count_exit] = mlx_xpm_img(mlx->ptr,
+					"textures/xpm/exit_3.xpm");
+			count_exit++;
+					if (count_exit > 3)
+						count_exit = 0;
+		}
 	}
 	mlx->map[y][x] = '0';
 	mlx->map[y + p.y][x + p.x] = 'P';

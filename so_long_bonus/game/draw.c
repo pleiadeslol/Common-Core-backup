@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:49:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/16 02:43:07 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/16 03:00:45 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	draw_map(t_mlx *mlx)
 	static int count_player;
 	
 	i = 0;
-	// usleep(200000);
+	usleep(100500);
 	while (mlx->map[i])
 	{
 		j = 0;
