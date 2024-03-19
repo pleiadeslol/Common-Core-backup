@@ -1,50 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw2_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 15:49:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/19 22:00:29 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/03/19 00:07:08 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/03/19 22:20:24 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/so_long.h"
+#include "../headers/so_long_bonus.h"
 #include "../headers/get_next_line.h"
 #include "../minilibx/mlx.h"
 
-void	mlx_image_win(t_mlx	*mlx, void	*map, int j, int i)
+void	player_dir(int keycode, t_mlx *mlx, t_collec c, t_point cur)
 {
-	mlx_put_image_to_window(mlx->ptr, mlx->win, map, j * 64, i * 64);
-}
-
-int	draw_map(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (mlx->map[i])
+	if (keycode == UP || keycode == W)
 	{
-		j = 0;
-		while (mlx->map[i][j])
-		{
-			if (mlx->map[i][j] == '1')
-				mlx_image_win(mlx, mlx->img->wall, j, i);
-			else if (mlx->map[i][j] == 'E')
-				mlx_image_win(mlx, mlx->img->exit, j, i);
-			else if (mlx->map[i][j] == '0')
-				mlx_image_win(mlx, mlx->img->empty, j, i);
-			else if (mlx->map[i][j] == 'C')
-				mlx_image_win(mlx, mlx->img->collectible, j, i);
-			else if (mlx->map[i][j] == 'P')
-				mlx_image_win(mlx, mlx->img->player, j, i);
-			j++;
-		}
-		i++;
+		mlx->dir = 1;
+		handle_action(mlx, c, (t_point){0, -1}, cur);
 	}
-	return (0);
+	else if (keycode == DOWN || keycode == S)
+	{
+		mlx->dir = 2;
+		handle_action(mlx, c, (t_point){0, 1}, cur);
+	}
+	else if (keycode == RIGHT || keycode == D)
+	{
+		mlx->dir = 3;
+		handle_action(mlx, c, (t_point){1, 0}, cur);
+	}
+	else if (keycode == LEFT || keycode == A)
+	{
+		mlx->dir = 4;
+		handle_action(mlx, c, (t_point){-1, 0}, cur);
+	}
 }
 
 void	*mlx_xpm_img(void *ptr, char *path)
@@ -63,12 +54,13 @@ void	get_img(t_mlx *mlx)
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		return ;
-	map->wall = mlx_xpm_img(mlx->ptr, "textures/xpm/wall.xpm");
-	map->empty = mlx_xpm_img(mlx->ptr, "textures/xpm/floor.xpm");
-	map->collectible = mlx_xpm_img(mlx->ptr, "textures/xpm/c.xpm");
-	map->player = mlx_xpm_img(mlx->ptr, "textures/xpm/cat_down_0.xpm");
-	map->exit = mlx_xpm_img(mlx->ptr, "textures/xpm/exit_0.xpm");
+	map->wall = mlx_xpm_img(mlx->ptr, "textures/wall.xpm");
+	map->empty = mlx_xpm_img(mlx->ptr, "textures/floor.xpm");
+	map->collectible = mlx_xpm_img(mlx->ptr, "textures/c.xpm");
+	map->enemy = mlx_xpm_img(mlx->ptr, "textures/enemy.xpm");
+	map->exit = mlx_xpm_img(mlx->ptr, "textures/exit_0.xpm");
 	mlx->img = map;
+	player_sprites(map, mlx);
 }
 
 void	draw_game(t_mlx *mlx, int count)
