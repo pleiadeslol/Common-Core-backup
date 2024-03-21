@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 02:17:36 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 02:17:36 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/03/21 03:08:14 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/03/21 03:08:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int	main(int ac, char **av)
 {
@@ -26,5 +27,19 @@ int	main(int ac, char **av)
 		if (ac == 2)
 			free_av(av);
 		return (0);
+	}
+	a = init_stack(av);
+	while(a != NULL)
+	{
+		printf("%d\n", a->value);
+		a = a->next;
+	}
+	printf("-------------------------\n");
+	a = init_stack(av);
+	ft_reverse_rotate(&a);
+	while(a != NULL)
+	{
+		printf("%d\n", a->value);
+		a = a->next;
 	}
 }

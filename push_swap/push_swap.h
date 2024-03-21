@@ -38,6 +38,15 @@ char	**ft_split(char const *s, char c);
 char	*ft_strdup(const char *s);
 char	**handle_av(int ac, char **av);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
+t_stack	*ft_lstnew(int content);
+void	ft_lstadd_front(t_stack **lst, t_stack *new);
 void	free_av(char **av);
+// stack functions
+t_stack *init_stack(char **av);
+// sorting functions
+void	ft_swap(t_stack **s);
+void	ft_push(t_stack **a, t_stack **b);
+void	ft_rotate(t_stack **s);
+void	ft_reverse_rotate(t_stack **s);
 
 #endif
