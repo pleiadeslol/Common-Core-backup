@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:04:53 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 00:06:03 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/21 00:20:00 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,11 @@ char	**ft_split(char const *s, char c)
 	return (str_f);
 }
 
-void	free_av(char **av)
+char	**handle_av(int ac, char **av)
 {
-	int	i;
+	char	**str;
 
-	i = 0;
-	while (av[i])
-	{
-		free(av[i]);
-		i++;
-	}
-	free(av);
+	str = ft_split(av[1], ' ');
+	str[0] = ft_strdup(av[0]);
+	return (str);
 }
