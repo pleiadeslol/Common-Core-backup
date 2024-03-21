@@ -29,17 +29,4 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	a = init_stack(av);
-	while(a != NULL)
-	{
-		printf("%d\n", a->value);
-		a = a->next;
-	}
-	printf("-------------------------\n");
-	a = init_stack(av);
-	ft_reverse_rotate(&a);
-	while(a != NULL)
-	{
-		printf("%d\n", a->value);
-		a = a->next;
-	}
 }

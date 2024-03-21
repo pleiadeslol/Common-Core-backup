@@ -42,7 +42,7 @@ t_stack	*ft_lstnew(int content);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
 void	free_av(char **av);
 // stack functions
-t_stack *init_stack(char **av);
+t_stack	*init_stack(char **av);
 // sorting functions
 void	ft_swap(t_stack **s);
 void	ft_push(t_stack **a, t_stack **b);

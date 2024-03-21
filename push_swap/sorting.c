@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 05:54:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 06:35:50 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/21 06:51:39 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_swap(t_stack **s)
 		current->next->value = tmp;
 	}
 }
+
 // pa and pb
 void	ft_push(t_stack **a, t_stack **b)
 {
@@ -35,6 +36,7 @@ void	ft_push(t_stack **a, t_stack **b)
 	*b = (*b)->next;
 	ft_lstadd_front(a, current);
 }
+
 //ra, rb and rr (ra and rb)
 void	ft_rotate(t_stack **s)
 {
@@ -52,6 +54,7 @@ void	ft_rotate(t_stack **s)
 		current->next = NULL;
 	}
 }
+
 //rra, rrb and rrr (rra and rrb)
 void	ft_reverse_rotate(t_stack **s)
 {

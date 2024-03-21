@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:19:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 06:01:55 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/21 06:52:33 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_stack	*ft_lstnew(int content)
 		return (NULL);
 	tmp->value = content;
 	tmp->next = NULL;
-    tmp->previous = NULL;
+	tmp->previous = NULL;
 	return (tmp);
 }
 
