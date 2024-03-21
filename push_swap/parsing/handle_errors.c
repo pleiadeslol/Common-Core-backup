@@ -12,30 +12,54 @@
 
 #include "../push_swap.h"
 
-int check_param(int ac)
+int	check_param(int ac)
 {
 	if (ac <= 1)
 	{
-		printf("Error\nNo arguments\n");
+		write(2, "Error\nNo arguments\n", 19);
 		return (0);
 	}
 	return (1);
 }
 
-int check_type(char **av)
+int	check_limit(char **av)
+{
+	int	i;
+
+	i = 1;
+	while (av[i])
+	{
+		if (ft_atoi(av[i]) > 2147483647)
+		{
+			write(2, "Error\nAn argument is bigger than Int Max\n", 41);
+			return (0);
+		}
+		else if (ft_atoi(av[i]) < -2147483648)
+		{
+			write(2, "Error\nAn argument is less than Int Min\n", 39);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	check_type(char **av)
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	while(av[i])
+	while (av[i])
 	{
 		j = 0;
-		while(av[i][j])
+		while (av[i][j])
 		{
+			if (av[i][j] == '-' || av[i][j] == '+')
+				j++;
 			if (!ft_isdigit(av[i][j]))
 			{
-				printf("Error\nAn argument isn't an integer\n");
+				write(2, "Error\nAn argument isn't an integer\n", 35);
 				return (0);
 			}
 			j++;
@@ -45,21 +69,21 @@ int check_type(char **av)
 	return (1);
 }
 
-int check_double(char **av)
+int	check_double(char **av)
 {
 	int	i;
 	int	j;
 
 	i = 1;
 	j = i + 1;
-	while(av[i])
+	while (av[i])
 	{
 		j = i + 1;
-		while(av[j])
+		while (av[j])
 		{
 			if (ft_strcmp(av[i], av[j]) == 0)
 			{
-				printf("Error\nThere is a double\n");
+				write(2, "Error\nThere is a double\n", 24);
 				return (0);
 			}
 			j++;
@@ -71,7 +95,8 @@ int check_double(char **av)
 
 int	handle_errors(int ac, char **av)
 {
-	if (!check_param(ac) || !check_double(av) || !check_type(av))
+	if (!check_param(ac) || !check_double(av) || !check_type(av)
+		|| !check_limit(av))
 		return (0);
 	return (1);
 }
