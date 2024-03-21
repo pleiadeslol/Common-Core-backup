@@ -6,11 +6,41 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:19:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 00:21:07 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/21 02:09:42 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+void	ft_lstadd_back(t_stack **lst, t_stack *new)
+{
+	t_stack	*tmp;
+
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	tmp = *lst;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new;
+}
+
+t_stack	*ft_lstnew(int content)
+{
+	t_stack	*tmp;
+
+	tmp = malloc(sizeof(t_stack));
+	if (tmp == NULL)
+		return (NULL);
+	tmp->value = content;
+	tmp->next = NULL;
+    tmp->previous = NULL;
+	return (tmp);
+}
 
 void	free_av(char **av)
 {

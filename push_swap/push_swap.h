@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 23:30:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/11 23:30:27 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/03/21 02:17:44 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/03/21 02:17:44 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ size_t	ft_strlen(const char *c);
 char	**ft_split(char const *s, char c);
 char	*ft_strdup(const char *s);
 char	**handle_av(int ac, char **av);
+void	ft_lstadd_back(t_stack **lst, t_stack *new);
 void	free_av(char **av);
 
 #endif
