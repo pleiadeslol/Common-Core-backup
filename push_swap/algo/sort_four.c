@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse.c                                          :+:      :+:    :+:   */
+/*   sort_four.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 06:49:20 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 21:42:42 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/03/22 00:40:23 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/03/22 00:42:15 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rra(t_stack **a)
+void	sort_four(t_stack **a, t_stack **b)
 {
-	ft_reverse_rotate(a);
-	write(1, "rra\n", 4);
-}
+	int	min;
+	int	i;
 
-void	rrb(t_stack **b)
-{
-	ft_reverse_rotate(b);
-	write(1, "rrb\n", 4);
-}
-
-void	rrr(t_stack **a, t_stack **b)
-{
-	ft_reverse_rotate(a);
-	ft_reverse_rotate(b);
-	write(1, "rrr\n", 4);
+	min = find_min(*a);
+	i = find_index(*a, min);
+	pb_four(a, b, i);
+	sort_three(a);
+	pa(a, b);
 }

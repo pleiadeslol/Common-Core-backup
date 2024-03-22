@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:19:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 06:52:33 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:11:39 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,21 @@ void	ft_lstadd_front(t_stack **lst, t_stack *new)
 		return ;
 	new->next = *lst;
 	*lst = new;
+}
+
+int	ft_lstsize(t_stack *lst)
+{
+	t_stack	*current;
+	int		count;
+
+	current = lst;
+	count = 0;
+	while (current != NULL)
+	{
+		count++;
+		current = current->next;
+	}
+	return (count);
 }
 
 void	free_av(char **av)

@@ -15,6 +15,10 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
 typedef struct s_stack
 {
@@ -40,7 +44,12 @@ char	**handle_av(int ac, char **av);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_lstnew(int content);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
+int		ft_lstsize(t_stack *lst);
 void	free_av(char **av);
+int		find_max(t_stack *a);
+int		find_min(t_stack *a);
+int		find_index(t_stack *a, int n);
+void	pb_four(t_stack **a, t_stack **b, int i);
 // stack functions
 t_stack	*init_stack(char **av);
 // sorting functions
@@ -60,5 +69,10 @@ void	rr(t_stack **a, t_stack **b);
 void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
+// algo functions
+int		check_sorted(t_stack *a);
+void	sort_three(t_stack **a);
+void	sort_four(t_stack **a, t_stack **b);
+void	sort_five(t_stack **a, t_stack **b);
 
 #endif

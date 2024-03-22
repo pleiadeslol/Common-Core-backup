@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	main(int ac, char **av)
 {
@@ -29,4 +28,23 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	a = init_stack(av);
+	if (!check_sorted(a))
+	{
+		// sort it !!
+		if (ft_lstsize(a) == 2)
+			sa(&a);
+		else if (ft_lstsize(a) == 3)
+			sort_three(&a);
+		else if (ft_lstsize(a) == 4)
+			sort_four(&a, &b);
+		else if (ft_lstsize(a) == 5)
+			sort_five(&a, &b);
+	}
+	t_stack *tmpa = a;
+	while(tmpa != NULL)
+	{
+		printf("%d\n", tmpa->value);
+		tmpa = tmpa->next;
+	}
+	return (0);
 }

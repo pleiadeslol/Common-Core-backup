@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse.c                                          :+:      :+:    :+:   */
+/*   check_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 06:49:20 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 21:42:42 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/03/21 22:04:53 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/03/21 22:10:15 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rra(t_stack **a)
+int	check_sorted(t_stack *a)
 {
-	ft_reverse_rotate(a);
-	write(1, "rra\n", 4);
-}
+	t_stack	*tmp;
 
-void	rrb(t_stack **b)
-{
-	ft_reverse_rotate(b);
-	write(1, "rrb\n", 4);
-}
-
-void	rrr(t_stack **a, t_stack **b)
-{
-	ft_reverse_rotate(a);
-	ft_reverse_rotate(b);
-	write(1, "rrr\n", 4);
+	tmp = a;
+	if (a == NULL)
+		return (1);
+	while (tmp->next != NULL)
+	{
+		if (tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }

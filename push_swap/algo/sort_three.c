@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse.c                                          :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 06:49:20 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 21:42:42 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/03/21 22:21:17 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/03/21 22:42:28 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rra(t_stack **a)
+void	sort_three(t_stack **a)
 {
-	ft_reverse_rotate(a);
-	write(1, "rra\n", 4);
-}
+	int		max;
+	int		i;
 
-void	rrb(t_stack **b)
-{
-	ft_reverse_rotate(b);
-	write(1, "rrb\n", 4);
-}
-
-void	rrr(t_stack **a, t_stack **b)
-{
-	ft_reverse_rotate(a);
-	ft_reverse_rotate(b);
-	write(1, "rrr\n", 4);
+	max = find_max(*a);
+	i = find_index(*a, max);
+	if (i == 0)
+		ra(a);
+	else if (i == 1)
+		rra(a);
+	if ((*a)->value > (*a)->next->value)
+			sa(a);
 }
