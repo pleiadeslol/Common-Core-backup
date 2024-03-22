@@ -16,7 +16,7 @@ int	check_param(int ac)
 {
 	if (ac <= 1)
 	{
-		write(2, "Error\nNo arguments\n", 19);
+		write(2, "Error\n", 6);
 		return (0);
 	}
 	return (1);
@@ -31,12 +31,12 @@ int	check_limit(char **av)
 	{
 		if (ft_atoi(av[i]) > 2147483647)
 		{
-			write(2, "Error\nAn argument is bigger than Int Max\n", 41);
+			write(2, "Error\n", 6);
 			return (0);
 		}
 		else if (ft_atoi(av[i]) < -2147483648)
 		{
-			write(2, "Error\nAn argument is less than Int Min\n", 39);
+			write(2, "Error\n", 6);
 			return (0);
 		}
 		i++;
@@ -59,7 +59,7 @@ int	check_type(char **av)
 				j++;
 			if (!ft_isdigit(av[i][j]))
 			{
-				write(2, "Error\nAn argument isn't an integer\n", 35);
+				write(2, "Error\n", 6);
 				return (0);
 			}
 			j++;
@@ -83,7 +83,7 @@ int	check_double(char **av)
 		{
 			if (ft_strcmp(av[i], av[j]) == 0)
 			{
-				write(2, "Error\nThere is a double\n", 24);
+				write(2, "Error\n", 6);
 				return (0);
 			}
 			j++;
