@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 05:54:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 06:51:39 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/22 00:53:58 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,16 @@ void	ft_reverse_rotate(t_stack **s)
 		current->next = *s;
 		*s = current;
 	}
+}
+
+void	sort(t_stack **a, t_stack **b)
+{
+	if (ft_lstsize(*a) == 2)
+		sa(a);
+	else if (ft_lstsize(*a) == 3)
+		sort_three(a);
+	else if (ft_lstsize(*a) == 4)
+		sort_four(a, b);
+	else if (ft_lstsize(*a) == 5)
+		sort_five(a, b);
 }

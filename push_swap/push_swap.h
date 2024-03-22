@@ -74,5 +74,6 @@ int		check_sorted(t_stack *a);
 void	sort_three(t_stack **a);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
+void	sort(t_stack **a, t_stack **b);
 
 #endif

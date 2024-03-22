@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 22:22:43 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/22 00:40:53 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/22 00:46:19 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	find_index(t_stack *a, int n)
 	}
 	return (i);
 }
+
 void	pb_four(t_stack **a, t_stack **b, int i)
 {
 	if (i == 0)
