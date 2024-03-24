@@ -28,11 +28,11 @@ typedef struct s_stack
 }	t_stack;
 
 // parsing functions
-int		check_param(int ac);
 int		check_limit(char **av);
 int		check_type(char **av);
 int		check_double(char **av);
-int		handle_errors(int ac, char **av);
+int		handle_errors(char **av);
+t_stack	*init_stack(char **av);
 // utils functions
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isdigit(int c);
@@ -40,7 +40,7 @@ long	ft_atoi(const char *str);
 size_t	ft_strlen(const char *c);
 char	**ft_split(char const *s, char c);
 char	*ft_strdup(const char *s);
-char	**handle_av(int ac, char **av);
+char	**handle_av(char **av);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_lstnew(int content);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
@@ -50,8 +50,7 @@ int		find_max(t_stack *a);
 int		find_min(t_stack *a);
 int		find_index(t_stack *a, int n);
 void	pb_four(t_stack **a, t_stack **b, int i);
-// stack functions
-t_stack	*init_stack(char **av);
+void    split_a(t_stack **a, t_stack **b);
 // sorting functions
 void	ft_swap(t_stack **s);
 void	ft_push(t_stack **a, t_stack **b);
@@ -74,6 +73,7 @@ int		check_sorted(t_stack *a);
 void	sort_three(t_stack **a);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
+void	sort_one_h(t_stack **a, t_stack **b);
 void	sort(t_stack **a, t_stack **b);
 
 #endif

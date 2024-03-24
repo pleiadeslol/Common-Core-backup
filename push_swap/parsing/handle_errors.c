@@ -12,16 +12,6 @@
 
 #include "../push_swap.h"
 
-int	check_param(int ac)
-{
-	if (ac <= 1)
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
-	return (1);
-}
-
 int	check_limit(char **av)
 {
 	int	i;
@@ -93,9 +83,9 @@ int	check_double(char **av)
 	return (1);
 }
 
-int	handle_errors(int ac, char **av)
+int	handle_errors(char **av)
 {
-	if (!check_param(ac) || !check_double(av) || !check_type(av)
+	if (!check_double(av) || !check_type(av)
 		|| !check_limit(av))
 		return (0);
 	return (1);

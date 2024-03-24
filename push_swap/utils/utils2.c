@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 02:17:23 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/21 06:52:17 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/24 01:29:16 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	**ft_split(char const *s, char c)
 	return (str_f);
 }
 
-char	**handle_av(int ac, char **av)
+char	**handle_av(char **av)
 {
 	char	**str;
 

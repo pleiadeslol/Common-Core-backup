@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 05:54:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/22 00:53:58 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/22 05:00:53 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,6 @@ void	sort(t_stack **a, t_stack **b)
 		sort_four(a, b);
 	else if (ft_lstsize(*a) == 5)
 		sort_five(a, b);
+	else if (ft_lstsize(*a) > 5 && ft_lstsize(*a) <= 100)
+		sort_one_h(a, b);
 }

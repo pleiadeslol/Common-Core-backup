@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sort_one_h.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 23:33:36 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/24 01:28:55 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/03/22 04:34:49 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/03/23 17:29:58 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	main(int ac, char **av)
+void    split_a(t_stack **a, t_stack **b)
 {
-	t_stack	*a;
-	t_stack	*b;
+    int half;
 
-	a = NULL;
-	b = NULL;
-	if (ac == 2)
-		av = handle_av(av);
-	if (!handle_errors(av))
-	{
-		if (ac == 2)
-			free_av(av);
-		return (0);
-	}
-	a = init_stack(av);
-	if (!check_sorted(a))
-		sort(&a, &b);
-	// system("leaks push_swap");
-	return (0);
+    half = ft_lstsize(*a) / 2;
+    while (half)
+    {
+        pb(a, b);
+        half--;
+    }
+}
+
+void	sort_one_h(t_stack **a, t_stack **b)
+{
+	split_a(a, b);
 }
