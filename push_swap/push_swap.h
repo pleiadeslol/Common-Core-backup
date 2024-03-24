@@ -56,7 +56,7 @@ void	ft_swap(t_stack **s);
 void	ft_push(t_stack **a, t_stack **b);
 void	ft_rotate(t_stack **s);
 void	ft_reverse_rotate(t_stack **s);
-//rules functions
+// rules functions
 void	sa(t_stack **a);
 void	sb(t_stack **b);
 void	ss(t_stack **a, t_stack **b);
@@ -75,5 +75,7 @@ void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
 void	sort_one_h(t_stack **a, t_stack **b);
 void	sort(t_stack **a, t_stack **b);
+// bonus functions
+int	checker(int ac, char **av);
 
 #endif
