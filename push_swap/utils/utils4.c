@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 22:22:43 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/22 00:46:19 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/25 04:26:18 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,30 @@ void	pb_four(t_stack **a, t_stack **b, int i)
 	{
 		rra(a);
 		pb(a, b);
+	}
+}
+
+void	bubble_sort(int *arr, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	j = 0;
+	while (i < size - 1)
+	{
+		j = 0;
+		while (j < size - i - 1)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+			}
+			j++;
+		}
+		i++;
 	}
 }

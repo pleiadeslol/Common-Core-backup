@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 05:54:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/22 05:00:53 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/25 04:42:58 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ void	ft_reverse_rotate(t_stack **s)
 
 void	sort(t_stack **a, t_stack **b)
 {
+	int	*array_sorted;
+
+	array_sorted = ft_sort_array(*a);
 	if (ft_lstsize(*a) == 2)
 		sa(a);
 	else if (ft_lstsize(*a) == 3)
@@ -86,6 +89,8 @@ void	sort(t_stack **a, t_stack **b)
 		sort_four(a, b);
 	else if (ft_lstsize(*a) == 5)
 		sort_five(a, b);
-	else if (ft_lstsize(*a) > 5 && ft_lstsize(*a) <= 100)
-		sort_one_h(a, b);
+	else if (ft_lstsize(*a) <= 100)
+		big_sort(a, b, array_sorted, 15);
+	else if (ft_lstsize(*a) <= 500)
+		big_sort(a, b, array_sorted, 30);
 }

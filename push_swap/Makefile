@@ -6,7 +6,7 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/24 01:20:51 by rzarhoun          #+#    #+#              #
-#    Updated: 2024/03/24 01:35:01 by rzarhoun         ###   ########.fr        #
+#    Updated: 2024/03/25 04:31:59 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,20 +20,21 @@ SRCS = 	main.c \
 		algo/sort_five.c \
 		algo/sort_four.c \
 		algo/sort_three.c \
-		algo/sort_one_h.c \
+		algo/big_sort.c \
 		parsing/handle_errors.c \
 		parsing/init_stack.c \
 		utils/utils1.c \
 		utils/utils2.c \
 		utils/utils3.c \
-		utils/utils4.c
+		utils/utils4.c \
+		utils/utils5.c
 
 SRCS_BONUS = checker.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = #-Wall -Werror -Wextra
 NAME = push_swap
 BONUS = checker
 

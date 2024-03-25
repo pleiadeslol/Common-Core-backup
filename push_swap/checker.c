@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 01:18:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/24 01:51:48 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/24 02:13:52 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	checker(t_stack **a, t_stack **b)
 {
 	// check instructions
-	if (check_sorted(a) && ft_lstsize(b) == 0)
+	if (check_sorted(*a) && ft_lstsize(*b) == 0)
 		return (1);
 	else
 		return (0);

@@ -23,8 +23,8 @@
 typedef struct s_stack
 {
 	int				value;
+	int				index;
 	struct s_stack	*next;
-	struct s_stack	*previous;
 }	t_stack;
 
 // parsing functions
@@ -50,7 +50,11 @@ int		find_max(t_stack *a);
 int		find_min(t_stack *a);
 int		find_index(t_stack *a, int n);
 void	pb_four(t_stack **a, t_stack **b, int i);
-void    split_a(t_stack **a, t_stack **b);
+void	split_a(t_stack **a, t_stack **b);
+void	bubble_sort(int *arr, int size);
+int		*ft_sort_array(t_stack *a);
+void	set_index(t_stack *a, int *array_sorted);
+void	check_index(t_stack **a, int i, int proxime);
 // sorting functions
 void	ft_swap(t_stack **s);
 void	ft_push(t_stack **a, t_stack **b);
@@ -73,9 +77,12 @@ int		check_sorted(t_stack *a);
 void	sort_three(t_stack **a);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
-void	sort_one_h(t_stack **a, t_stack **b);
+void	big_sort(t_stack **a, t_stack **b, int *array_sorted,
+		int proxime);
+void	push_a(t_stack **a, t_stack **b);
+void	push_b(t_stack **a, t_stack **b, int i, int proxime);
 void	sort(t_stack **a, t_stack **b);
 // bonus functions
-int	checker(int ac, char **av);
+int	checker(t_stack **a, t_stack **b);
 
 #endif
