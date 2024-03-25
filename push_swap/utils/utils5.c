@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 04:25:53 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/25 04:40:17 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/25 05:13:25 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ void	set_index(t_stack *a, int *array_sorted)
 
 void	check_index(t_stack **a, int i, int proxime)
 {
-	int        j;
-    t_stack    *tmp;
+	int		j;
+	t_stack	*tmp;
 
-    j = 0;
-    tmp = *a;
-    while (tmp)
-    {
-        if (tmp->index <= i || tmp->index <= i + proxime)
-            break ;
-        j++;
-        tmp = tmp->next;
-    }
-    if (j < ft_lstsize(*a) / 2)
-        ra(a);
-    else
-        rra(a);
+	j = 0;
+	tmp = *a;
+	while (tmp)
+	{
+		if (tmp->index <= i || tmp->index <= i + proxime)
+			break ;
+		j++;
+		tmp = tmp->next;
+	}
+	if (j < ft_lstsize(*a) / 2)
+		ra(a);
+	else
+		rra(a);
 }

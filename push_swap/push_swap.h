@@ -78,11 +78,11 @@ void	sort_three(t_stack **a);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
 void	big_sort(t_stack **a, t_stack **b, int *array_sorted,
-		int proxime);
+			int proxime);
 void	push_a(t_stack **a, t_stack **b);
 void	push_b(t_stack **a, t_stack **b, int i, int proxime);
 void	sort(t_stack **a, t_stack **b);
 // bonus functions
-int	checker(t_stack **a, t_stack **b);
+int		checker(t_stack **a, t_stack **b);
 
 #endif
