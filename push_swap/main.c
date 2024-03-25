@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 23:33:36 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/25 03:54:50 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/25 05:10:18 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ int	main(int ac, char **av)
 	a = init_stack(av);
 	if (!check_sorted(a))
 		sort(&a, &b);
-	// system("leaks push_swap");
 	return (0);
 }
