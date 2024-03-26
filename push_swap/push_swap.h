@@ -55,6 +55,7 @@ void	bubble_sort(int *arr, int size);
 int		*ft_sort_array(t_stack *a);
 void	set_index(t_stack *a, int *array_sorted);
 void	check_index(t_stack **a, int i, int proxime);
+void	free_stack(t_stack **a);
 // sorting functions
 void	ft_swap(t_stack **s);
 void	ft_push(t_stack **a, t_stack **b);

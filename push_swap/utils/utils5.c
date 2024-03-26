@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 04:25:53 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/26 00:15:58 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/26 00:55:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,17 @@ void	check_index(t_stack **a, int i, int proxime)
 		ra(a);
 	else
 		rra(a);
+}
+
+void	free_stack(t_stack **a)
+{
+	t_stack	*tmp;
+
+	tmp = NULL;
+	while (a)
+	{
+		tmp = (*a)->next;
+		free(*a);
+		*a = tmp;
+	}
 }
