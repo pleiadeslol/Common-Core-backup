@@ -16,14 +16,17 @@ t_stack	*init_stack(char **av)
 {
 	int		i;
 	t_stack	*s;
+	t_stack	*tmp;
 
 	i = 1;
 	s = malloc(sizeof(t_stack *));
 	s = NULL;
 	while (av[i])
 	{
-		ft_lstadd_back(&s, ft_lstnew(ft_atoi(av[i])));
+		tmp = ft_lstnew(ft_atoi(av[i]));
+		ft_lstadd_back(&s, tmp);
 		i++;
 	}
+	free(tmp);
 	return (s);
 }

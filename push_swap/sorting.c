@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 05:54:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/25 04:42:58 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/03/26 00:12:32 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,5 @@ void	sort(t_stack **a, t_stack **b)
 		big_sort(a, b, array_sorted, 15);
 	else if (ft_lstsize(*a) <= 500)
 		big_sort(a, b, array_sorted, 30);
+	free(array_sorted);
 }
