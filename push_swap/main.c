@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 23:33:36 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/04/06 06:58:45 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/04/06 07:01:54 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,5 @@ int	main(int ac, char **av)
 	if (ac == 2)
 		free_av(av);
 	free_stack(a);
-	if (!a)
-		printf("a freed\n");
-	if (!b)
-		printf("b freed\n");
-	// system("leaks push_swap");
 	return (0);
 }

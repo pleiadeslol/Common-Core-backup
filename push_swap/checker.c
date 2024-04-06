@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 01:18:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/04/05 23:44:26 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/04/06 07:08:08 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ void	sort_stack(t_stack **a, t_stack **b, char *line)
 		ft_reverse_rotate_a_b(a, b);
 }
 
+static void	free_main(t_stack *a, int ac, char **av, char *line)
+{
+	free (line);
+	if (ac == 2)
+		free_av(av);
+	free_stack(a);
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*a;
@@ -68,8 +76,10 @@ int	main(int ac, char **av)
 	while (line)
 	{
 		sort_stack(&a, &b, line);
+		free(line);
 		line = get_next_line(0);
 	}
 	checker(&a, &b);
+	free_main(a, ac, av, line);
 	return (0);
 }
