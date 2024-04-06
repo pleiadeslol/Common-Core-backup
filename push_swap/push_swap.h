@@ -84,6 +84,10 @@ void	push_a(t_stack **a, t_stack **b);
 void	push_b(t_stack **a, t_stack **b, int i, int proxime);
 void	sort(t_stack **a, t_stack **b);
 // bonus functions
-int		checker(t_stack **a, t_stack **b);
+void	checker(t_stack **a, t_stack **b);
+void	sort_stack(t_stack **a, t_stack **b, char *line);
+void	ft_rotate_a_b(t_stack **a, t_stack **b);
+void	ft_swap_a_b(t_stack **a, t_stack **b);
+void	ft_reverse_rotate_a_b(t_stack **a, t_stack **b);
 
 #endif

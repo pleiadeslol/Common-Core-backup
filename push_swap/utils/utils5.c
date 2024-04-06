@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 04:25:53 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/26 00:55:14 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:30:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,10 @@ void	free_stack(t_stack **a)
 		free(*a);
 		*a = tmp;
 	}
+}
+
+void	ft_rotate_a_b(t_stack **a, t_stack **b)
+{
+	ft_rotate(a);
+	ft_rotate(b);
 }

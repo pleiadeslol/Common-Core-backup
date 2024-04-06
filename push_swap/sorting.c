@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 05:54:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/03/26 00:12:32 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:47:42 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_push(t_stack **a, t_stack **b)
 	t_stack	*current;
 
 	current = *b;
+	if (!current)
+		return ;
 	*b = (*b)->next;
 	ft_lstadd_front(a, current);
 }

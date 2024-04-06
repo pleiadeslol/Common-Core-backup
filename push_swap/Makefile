@@ -6,7 +6,7 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/24 01:20:51 by rzarhoun          #+#    #+#              #
-#    Updated: 2024/04/05 06:07:07 by rzarhoun         ###   ########.fr        #
+#    Updated: 2024/04/05 23:38:07 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS_BONUS = checker.c \
 		utils/utils3.c \
 		utils/utils4.c \
 		utils/utils5.c \
+		utils/utils6.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c
 
