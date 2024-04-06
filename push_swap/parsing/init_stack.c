@@ -18,7 +18,6 @@ t_stack	*init_stack(char **av)
 	t_stack	*s;
 
 	i = 1;
-	s = malloc(sizeof(t_stack *));
 	s = NULL;
 	while (av[i])
 	{

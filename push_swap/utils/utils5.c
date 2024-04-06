@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 04:25:53 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/04/06 03:24:37 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/04/06 06:59:05 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	free_stack(t_stack *a)
 	tmp = NULL;
 	while (a)
 	{
-		tmp = a;
+		tmp = a->next;
 		free(a);
-		a = tmp->next;
+		a = tmp;
 	}
 }
 
