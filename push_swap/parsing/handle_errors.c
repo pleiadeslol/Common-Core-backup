@@ -19,12 +19,12 @@ int	check_limit(char **av)
 	i = 1;
 	while (av[i])
 	{
-		if (ft_atoi(av[i]) > 2147483647)
+		if (ft_atoi(av[i]) > 2147483647 || ft_strlen(av[i]) > 11)
 		{
 			write(2, "Error\n", 6);
 			return (0);
 		}
-		else if (ft_atoi(av[i]) < -2147483648)
+		else if (ft_atoi(av[i]) < -2147483648 || ft_strlen(av[i]) > 12)
 		{
 			write(2, "Error\n", 6);
 			return (0);
