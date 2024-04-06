@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 01:18:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/04/06 07:08:08 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/04/06 07:34:21 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	checker(t_stack **a, t_stack **b)
 		write (1, "KO\n", 3);
 }
 
-void	sort_stack(t_stack **a, t_stack **b, char *line)
+int	sort_stack(t_stack **a, t_stack **b, char *line)
 {
 	if (ft_strcmp(line, "pa\n") == 0)
 		ft_push(a, b);
@@ -45,21 +45,42 @@ void	sort_stack(t_stack **a, t_stack **b, char *line)
 		ft_reverse_rotate(b);
 	else if (ft_strcmp(line, "rrr\n") == 0)
 		ft_reverse_rotate_a_b(a, b);
+	else
+		return (0);
+	return (1);
 }
 
-static void	free_main(t_stack *a, int ac, char **av, char *line)
+static void	free_main(t_stack *a, int ac, char **av)
 {
-	free (line);
 	if (ac == 2)
 		free_av(av);
 	free_stack(a);
+}
+
+static void	exec_rules(t_stack **a, t_stack **b, int ac, char **av)
+{
+	char	*line;
+
+	line = get_next_line(0);
+	while (line)
+	{
+		if (sort_stack(a, b, line) == 0)
+		{
+			write (2, "Error\n", 6);
+			free(line);
+			free_main(*a, ac, av);
+			exit(1);
+		}
+		free(line);
+		line = get_next_line(0);
+	}
+	free(line);
 }
 
 int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
-	char	*line;
 
 	a = NULL;
 	b = NULL;
@@ -72,14 +93,8 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	a = init_stack(av);
-	line = get_next_line(0);
-	while (line)
-	{
-		sort_stack(&a, &b, line);
-		free(line);
-		line = get_next_line(0);
-	}
+	exec_rules(&a, &b, ac, av);
 	checker(&a, &b);
-	free_main(a, ac, av, line);
+	free_main(a, ac, av);
 	return (0);
 }
