@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 00:53:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/04/26 18:24:49 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/05/03 23:27:03 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	main(int ac, char **av)
 {
-	t_args  *args;
+	t_args	*args;
 
 	args = set_args(ac, av);
 	check_args(args);
-	
+	exec_cmd(args);
 }

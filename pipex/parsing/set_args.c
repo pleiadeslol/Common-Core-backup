@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   set_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 18:25:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/05/03 22:12:41 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/04/26 18:24:15 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/05/03 23:49:20 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
-#include "../get_next_line/get_next_line.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+t_args	*set_args(int ac, char **av)
 {
-	size_t	i;
+	t_args	*args;
 
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n)
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-int	count_line(int fd)
-{
-	char	*line;
-	int		count;
-
-	line = get_next_line(fd);
-	count = 0;
-	while (line)
+	if (ac != 5)
 	{
-		if (ft_strncmp(line, "\n", 2) != 0)
-			count++;
-		line = get_next_line(fd);
+		write (2, "Error\n 4 arguments needed\n", 27);
+		exit(1);
 	}
-	return (count);
+	else
+	{
+		args = malloc(sizeof(t_args));
+		args->file1 = av[1];
+		args->cmd1 = av[2];
+		args->cmd2 = av[3];
+		args->file2 = av[4];
+	}
+	return (args);
 }
