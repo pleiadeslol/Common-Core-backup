@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:24:38 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/05/03 23:45:37 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:31:52 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ int	check_files(t_args *args)
 
 int	check_cmd(t_args *args)
 {
-	args->path1 = ft_strjoin("/bin/", args->cmd1);
+	args->path1 = ft_strjoin("/bin/", args->cmd1[0]);
 	if (access(args->path1, X_OK) == -1)
 	{
-		args->path1 = ft_strjoin("/sbin/", args->cmd1);
+		args->path1 = ft_strjoin("/sbin/", args->cmd1[0]);
 		if (access(args->path1, X_OK) == -1)
 		{
-			printf("command not found: %s\n", args->cmd1);
+			printf("command not found: %s\n", args->cmd1[0]);
 			return (0);
 		}
 	}
-	args->path2 = ft_strjoin("/bin/", args->cmd2);
+	args->path2 = ft_strjoin("/bin/", args->cmd2[0]);
 	if (access(args->path2, X_OK) == -1)
 	{
-		args->path2 = ft_strjoin("/sbin/", args->cmd2);
+		args->path2 = ft_strjoin("/sbin/", args->cmd2[0]);
 		if (access(args->path2, X_OK) == -1)
 		{
-			printf("command not found: %s\n", args->cmd2);
+			printf("command not found: %s\n", args->cmd2[0]);
 			return (0);
 		}
 	}
