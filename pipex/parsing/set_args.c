@@ -6,13 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:24:15 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/05/05 01:47:12 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:13:16 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-t_args	*set_args(int ac, char **av, char *p)
+t_args	*set_args(int ac, char **av, char **envp)
 {
 	t_args	*args;
 
@@ -29,19 +29,6 @@ t_args	*set_args(int ac, char **av, char *p)
 		args->cmd2 = ft_split(av[3], ' ');
 		args->file2 = av[4];
 	}
-	int i = 0;
-	while (args->cmd1[i])
-	{
-		if (ft_strncmp(args->cmd1[i], "~", 1) == 0)
-			args->cmd1[i] = p;
-		i++;
-	}
-	i = 0;
-	while (args->cmd2[i])
-	{
-		if (ft_strncmp(args->cmd2[i], "~", 1) == 0)
-			args->cmd2[i] = p;
-		i++;
-	}
+	replace_home(args, envp);
 	return (args);
 }

@@ -6,22 +6,12 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:25:13 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/05/05 01:35:05 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:19:19 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 #include "../get_next_line/get_next_line.h"
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n)
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
 
 int	count_line(int fd)
 {
@@ -109,6 +99,6 @@ char	**ft_split(char *s, char c)
 		}
 		s += ft_strlen(str_f[i++]);
 	}
-	str_f[i] = '\0';
+	str_f[i] = NULL;
 	return (str_f);
 }

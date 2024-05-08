@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:24:38 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/05/04 17:31:52 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:56:42 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,16 @@ int	check_files(t_args *args)
 	return (1);
 }
 
-int	check_cmd(t_args *args)
+int	check_cmd(t_args *args, char **envp)
 {
-	args->path1 = ft_strjoin("/bin/", args->cmd1[0]);
-	if (access(args->path1, X_OK) == -1)
-	{
-		args->path1 = ft_strjoin("/sbin/", args->cmd1[0]);
-		if (access(args->path1, X_OK) == -1)
-		{
-			printf("command not found: %s\n", args->cmd1[0]);
-			return (0);
-		}
-	}
-	args->path2 = ft_strjoin("/bin/", args->cmd2[0]);
-	if (access(args->path2, X_OK) == -1)
-	{
-		args->path2 = ft_strjoin("/sbin/", args->cmd2[0]);
-		if (access(args->path2, X_OK) == -1)
-		{
-			printf("command not found: %s\n", args->cmd2[0]);
-			return (0);
-		}
-	}
+	if (check_path(args->cmd1[0], &args->path1, envp) == 0
+	|| check_path(args->cmd2[0], &args->path2, envp) == 0)
+		return (0);
 	return (1);
 }
 
-void	check_args(t_args *args)
+void	check_args(t_args *args, char **envp)
 {
-	if (!check_files(args) || !check_cmd(args))
+	if (!check_files(args) || !check_cmd(args, envp))
 		exit(0);
 }
