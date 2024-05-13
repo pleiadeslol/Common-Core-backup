@@ -15,23 +15,21 @@
 void	exec_cmd(t_args *args)
 {
 	pid_t	id;
-	int	pipe_fd[2];
+	int		pipe_fd[2];
 
-	if (pipe(pipe_fd) < 0)
-		exit (0);
+	if (pipe(pipe_fd) == -1)
+		exit(1);
 	id = fork();
 	if (id == 0)
 	{
 		dup2(args->fd1, 0);
 		close(pipe_fd[0]);
 		close(args->fd1);
-		dup2(pipe_fd[1], 1);
+		dup2(pipe_fd[1], STDOUT_FILENO);
 		close(pipe_fd[1]);
 		execv(args->path1, args->cmd1);
 	}
-	
-	int pid_2 = fork();
-	if (pid_2 == 0)
+	else
 	{
 		dup2(args->fd2, 1);
 		close(pipe_fd[1]);
@@ -40,8 +38,4 @@ void	exec_cmd(t_args *args)
 		close(pipe_fd[0]);
 		execv(args->path2, args->cmd2);
 	}
-	waitpid(id, NULL, 0);
-	waitpid(pid_2, NULL, 0);
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
 }
