@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 00:54:17 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/05/07 16:57:01 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:55:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_args	*set_args(int ac, char **av, char **envp);
 void	check_args(t_args *args, char **envp);
 int		check_cmd(t_args *args, char **envp);
 int		check_files(t_args *args);
-void	exec_cmd(t_args *args, int id);
+void	exec_cmd(t_args *args);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char *s, char c);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
