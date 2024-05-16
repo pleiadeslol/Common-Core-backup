@@ -15,8 +15,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 # include <stdio.h>
 # include "get_next_line/get_next_line.h"
+# include "ft_eprintf/ft_eprintf.h"
 
 typedef struct s_args
 {
@@ -33,8 +35,8 @@ typedef struct s_args
 t_args	*set_args(int ac, char **av, char **envp);
 void	check_args(t_args *args, char **envp);
 int		check_cmd(t_args *args, char **envp);
-int		check_files(t_args *args);
-void	exec_cmd(t_args *args);
+void	check_files(t_args *args);
+void	exec_cmd(t_args *args, char **envp);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char *s, char c);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);

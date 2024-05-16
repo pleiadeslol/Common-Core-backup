@@ -49,11 +49,11 @@ int	check_path(char *cmd, char **p, char **envp)
 		if (access(*p, X_OK) == -1)
 			i++;
 		else
-			break;
+			break ;
 	}
 	if (access(*p, X_OK) == -1)
 	{
-		printf("command not found: %s\n", cmd);
+		ft_eprintf("command not found: %s\n", cmd);
 		return (0);
 	}
 	return (1);
