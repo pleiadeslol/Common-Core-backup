@@ -35,8 +35,14 @@ void	check_files(t_args *args)
 
 void	check_cmd(t_args *args, char **envp)
 {
+	int	i;
+
 	check_path(args->cmd1[0], &args->path1, envp);
-	check_path(args->cmd2[0], &args->path2, envp);
+	i = check_path(args->cmd2[0], &args->path2, envp);
+	if ( i == 126)
+		exit (126);
+	else if (i == 127)
+		exit (127);
 }
 
 void	check_args(t_args *args, char **envp)

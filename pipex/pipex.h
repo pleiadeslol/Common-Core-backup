@@ -43,7 +43,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 char	*ft_strtrim(char const *s1, char const *s2);
 void	replace_home(t_args *args, char **envp);
 char	**find_path(char **envp);
-void	check_path(char *cmd, char **p, char **envp);
+int		check_path(char *cmd, char **p, char **envp);
 void	free_str(char **str);
 
 #endif

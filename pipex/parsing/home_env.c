@@ -46,6 +46,7 @@ void	replace_home(t_args *args, char **envp)
 		if (ft_strchr(args->cmd1[i], '~'))
 		{
 			tmp = ft_strtrim(args->cmd1[i], "~");
+			free(args->cmd1[i]);
 			args->cmd1[i] = ft_strjoin(p, tmp);
 			free (tmp);
 		}
@@ -57,6 +58,7 @@ void	replace_home(t_args *args, char **envp)
 		if (ft_strchr(args->cmd2[i], '~'))
 		{
 			tmp = ft_strtrim(args->cmd2[i], "~");
+			free(args->cmd2[i]);
 			args->cmd2[i] = ft_strjoin(p, tmp);
 			free(tmp);
 		}

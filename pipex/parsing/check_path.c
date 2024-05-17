@@ -35,7 +35,7 @@ char	**find_path(char **envp)
 	return (path);
 }
 
-void	check_path(char *cmd, char **p, char **envp)
+int	check_path(char *cmd, char **p, char **envp)
 {
 	int		i;
 	char	*tmp;
@@ -49,21 +49,24 @@ void	check_path(char *cmd, char **p, char **envp)
 		{
 			ft_eprintf("permission denied: %s\n", cmd);
 			free_str(path);
-			exit(126);
+			return (126);
 		}
 		if (access(cmd, X_OK) == -1)
 		{
 			ft_eprintf("command not found: %s\n", cmd);
 			free_str(path);
-			exit (127);
+			return (127);
 		}
-		*p = cmd;
+		*p = ft_strdup(cmd);
 		free_str(path);
-		return ;
+		return (0);
 	}
+	*p = NULL;
 	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");
+		if (*p)
+			free (*p);
 		*p = ft_strjoin(tmp, cmd);
 		free (tmp);
 		if (access(*p, X_OK) == -1)
@@ -75,13 +78,12 @@ void	check_path(char *cmd, char **p, char **envp)
 	if (access(*p, F_OK) == 0 && access(*p, X_OK) == -1)
 	{
 		ft_eprintf("permission denied: %s\n", cmd);
-		free(*p);
-		exit(126);
+		return (126);
 	}
-	if (access(*p, X_OK) == -1)
+	else if (access(*p, X_OK) == -1)
 	{
 		ft_eprintf("command not found: %s\n", cmd);
-		free(*p);
-		exit (127);
+		return (127);
 	}
+	return (1);
 }

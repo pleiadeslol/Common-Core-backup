@@ -28,6 +28,8 @@ t_args	*set_args(int ac, char **av, char **envp)
 		args->cmd1 = ft_split(av[2], ' ');
 		args->cmd2 = ft_split(av[3], ' ');
 		args->file2 = av[4];
+		args->path1 = NULL;
+		args->path2 = NULL;
 	}
 	replace_home(args, envp);
 	return (args);
