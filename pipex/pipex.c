@@ -20,4 +20,9 @@ int	main(int ac, char **av, char **envp)
 	args = set_args(ac, av, envp);
 	check_args(args, envp);
 	exec_cmd(args, envp);
+	free_str(args->cmd1);
+	free_str(args->cmd2);
+	free(args->path1);
+	free(args->path2);
+	free(args);
 }

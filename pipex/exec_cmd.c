@@ -32,8 +32,6 @@ void	exec_cmd(t_args *args, char **envp)
 	}
 	else
 	{
-		// while (wait(NULL) > 0)
-		// 	;
 		id2 = fork();
 		if (id2 == 0)
 		{
@@ -45,4 +43,10 @@ void	exec_cmd(t_args *args, char **envp)
 			execve(args->path2, args->cmd2, envp);
 		}
 	}
+	close(args->fd1);
+	close(args->fd2);
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
+	while (wait(NULL) > 0)
+		;
 }

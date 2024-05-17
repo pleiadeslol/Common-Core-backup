@@ -25,20 +25,22 @@ void	check_files(t_args *args)
 		ft_eprintf("no such file or directory: %s\n", args->file1);
 	}
 	fd2 = open(args->file2, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	if (fd2 < 0)
+	{
+		ft_eprintf("permission denied: %s\n", args->file2);
+		exit(1);
+	}
 	args->fd2 = fd2;
 }
 
-int	check_cmd(t_args *args, char **envp)
+void	check_cmd(t_args *args, char **envp)
 {
 	check_path(args->cmd1[0], &args->path1, envp);
-	if (check_path(args->cmd2[0], &args->path2, envp) == 0)
-		return (0);
-	return (1);
+	check_path(args->cmd2[0], &args->path2, envp);
 }
 
 void	check_args(t_args *args, char **envp)
 {
 	check_files(args);
-	if (!check_cmd(args, envp))
-		exit(127);
+	check_cmd(args, envp);
 }

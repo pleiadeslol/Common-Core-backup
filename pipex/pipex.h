@@ -34,7 +34,7 @@ typedef struct s_args
 
 t_args	*set_args(int ac, char **av, char **envp);
 void	check_args(t_args *args, char **envp);
-int		check_cmd(t_args *args, char **envp);
+void	check_cmd(t_args *args, char **envp);
 void	check_files(t_args *args);
 void	exec_cmd(t_args *args, char **envp);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -43,6 +43,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 char	*ft_strtrim(char const *s1, char const *s2);
 void	replace_home(t_args *args, char **envp);
 char	**find_path(char **envp);
-int		check_path(char *cmd, char **p, char **envp);
+void	check_path(char *cmd, char **p, char **envp);
+void	free_str(char **str);
 
 #endif

@@ -63,3 +63,15 @@ char	*ft_strtrim(char const *s1, char const *s2)
 	return (str);
 }
 
+void	free_str(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free (str);
+}

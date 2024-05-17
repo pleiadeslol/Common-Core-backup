@@ -35,26 +35,53 @@ char	**find_path(char **envp)
 	return (path);
 }
 
-int	check_path(char *cmd, char **p, char **envp)
+void	check_path(char *cmd, char **p, char **envp)
 {
 	int		i;
+	char	*tmp;
 	char	**path;
 
 	i = 0;
 	path = find_path(envp);
+	if (cmd[0] == '/' || cmd[0] == '.')
+	{
+		if (access(cmd, F_OK) == 0 && access(cmd, X_OK) == -1)
+		{
+			ft_eprintf("permission denied: %s\n", cmd);
+			free_str(path);
+			exit(126);
+		}
+		if (access(cmd, X_OK) == -1)
+		{
+			ft_eprintf("command not found: %s\n", cmd);
+			free_str(path);
+			exit (127);
+		}
+		*p = cmd;
+		free_str(path);
+		return ;
+	}
 	while (path[i])
 	{
-		path[i] = ft_strjoin(path[i], "/");
-		*p = ft_strjoin(path[i], cmd);
+		tmp = ft_strjoin(path[i], "/");
+		*p = ft_strjoin(tmp, cmd);
+		free (tmp);
 		if (access(*p, X_OK) == -1)
 			i++;
 		else
 			break ;
 	}
+	free_str(path);
+	if (access(*p, F_OK) == 0 && access(*p, X_OK) == -1)
+	{
+		ft_eprintf("permission denied: %s\n", cmd);
+		free(*p);
+		exit(126);
+	}
 	if (access(*p, X_OK) == -1)
 	{
 		ft_eprintf("command not found: %s\n", cmd);
-		return (0);
+		free(*p);
+		exit (127);
 	}
-	return (1);
 }

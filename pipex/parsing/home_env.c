@@ -36,6 +36,7 @@ static char	*find_home_env(char **envp)
 void	replace_home(t_args *args, char **envp)
 {
 	char	*p;
+	char	*tmp;
 	int		i;
 
 	p = find_home_env(envp);
@@ -44,8 +45,9 @@ void	replace_home(t_args *args, char **envp)
 	{
 		if (ft_strchr(args->cmd1[i], '~'))
 		{
-			args->cmd1[i] = ft_strtrim(args->cmd1[i], "~");
-			args->cmd1[i] = ft_strjoin(p, args->cmd1[i]);
+			tmp = ft_strtrim(args->cmd1[i], "~");
+			args->cmd1[i] = ft_strjoin(p, tmp);
+			free (tmp);
 		}
 		i++;
 	}
@@ -54,8 +56,9 @@ void	replace_home(t_args *args, char **envp)
 	{
 		if (ft_strchr(args->cmd2[i], '~'))
 		{
-			args->cmd2[i] = ft_strtrim(args->cmd2[i], "~");
-			args->cmd2[i] = ft_strjoin(p, args->cmd2[i]);
+			tmp = ft_strtrim(args->cmd2[i], "~");
+			args->cmd2[i] = ft_strjoin(p, tmp);
+			free(tmp);
 		}
 		i++;
 	}
