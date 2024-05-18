@@ -19,6 +19,7 @@ static char	*find_home_env(char **envp)
 	int		i;
 
 	i = 0;
+	p = NULL;
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "HOME=", 4) == 0)
@@ -33,10 +34,19 @@ static char	*find_home_env(char **envp)
 	return (p);
 }
 
+static void	join_home(char **cmd, int i, char *p)
+{
+	char	*tmp;
+
+	tmp = ft_strtrim(cmd[i], "~");
+	free(cmd[i]);
+	cmd[i] = ft_strjoin(p, tmp);
+	free(tmp);
+}
+
 void	replace_home(t_args *args, char **envp)
 {
 	char	*p;
-	char	*tmp;
 	int		i;
 
 	p = find_home_env(envp);
@@ -44,24 +54,14 @@ void	replace_home(t_args *args, char **envp)
 	while (args->cmd1[i])
 	{
 		if (ft_strchr(args->cmd1[i], '~'))
-		{
-			tmp = ft_strtrim(args->cmd1[i], "~");
-			free(args->cmd1[i]);
-			args->cmd1[i] = ft_strjoin(p, tmp);
-			free (tmp);
-		}
+			join_home(args->cmd1, i, p);
 		i++;
 	}
 	i = 0;
 	while (args->cmd2[i])
 	{
 		if (ft_strchr(args->cmd2[i], '~'))
-		{
-			tmp = ft_strtrim(args->cmd2[i], "~");
-			free(args->cmd2[i]);
-			args->cmd2[i] = ft_strjoin(p, tmp);
-			free(tmp);
-		}
+			join_home(args->cmd2, i, p);
 		i++;
 	}
 }
