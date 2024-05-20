@@ -19,7 +19,7 @@ int	main(int ac, char **av, char **envp)
 
 	args = set_args(ac, av, envp);
 	check_args(args, envp, ac);
-	exec_cmd(args, envp, ac);
+	// exec_cmd(args, envp, ac);
 	// free_str(args->cmd1);
 	// free_str(args->cmd2);
 	// free(args->path1);

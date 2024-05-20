@@ -28,6 +28,7 @@ typedef struct s_args
 	char	**path;
 	int		fd1;
 	int		fd2;
+	int		count;
 }	t_args;
 
 t_args	*set_args(int ac, char **av, char **envp);

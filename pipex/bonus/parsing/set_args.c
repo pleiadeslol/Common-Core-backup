@@ -18,7 +18,6 @@ t_args	*set_args(int ac, char **av, char **envp)
 	int		count;
 	int		i;
 
-	count = ac - 3;
 	i = 0;
 	if (ac <= 5)
 	{
@@ -28,15 +27,16 @@ t_args	*set_args(int ac, char **av, char **envp)
 	else
 	{
 		args = malloc(sizeof(t_args));
-		args->cmd = malloc(sizeof(char **) * (count + 1));
-		args->path = malloc(sizeof(char *) * (count + 1));
+		args->count = ac - 3;
+		args->cmd = malloc(sizeof(char **) * (args->count + 1));
+		args->path = malloc(sizeof(char *) * (args->count + 1));
 		args->file1 = av[1];
-		while (i < count)
+		while (i < args->count)
 		{
 			args->cmd[i] = ft_split(av[i + 2], ' ');
 			i++;
 		}
-		args->cmd[count] = NULL;
+		args->cmd[args->count] = NULL;
 		args->file2 = av[ac - 1];
 	}
 	i = 0;

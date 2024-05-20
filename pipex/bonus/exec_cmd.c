@@ -14,12 +14,12 @@
 
 void	exec_cmd(t_args *args, char **envp, int ac)
 {
-	int count;
-	int	pipes[ac - 4][2];
+	int	pipes[args->count - 1][2];
 
-	count = ac - 3;
-	while (i < count)
+	while (i < args->count - 1)
 	{
-		pipes[i]
+		if (pipe(pipes[i]) == -1)
+			exit (1);
+		i++;
 	}
 }

@@ -36,11 +36,9 @@ void	check_files(t_args *args)
 void	check_cmd(t_args *args, char **envp, int ac)
 {
 	int	i;
-	int	count;
 
 	i = 0;
-	count = ac - 4;
-	while (i < count)
+	while (i < args->count - 1)
 	{
 		check_path(args->cmd[i][0], &args->path[i], envp);
 		i++;
