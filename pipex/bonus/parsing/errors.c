@@ -33,7 +33,7 @@ void	check_files(t_args *args)
 	args->fd2 = fd2;
 }
 
-void	check_cmd(t_args *args, char **envp, int ac)
+void	check_cmd(t_args *args, char **envp)
 {
 	int	i;
 
@@ -50,8 +50,8 @@ void	check_cmd(t_args *args, char **envp, int ac)
 		exit (127);
 }
 
-void	check_args(t_args *args, char **envp, int ac)
+void	check_args(t_args *args, char **envp)
 {
 	check_files(args);
-	check_cmd(args, envp, ac);
+	check_cmd(args, envp);
 }

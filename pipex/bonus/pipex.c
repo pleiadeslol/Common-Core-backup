@@ -18,8 +18,8 @@ int	main(int ac, char **av, char **envp)
 	t_args	*args;
 
 	args = set_args(ac, av, envp);
-	check_args(args, envp, ac);
-	// exec_cmd(args, envp, ac);
+	check_args(args, envp);
+	exec_cmd(args, envp);
 	// free_str(args->cmd1);
 	// free_str(args->cmd2);
 	// free(args->path1);

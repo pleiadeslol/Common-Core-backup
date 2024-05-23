@@ -32,10 +32,10 @@ typedef struct s_args
 }	t_args;
 
 t_args	*set_args(int ac, char **av, char **envp);
-void	check_args(t_args *args, char **envp, int ac);
-void	check_cmd(t_args *args, char **envp, int ac);
+void	check_args(t_args *args, char **envp);
+void	check_cmd(t_args *args, char **envp);
 void	check_files(t_args *args);
-void	exec_cmd(t_args *args, char **envp, int ac);
+void	exec_cmd(t_args *args, char **envp);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char *s, char c);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);

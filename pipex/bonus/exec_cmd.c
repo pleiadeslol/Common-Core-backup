@@ -12,14 +12,54 @@
 
 #include "pipex.h"
 
-void	exec_cmd(t_args *args, char **envp, int ac)
+void	exec_cmd(t_args *args, char **envp)
 {
-	int	pipes[args->count - 1][2];
+	int	pipe_fd[2];
+	pid_t	id;
+	int		prev_id;
+	int i;
 
-	while (i < args->count - 1)
+	i = 0;
+	prev_id = -1;
+	while (i < args->count)
 	{
-		if (pipe(pipes[i]) == -1)
-			exit (1);
+		if ( i < args->count - 1)
+		{
+			if (pipe(pipe_fd) == -1)
+				exit (1);
+		}
+		id = fork();
+		if (id == 0)
+		{
+			if (i == 0)
+				dup2(args->fd1, 0);
+			else
+				dup2(prev_id, 0);
+			if (i == args->count - 1)
+				dup2(args->fd2, 1);
+			else
+				dup2(pipe_fd[1], 1);
+			if (prev_id != -1)
+				close(prev_id);
+			if (i < args->count - 1)
+			{
+				close(pipe_fd[1]);
+				close(pipe_fd[0]);
+			}
+			execve(args->path[i], args->cmd[i], envp);
+		}
+		else
+		{
+			if (prev_id != -1)
+				close(prev_id);
+			if (i < args->count - 1)
+				close(pipe_fd[1]);
+			prev_id = pipe_fd[0];
+		}
 		i++;
 	}
+	close(args->fd1);
+	close(args->fd2);
+	while (wait(NULL) > 0)
+		;
 }
