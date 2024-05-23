@@ -24,8 +24,8 @@ t_args	*set_args(int ac, char **av, char **envp)
 		write (2, "Error\nMore than 4 arguments needed\n", 35);
 		exit(1);
 	}
-	else if (ft_strncmp(av[1], "here_doc", 8) == 0)
-		here_doc(ac, av, envp);
+	// else if (ft_strncmp(av[1], "here_doc", 8) == 0)
+	// 	here_doc(ac, av, envp);
 	else
 	{
 		args = malloc(sizeof(t_args));

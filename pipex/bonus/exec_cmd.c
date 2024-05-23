@@ -32,20 +32,26 @@ void	exec_cmd(t_args *args, char **envp)
 		if (id == 0)
 		{
 			if (i == 0)
-				dup2(args->fd1, 0);
+			{
+				dup2(args->fd1, STDIN_FILENO);
+				dup2(pipe_fd[1], STDOUT_FILENO);
+				close(args->fd1);
+			}
+			else if (i == args->count - 1)
+			{
+				dup2(prev_id, STDIN_FILENO);
+				dup2(args->fd2, STDOUT_FILENO);
+				close(args->fd2);
+			}
 			else
-				dup2(prev_id, 0);
-			if (i == args->count - 1)
-				dup2(args->fd2, 1);
-			else
-				dup2(pipe_fd[1], 1);
+			{
+				dup2(prev_id, STDIN_FILENO);
+				dup2(pipe_fd[1], STDOUT_FILENO);
+			}
 			if (prev_id != -1)
 				close(prev_id);
-			if (i < args->count - 1)
-			{
-				close(pipe_fd[1]);
-				close(pipe_fd[0]);
-			}
+			close(pipe_fd[1]);
+			close(pipe_fd[0]);
 			execve(args->path[i], args->cmd[i], envp);
 		}
 		else
