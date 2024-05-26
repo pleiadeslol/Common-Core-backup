@@ -14,19 +14,19 @@
 
 void	exec_cmd(t_args *args, char **envp)
 {
-	int	pipe_fd[2];
+	int	pipe_fd[args->count - 1][2];
+	int	i;
+	int	j;
 	pid_t	id;
-	int		prev_id;
-	int i;
 
 	i = 0;
-	prev_id = -1;
 	while (i < args->count)
 	{
+		j = 0;
 		if ( i < args->count - 1)
 		{
-			if (pipe(pipe_fd) == -1)
-				exit (1);
+			if (pipe(pipe_fd[i]) == -1)
+				exit(1);
 		}
 		id = fork();
 		if (id == 0)
@@ -34,38 +34,47 @@ void	exec_cmd(t_args *args, char **envp)
 			if (i == 0)
 			{
 				dup2(args->fd1, STDIN_FILENO);
-				dup2(pipe_fd[1], STDOUT_FILENO);
 				close(args->fd1);
+				dup2(pipe_fd[i][1], STDOUT_FILENO);
+				close(pipe_fd[i][1]);
 			}
 			else if (i == args->count - 1)
 			{
-				dup2(prev_id, STDIN_FILENO);
+				dup2(pipe_fd[i - 1][0], STDIN_FILENO);
+				close(pipe_fd[i - 1][0]);
 				dup2(args->fd2, STDOUT_FILENO);
 				close(args->fd2);
 			}
 			else
 			{
-				dup2(prev_id, STDIN_FILENO);
-				dup2(pipe_fd[1], STDOUT_FILENO);
+				dup2(pipe_fd[i - 1][0], STDIN_FILENO);
+				close(pipe_fd[i - 1][0]);
+				dup2(pipe_fd[i][1], STDOUT_FILENO);
+				close(pipe_fd[i][1]);
 			}
-			if (prev_id != -1)
-				close(prev_id);
-			close(pipe_fd[1]);
-			close(pipe_fd[0]);
+			while (j < args->count - 1)
+			{
+				close(pipe_fd[j][0]);
+				close(pipe_fd[j][1]);
+				j++;
+			}
+			close(args->fd1);
+			close(args->fd2);
 			execve(args->path[i], args->cmd[i], envp);
+			// if (execve(args->path[i], args->cmd[i], envp) < 0)
+			// 	exit(1);
 		}
-		else
-		{
-			if (prev_id != -1)
-				close(prev_id);
-			if (i < args->count - 1)
-				close(pipe_fd[1]);
-			prev_id = pipe_fd[0];
-		}
+		i++;
+	}
+	i = 0;
+	while (i < args->count - 1)
+	{
+		close(pipe_fd[i][0]);
+		close(pipe_fd[i][1]);
 		i++;
 	}
 	close(args->fd1);
 	close(args->fd2);
-	while (wait(NULL) > 0)
+	while(wait(NULL) > 0)
 		;
 }

@@ -67,7 +67,7 @@ static int	handle_path_err(char **p, char *cmd)
 		ft_eprintf("command not found: %s\n", cmd);
 		return (127);
 	}
-	return (1);
+	return (0);
 }
 
 int	check_path(char *cmd, char **p, char **envp)
