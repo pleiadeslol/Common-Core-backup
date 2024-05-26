@@ -1,1 +1,12 @@
-       0       0       0
+Makefile
+exec_cmd.c
+file1
+file2
+ft_eprintf
+get_next_line
+here_doc
+parsing
+pipex
+pipex.c
+pipex.h
+utils
