@@ -75,3 +75,18 @@ void	free_str(char **str)
 	}
 	free (str);
 }
+
+void	exec_child(t_args *args, int **pipe_fd, int i, char **envp)
+{
+	if (i == 0)
+		first_cmd(args->fd1, pipe_fd[i][1]);
+	else if (i == args->count - 1)
+		last_cmd(args->fd2, pipe_fd[i - 1][0]);
+	else
+		middle_cmd(pipe_fd[i - 1][0], pipe_fd[i][1]);
+	close_pipe(args, pipe_fd);
+	close(args->fd1);
+	close(args->fd2);
+	if (execve(args->path[i], args->cmd[i], envp) < 0)
+		exit(1);
+}

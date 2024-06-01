@@ -29,6 +29,7 @@ typedef struct s_args
 	int		fd1;
 	int		fd2;
 	int		count;
+	char	*limiter;
 }	t_args;
 
 t_args	*set_args(int ac, char **av, char **envp);
@@ -44,5 +45,12 @@ void	replace_home(char **args, char **envp);
 char	**find_path(char **envp);
 int		check_path(char *cmd, char **p, char **envp);
 void	free_str(char **str);
+void	first_cmd(int fd1, int pipe);
+void	last_cmd(int fd2, int pipe);
+void	middle_cmd(int pipe1, int pipe2);
+void	close_pipe(t_args *args, int **pipe_fd);
+void	exec_child(t_args *args, int **pipe_fd, int i, char **envp);
+void	create_pipe(t_args *args, int **pipe_fd);
+void	here_doc(int ac, char **av, char **envp);
 
 #endif

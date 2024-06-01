@@ -17,7 +17,10 @@ int	main(int ac, char **av, char **envp)
 {
 	t_args	*args;
 
-	args = set_args(ac, av, envp);
+	if (ac == 6 && ft_strncmp(av[1], "here_doc", 8) == 0)
+		args = here_doc(ac, av, envp);
+	else
+		args = set_args(ac, av, envp);
 	check_args(args, envp);
 	exec_cmd(args, envp);
 	// free_str(args->cmd1);

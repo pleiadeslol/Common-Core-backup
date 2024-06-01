@@ -12,6 +12,24 @@
 
 #include "../pipex.h"
 
+void	parse_args(t_args *args, int ac, char **av)
+{
+	int	i;
+
+	i = 0;
+	args->count = ac - 3;
+	args->cmd = malloc(sizeof(char **) * (args->count + 1));
+	args->path = malloc(sizeof(char *) * (args->count + 1));
+	args->file1 = av[1];
+	while (i < args->count)
+	{
+		args->cmd[i] = ft_split(av[i + 2], ' ');
+		i++;
+	}
+	args->cmd[args->count] = NULL;
+	args->file2 = av[ac - 1];
+}
+
 t_args	*set_args(int ac, char **av, char **envp)
 {
 	t_args	*args;
@@ -24,24 +42,11 @@ t_args	*set_args(int ac, char **av, char **envp)
 		write (2, "Error\nMore than 4 arguments needed\n", 35);
 		exit(1);
 	}
-	// else if (ft_strncmp(av[1], "here_doc", 8) == 0)
-	// 	here_doc(ac, av, envp);
 	else
 	{
 		args = malloc(sizeof(t_args));
-		args->count = ac - 3;
-		args->cmd = malloc(sizeof(char **) * (args->count + 1));
-		args->path = malloc(sizeof(char *) * (args->count + 1));
-		args->file1 = av[1];
-		while (i < args->count)
-		{
-			args->cmd[i] = ft_split(av[i + 2], ' ');
-			i++;
-		}
-		args->cmd[args->count] = NULL;
-		args->file2 = av[ac - 1];
+		parse_args(args, ac, av);
 	}
-	i = 0;
 	count = ac - 3;
 	while (count)
 	{

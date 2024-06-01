@@ -6,7 +6,7 @@
 #    By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 02:12:42 by rzarhoun          #+#    #+#              #
-#    Updated: 2024/05/18 16:08:16 by rzarhoun         ###   ########.fr        #
+#    Updated: 2024/05/27 00:41:15 by rzarhoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS = 	pipex.c \
 		parsing/home_env.c \
 		parsing/set_args.c \
 		utils/utils1.c \
-		utils/utils2.c 
+		utils/utils2.c \
+		utils/utils3.c 
 
 
 OBJS = $(SRCS:.c=.o)
