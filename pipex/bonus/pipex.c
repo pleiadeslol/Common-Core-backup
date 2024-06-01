@@ -16,7 +16,9 @@
 int	main(int ac, char **av, char **envp)
 {
 	t_args	*args;
+	int		i;
 
+	i = 0;
 	if (ac == 6 && ft_strncmp(av[1], "here_doc", 8) == 0)
 	{
 		args = here_args(av, envp);
@@ -29,9 +31,13 @@ int	main(int ac, char **av, char **envp)
 		check_args(args, envp);
 	}
 	exec_cmd(args, envp);
-	// free_str(args->cmd1);
-	// free_str(args->cmd2);
-	// free(args->path1);
-	// free(args->path2);
-	// free(args);
+	while (args->cmd[i])
+	{
+		free_str(args->cmd[i]);
+		i++;
+	}
+	free(args->cmd);
+	free_str(args->path);
+	free(args);
+	system("leaks pipex");
 }
