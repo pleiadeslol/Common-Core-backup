@@ -51,6 +51,8 @@ void	middle_cmd(int pipe1, int pipe2);
 void	close_pipe(t_args *args, int **pipe_fd);
 void	exec_child(t_args *args, int **pipe_fd, int i, char **envp);
 void	create_pipe(t_args *args, int **pipe_fd);
-void	here_doc(int ac, char **av, char **envp);
+t_args	*here_args(char **av, char **envp);
+void	here_check(t_args *args, char **envp);
+void	here_doc(t_args *args);
 
 #endif

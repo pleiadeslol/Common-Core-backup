@@ -18,10 +18,16 @@ int	main(int ac, char **av, char **envp)
 	t_args	*args;
 
 	if (ac == 6 && ft_strncmp(av[1], "here_doc", 8) == 0)
-		args = here_doc(ac, av, envp);
+	{
+		args = here_args(av, envp);
+		here_check(args, envp);
+		here_doc(args);
+	}
 	else
+	{
 		args = set_args(ac, av, envp);
-	check_args(args, envp);
+		check_args(args, envp);
+	}
 	exec_cmd(args, envp);
 	// free_str(args->cmd1);
 	// free_str(args->cmd2);
