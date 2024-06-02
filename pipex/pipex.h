@@ -45,5 +45,6 @@ void	replace_home(t_args *args, char **envp);
 char	**find_path(char **envp);
 int		check_path(char *cmd, char **p, char **envp);
 void	free_str(char **str);
+void	free_pipex(t_args *args);
 
 #endif

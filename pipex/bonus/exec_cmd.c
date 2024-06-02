@@ -14,9 +14,12 @@
 
 void	first_cmd(int fd1, int pipe)
 {
-	dup2(fd1, STDIN_FILENO);
-	close(fd1);
-	dup2(pipe, STDOUT_FILENO);
+	if (fd1 >= 0)
+	{
+		dup2(fd1, STDIN_FILENO);
+		close(fd1);
+		dup2(pipe, STDOUT_FILENO);
+	}
 }
 
 void	last_cmd(int fd2, int pipe)

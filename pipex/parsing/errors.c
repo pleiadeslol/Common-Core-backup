@@ -28,6 +28,7 @@ void	check_files(t_args *args)
 	if (fd2 < 0)
 	{
 		ft_eprintf("permission denied: %s\n", args->file2);
+		free_pipex(args);
 		exit(1);
 	}
 	args->fd2 = fd2;
@@ -40,9 +41,15 @@ void	check_cmd(t_args *args, char **envp)
 	check_path(args->cmd1[0], &args->path1, envp);
 	i = check_path(args->cmd2[0], &args->path2, envp);
 	if (i == 126)
+	{
+		free_pipex(args);
 		exit (126);
+	}
 	else if (i == 127)
+	{
+		free_pipex(args);
 		exit (127);
+	}
 }
 
 void	check_args(t_args *args, char **envp)

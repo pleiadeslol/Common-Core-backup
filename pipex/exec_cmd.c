@@ -14,12 +14,19 @@
 
 static void	exec_child1(t_args *args, int pipe_fd[2], char **envp)
 {
-	dup2(args->fd1, 0);
-	close(pipe_fd[0]);
-	close(args->fd1);
-	dup2(pipe_fd[1], STDOUT_FILENO);
-	close(pipe_fd[1]);
-	execve(args->path1, args->cmd1, envp);
+	if (args->fd1 != -1)
+	{
+		dup2(args->fd1, 0);
+		close(pipe_fd[0]);
+		close(args->fd1);
+		dup2(pipe_fd[1], STDOUT_FILENO);
+		close(pipe_fd[1]);
+		if (execve(args->path1, args->cmd1, envp) < 0)
+		{
+			free_pipex(args);
+			exit(1);
+		}
+	}
 }
 
 static void	exec_child2(t_args *args, int pipe_fd[2], char **envp)
@@ -29,7 +36,11 @@ static void	exec_child2(t_args *args, int pipe_fd[2], char **envp)
 	close(args->fd2);
 	dup2(pipe_fd[0], 0);
 	close(pipe_fd[0]);
-	execve(args->path2, args->cmd2, envp);
+	if (execve(args->path2, args->cmd2, envp) < 0)
+	{
+		free_pipex(args);
+		exit(1);
+	}
 }
 
 void	exec_cmd(t_args *args, char **envp)
@@ -39,7 +50,10 @@ void	exec_cmd(t_args *args, char **envp)
 	int		pipe_fd[2];
 
 	if (pipe(pipe_fd) == -1)
+	{
+		free_pipex(args);
 		exit(1);
+	}
 	id1 = fork();
 	if (id1 == 0)
 		exec_child1(args, pipe_fd, envp);

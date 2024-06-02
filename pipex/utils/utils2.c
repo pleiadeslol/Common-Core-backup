@@ -75,3 +75,17 @@ void	free_str(char **str)
 	}
 	free (str);
 }
+
+void	free_pipex(t_args *args)
+{
+	if (args->cmd1)
+		free_str(args->cmd1);
+	if (args->cmd2)
+		free_str(args->cmd2);
+	if (args->path1)
+		free(args->path1);
+	if (args->path2)
+		free(args->path2);
+	if (args)
+		free(args);
+}
