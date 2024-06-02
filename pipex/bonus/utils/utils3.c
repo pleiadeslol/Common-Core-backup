@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:40:30 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/01 22:16:35 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:11:38 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,30 @@ void	create_pipe(t_args *args, int **pipe_fd)
 	{
 		pipe_fd[i] = malloc(sizeof(int) * 2);
 		if (pipe(pipe_fd[i]) == -1)
+		{
+			free_pipex(args);
 			exit(1);
+		}
 		i++;
 	}
+}
+
+void	free_pipex(t_args *args)
+{
+	int	i;
+
+	i = 0;
+	if (args->path)
+		free_str(args->path);
+	if (args->cmd)
+	{
+		while (args->cmd[i])
+		{
+			free_str(args->cmd[i]);
+			i++;
+		}
+		free(args->cmd);
+	}
+	if (args)
+		free(args);
 }

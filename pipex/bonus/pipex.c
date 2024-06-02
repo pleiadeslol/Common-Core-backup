@@ -31,12 +31,5 @@ int	main(int ac, char **av, char **envp)
 		check_args(args, envp);
 	}
 	exec_cmd(args, envp);
-	while (args->cmd[i])
-	{
-		free_str(args->cmd[i]);
-		i++;
-	}
-	free(args->cmd);
-	free_str(args->path);
-	free(args);
+	free_pipex(args);
 }

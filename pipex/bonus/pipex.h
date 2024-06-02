@@ -54,5 +54,6 @@ void	create_pipe(t_args *args, int **pipe_fd);
 t_args	*here_args(char **av, char **envp);
 void	here_check(t_args *args, char **envp);
 void	here_doc(t_args *args);
+void	free_pipex(t_args *args);
 
 #endif

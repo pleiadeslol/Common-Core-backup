@@ -14,12 +14,9 @@
 
 void	first_cmd(int fd1, int pipe)
 {
-	if (fd1 >= 0)
-	{
-		dup2(fd1, STDIN_FILENO);
-		close(fd1);
-		dup2(pipe, STDOUT_FILENO);
-	}
+	dup2(fd1, STDIN_FILENO);
+	close(fd1);
+	dup2(pipe, STDOUT_FILENO);
 }
 
 void	last_cmd(int fd2, int pipe)
@@ -44,8 +41,10 @@ void	close_pipe(t_args *args, int **pipe_fd)
 	{
 		close(pipe_fd[i][0]);
 		close(pipe_fd[i][1]);
+		free(pipe_fd[i]);
 		i++;
 	}
+	free(pipe_fd);
 }
 
 void	exec_cmd(t_args *args, char **envp)

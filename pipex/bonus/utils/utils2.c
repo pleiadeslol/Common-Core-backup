@@ -60,6 +60,7 @@ char	*ft_strtrim(char const *s1, char const *s2)
 		if (str)
 			ft_strlcpy(str, &s1[i], j - i + 1);
 	}
+	free((void *)s1);
 	return (str);
 }
 
@@ -73,12 +74,12 @@ void	free_str(char **str)
 		free(str[i]);
 		i++;
 	}
-	free (str);
+	free(str);
 }
 
 void	exec_child(t_args *args, int **pipe_fd, int i, char **envp)
 {
-	if (i == 0)
+	if (i == 0 && args->fd1 != -1)
 		first_cmd(args->fd1, pipe_fd[i][1]);
 	else if (i == args->count - 1)
 		last_cmd(args->fd2, pipe_fd[i - 1][0]);
@@ -88,5 +89,8 @@ void	exec_child(t_args *args, int **pipe_fd, int i, char **envp)
 	close(args->fd1);
 	close(args->fd2);
 	if (execve(args->path[i], args->cmd[i], envp) < 0)
+	{
+		free_pipex(args);
 		exit(1);
+	}
 }

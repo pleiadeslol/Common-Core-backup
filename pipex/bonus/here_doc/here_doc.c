@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:37:03 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/02 19:54:24 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/03 00:03:33 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_args	*here_args(char **av, char **envp)
 	args->file2 = av[5];
 	args->cmd[0] = ft_split(av[3], ' ');
 	args->cmd[1] = ft_split(av[4], ' ');
+	args->cmd[2] = NULL;
 	i = 0;
 	count = 2;
 	while (count)
@@ -46,15 +47,23 @@ void	here_check(t_args *args, char **envp)
 	if (fd2 < 0)
 	{
 		ft_eprintf("permission denied: %s\n", args->file2);
+		free_pipex(args);
 		exit(1);
 	}
 	args->fd2 = fd2;
 	check_path(args->cmd[0][0], &args->path[0], envp);
 	i = check_path(args->cmd[1][0], &args->path[1], envp);
+	args->path[2] = NULL;
 	if (i == 126)
+	{
+		free_pipex(args);
 		exit (126);
+	}
 	else if (i == 127)
+	{
+		free_pipex(args);
 		exit (127);
+	}
 }
 
 void	here_doc(t_args *args)
@@ -62,26 +71,21 @@ void	here_doc(t_args *args)
 	int		fd1;
 	int		fd2;
 	char	*line;
-	char	*str;
 
 	fd1 = open("/tmp/file1", O_CREAT | O_TRUNC | O_RDWR, 0644);
 	fd2 = open("/tmp/file1", O_CREAT | O_TRUNC | O_RDWR, 0644);
 	args->file1 = "file1";
 	args->fd1 = fd2;
-	line = get_next_line(0);
-	str = ft_strtrim(line, "\n");
+	line = ft_strtrim(get_next_line(0), "\n");
 	while (line)
 	{
-		if (ft_strncmp(str, args->limiter, ft_strlen(str)) == 0)
+		if (ft_strncmp(line, args->limiter, ft_strlen(line)) == 0)
 			break ;
-		write(fd1, str, ft_strlen(str));
+		write(fd1, line, ft_strlen(line));
 		free(line);
-		free(str);
-		line = get_next_line(0);
-		str = ft_strtrim(line, "\n");
+		line = ft_strtrim(get_next_line(0), "\n");
 	}
 	free(line);
-	free(str);
 	close(fd1);
 	unlink("file1");
 }
