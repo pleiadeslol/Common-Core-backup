@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:37:03 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/01 22:18:49 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:54:24 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,26 @@ void	here_doc(t_args *args)
 	int		fd1;
 	int		fd2;
 	char	*line;
+	char	*str;
 
 	fd1 = open("/tmp/file1", O_CREAT | O_TRUNC | O_RDWR, 0644);
 	fd2 = open("/tmp/file1", O_CREAT | O_TRUNC | O_RDWR, 0644);
 	args->file1 = "file1";
 	args->fd1 = fd2;
-	line = ft_strtrim(get_next_line(0), "\n");
+	line = get_next_line(0);
+	str = ft_strtrim(line, "\n");
 	while (line)
 	{
-		if (ft_strncmp(line, args->limiter, ft_strlen(line)) == 0)
+		if (ft_strncmp(str, args->limiter, ft_strlen(str)) == 0)
 			break ;
-		write(fd1, line, ft_strlen(line));
-		line = ft_strtrim(get_next_line(0), "\n");
+		write(fd1, str, ft_strlen(str));
+		free(line);
+		free(str);
+		line = get_next_line(0);
+		str = ft_strtrim(line, "\n");
 	}
+	free(line);
+	free(str);
 	close(fd1);
 	unlink("file1");
 }

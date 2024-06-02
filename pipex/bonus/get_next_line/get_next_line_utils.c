@@ -16,12 +16,16 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
+	int		l;
 	char	*str;
 
 	i = 0;
 	j = 0;
 	if (!s1)
+	{
 		s1 = ft_strdup("");
+		l = 1;
+	}
 	str = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1)
 				+ ft_strlen((char *)s2) + 1));
 	if (str == NULL)
@@ -37,6 +41,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	str[i + j] = '\0';
+	if (l == 1)
+		free((void *)s1);
 	return (str);
 }
 

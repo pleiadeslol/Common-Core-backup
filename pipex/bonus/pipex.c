@@ -39,5 +39,4 @@ int	main(int ac, char **av, char **envp)
 	free(args->cmd);
 	free_str(args->path);
 	free(args);
-	system("leaks pipex");
 }
