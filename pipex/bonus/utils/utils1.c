@@ -18,13 +18,13 @@ int	count_line(int fd)
 	char	*line;
 	int		count;
 
-	line = get_next_line(fd);
+	line = get_next_line(fd, 0);
 	count = 0;
 	while (line)
 	{
 		if (ft_strncmp(line, "\n", 2) != 0)
 			count++;
-		line = get_next_line(fd);
+		line = get_next_line(fd, 0);
 	}
 	return (count);
 }

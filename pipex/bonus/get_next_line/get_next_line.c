@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:40:00 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/03 00:11:53 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:14:45 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,15 @@ static char	*get_clean_buffer(char *buffer)
 	return (str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int flag)
 {
 	char		*line;
 	static char	*buffer;
 	char		*clean_line;
 	ssize_t		end;
 
+	if (flag == 1)
+		return (free(buffer), NULL);
 	end = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -68,6 +70,5 @@ char	*get_next_line(int fd)
 	}
 	clean_line = get_clean_line(buffer);
 	buffer = get_clean_buffer(buffer);
-	free(line);
-	return (clean_line);
+	return (free(line), clean_line);
 }

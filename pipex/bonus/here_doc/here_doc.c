@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:37:03 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/03 00:03:33 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:13:54 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,17 @@ void	here_doc(t_args *args)
 	fd2 = open("/tmp/file1", O_CREAT | O_TRUNC | O_RDWR, 0644);
 	args->file1 = "file1";
 	args->fd1 = fd2;
-	line = ft_strtrim(get_next_line(0), "\n");
+	line = ft_strtrim(get_next_line(0, 0), "\n");
 	while (line)
 	{
 		if (ft_strncmp(line, args->limiter, ft_strlen(line)) == 0)
 			break ;
 		write(fd1, line, ft_strlen(line));
 		free(line);
-		line = ft_strtrim(get_next_line(0), "\n");
+		line = ft_strtrim(get_next_line(0, 0), "\n");
 	}
 	free(line);
+	line = get_next_line(0, 1);
 	close(fd1);
 	unlink("file1");
 }
