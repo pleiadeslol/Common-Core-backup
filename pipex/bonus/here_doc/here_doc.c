@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:37:03 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/04 15:13:54 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:00:39 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,5 @@ void	here_doc(t_args *args)
 	free(line);
 	line = get_next_line(0, 1);
 	close(fd1);
-	unlink("file1");
+	unlink("/tmp/file1");
 }
