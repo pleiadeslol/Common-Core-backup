@@ -16,9 +16,7 @@
 int	main(int ac, char **av, char **envp)
 {
 	t_args	*args;
-	int		i;
 
-	i = 0;
 	if (ac == 6 && ft_strncmp(av[1], "here_doc", 8) == 0)
 	{
 		args = here_args(av, envp);

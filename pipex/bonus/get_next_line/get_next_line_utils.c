@@ -11,12 +11,15 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../pipex.h"
 
-static void	free_s1(char *s1)
+size_t	ft_strlen(const char *str)
 {
-	if (ft_strncmp(s1, "", 2) == 0)
-		free(s1);
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -43,7 +46,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i + j] = s2[j];
 		j++;
 	}
-	free_s1(s1);
 	str[i + j] = '\0';
 	return (str);
 }

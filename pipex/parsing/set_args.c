@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../pipex.h"
+#include "../ft_eprintf/ft_eprintf.h"
 
 t_args	*set_args(int ac, char **av, char **envp)
 {

@@ -12,22 +12,7 @@
 
 #include "../pipex.h"
 #include "../get_next_line/get_next_line.h"
-
-int	count_line(int fd)
-{
-	char	*line;
-	int		count;
-
-	line = get_next_line(fd);
-	count = 0;
-	while (line)
-	{
-		if (ft_strncmp(line, "\n", 2) != 0)
-			count++;
-		line = get_next_line(fd);
-	}
-	return (count);
-}
+#include "../ft_eprintf/ft_eprintf.h"
 
 static int	count_words_str(const char *s, char c)
 {

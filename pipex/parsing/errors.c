@@ -12,6 +12,7 @@
 
 #include "../pipex.h" 
 #include "../get_next_line/get_next_line.h"
+#include "../ft_eprintf/ft_eprintf.h"
 
 void	check_files(t_args *args)
 {

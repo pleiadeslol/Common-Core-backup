@@ -12,6 +12,7 @@
 
 #include "../pipex.h" 
 #include "../get_next_line/get_next_line.h"
+#include "../ft_eprintf/ft_eprintf.h"
 
 char	**find_path(char **envp)
 {

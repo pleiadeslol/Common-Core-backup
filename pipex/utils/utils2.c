@@ -12,6 +12,7 @@
 
 #include "../pipex.h"
 #include "../get_next_line/get_next_line.h"
+#include "../ft_eprintf/ft_eprintf.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

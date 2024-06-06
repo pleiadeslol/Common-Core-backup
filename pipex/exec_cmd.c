@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "ft_eprintf/ft_eprintf.h"
 
 static void	exec_child1(t_args *args, int pipe_fd[2], char **envp)
 {
