@@ -22,6 +22,9 @@ char	**find_path(char **envp)
 
 	i = 0;
 	p = NULL;
+	path = NULL;
+	if (!envp)
+		exit (1);
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 4) == 0)
@@ -34,6 +37,8 @@ char	**find_path(char **envp)
 		i++;
 	}
 	path = ft_split(p, ':');
+	if (!path)
+		exit (1);
 	return (path);
 }
 
@@ -79,10 +84,10 @@ int	check_path(char *cmd, char **p, char **envp)
 
 	i = 0;
 	path = find_path(envp);
+	if (cmd == NULL)
+		cmd = ft_strdup(" ");
 	if (cmd[0] == '/' || cmd[0] == '.')
-	{
 		return (handle_path1(cmd, path, p));
-	}
 	*p = NULL;
 	while (path[i])
 	{
