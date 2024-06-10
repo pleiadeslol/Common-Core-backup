@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:11:09 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/07 01:45:14 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/10 03:18:09 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ t_args	*set_args(int ac, char **av)
 	else
 	{
 		printf("more arguments needed\n");
-		exit (1);
+		return (NULL);
 	}
 	if (args->n_philo < 1)
 	{
 		printf("number of philosophers need to be more than 1\n");
-		exit (1);
+		return (NULL);
 	}
 	return(args);
 }
