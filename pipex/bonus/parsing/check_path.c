@@ -70,21 +70,12 @@ static int	handle_path_err(char **p, char *cmd)
 	return (0);
 }
 
-int	check_path(char *cmd, char **p, char **envp)
+static void	join_path(char **path, char **p, char *cmd)
 {
 	int		i;
 	char	*tmp;
-	char	**path;
 
 	i = 0;
-	if (cmd == NULL)
-		cmd = ft_strdup(" ");
-	if (cmd[0] == '/' || cmd[0] == '.')
-		return (handle_path1(cmd, p));
-	*p = NULL;
-	path = find_path(envp);
-	if (!path)
-		return (handle_path_err(p, cmd));
 	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");
@@ -97,6 +88,21 @@ int	check_path(char *cmd, char **p, char **envp)
 		else
 			break ;
 	}
+}
+
+int	check_path(char *cmd, char **p, char **envp)
+{
+	char	**path;
+
+	if (cmd == NULL)
+		cmd = ft_strdup(" ");
+	if (cmd[0] == '/' || cmd[0] == '.')
+		return (handle_path1(cmd, p));
+	*p = NULL;
+	path = find_path(envp);
+	if (!path)
+		return (handle_path_err(p, cmd));
+	join_path(path, p, cmd);
 	free_str(path);
 	return (handle_path_err(p, cmd));
 }
