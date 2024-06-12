@@ -14,50 +14,19 @@
 #include "../get_next_line/get_next_line.h"
 #include "../ft_eprintf/ft_eprintf.h"
 
-char	**find_path(char **envp)
-{
-	char	*p;
-	char	**path;
-	int		i;
-
-	i = 0;
-	p = NULL;
-	path = NULL;
-	if (!envp)
-		exit (1);
-	while (envp[i])
-	{
-		if (ft_strncmp(envp[i], "PATH=", 4) == 0)
-		{
-			p = ft_strchr(envp[i], '=');
-			if (p)
-				p++;
-			break ;
-		}
-		i++;
-	}
-	path = ft_split(p, ':');
-	if (!path)
-		exit (1);
-	return (path);
-}
-
-static int	handle_path1(char *cmd, char **path, char **p)
+static int	handle_path1(char *cmd, char **p)
 {
 	if (access(cmd, F_OK) == 0 && access(cmd, X_OK) == -1)
 	{
 		ft_eprintf("permission denied: %s\n", cmd);
-		free_str(path);
 		return (126);
 	}
 	if (access(cmd, X_OK) == -1)
 	{
 		ft_eprintf("command not found: %s\n", cmd);
-		free_str(path);
 		return (127);
 	}
 	*p = ft_strdup(cmd);
-	free_str(path);
 	return (0);
 }
 
@@ -76,6 +45,32 @@ static int	handle_path_err(char **p, char *cmd)
 	return (1);
 }
 
+char	**find_path(char **envp)
+{
+	char	*p;
+	char	**path;
+	int		i;
+
+	i = 0;
+	p = NULL;
+	path = NULL;
+	if (!envp)
+		return (NULL);
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", 4) == 0)
+		{
+			p = ft_strchr(envp[i], '=');
+			if (p)
+				p++;
+			break ;
+		}
+		i++;
+	}
+	path = ft_split(p, ':');
+	return (path);
+}
+
 int	check_path(char *cmd, char **p, char **envp)
 {
 	int		i;
@@ -83,12 +78,14 @@ int	check_path(char *cmd, char **p, char **envp)
 	char	**path;
 
 	i = 0;
-	path = find_path(envp);
 	if (cmd == NULL)
 		cmd = ft_strdup(" ");
 	if (cmd[0] == '/' || cmd[0] == '.')
-		return (handle_path1(cmd, path, p));
+		return (handle_path1(cmd, p));
 	*p = NULL;
+	path = find_path(envp);
+	if (!path)
+		return (handle_path_err(p, cmd));
 	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");
