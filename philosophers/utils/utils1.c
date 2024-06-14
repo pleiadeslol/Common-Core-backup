@@ -6,11 +6,18 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 01:33:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/07 01:34:23 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:09:50 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
 
 int	ft_atoi(const char *str)
 {

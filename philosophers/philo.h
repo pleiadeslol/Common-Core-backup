@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/12 05:49:50 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:11:22 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <limits.h>
 
 typedef struct	s_args
 {
@@ -33,6 +34,7 @@ typedef struct	s_philo
 }	t_philo;
 
 t_args			*set_args(int ac, char **av);
+int				ft_isdigit(int c);
 int				ft_atoi(const char *str);
 pthread_t		*create_thread(t_args *args);
 pthread_mutex_t	*create_mutex(t_args *args);

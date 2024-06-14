@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:11:09 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/10 03:18:09 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:11:49 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,24 @@
 t_args	*set_args(int ac, char **av)
 {
 	t_args	*args;
+	int		i;
+	int		j;
 
+	i = 1;
+	while (av[i])
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (!ft_isdigit(av[i][j]))
+			{
+				printf("an argument isnt a digit\n");
+				return(NULL) ;	
+			}
+			j++;
+		}
+		i++;
+	}
 	args = malloc(sizeof(t_args));
 	if (ac == 5 || ac == 6)
 	{
