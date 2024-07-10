@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 01:33:51 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/14 09:09:50 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/07/02 21:26:43 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (res * sign);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

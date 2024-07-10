@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:11:09 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/14 10:11:49 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/07/02 21:25:33 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ t_args	*set_args(int ac, char **av)
 				return(NULL) ;	
 			}
 			j++;
+		}
+		if (ft_strlen(av[i]) > 10)
+		{
+			printf("an argument is long\n");
+			return(NULL) ;	
 		}
 		i++;
 	}

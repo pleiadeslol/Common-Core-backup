@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/06/14 10:11:22 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/07/02 21:26:58 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_philo
 t_args			*set_args(int ac, char **av);
 int				ft_isdigit(int c);
 int				ft_atoi(const char *str);
+size_t			ft_strlen(const char *str);
 pthread_t		*create_thread(t_args *args);
 pthread_mutex_t	*create_mutex(t_args *args);
 
