@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/07/02 21:26:58 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/07/13 10:38:53 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <sys/time.h>
 # include <limits.h>
 
+typedef	struct	s_philo t_philo;
+
 typedef struct	s_args
 {
 	int	n_philo;
@@ -26,18 +28,27 @@ typedef struct	s_args
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	nb_philo_eat;
+	t_philo	*philo;
 }	t_args;
 
 typedef struct	s_philo
 {
 	pthread_mutex_t	*fork;
+	t_args			*args;
 }	t_philo;
 
-t_args			*set_args(int ac, char **av);
-int				ft_isdigit(int c);
-int				ft_atoi(const char *str);
-size_t			ft_strlen(const char *str);
-pthread_t		*create_thread(t_args *args);
-pthread_mutex_t	*create_mutex(t_args *args);
+enum	e_state
+{
+	FORK,
+	EATING,
+	THINKING,
+	SLEEPING,
+	DYING
+};
+
+void	check_args(int ac, char **av);
+int		ft_isdigit(int c);
+t_args	*parse_data(int ac, char **av);
+int		ft_atoi(const char *str);
 
 #endif
