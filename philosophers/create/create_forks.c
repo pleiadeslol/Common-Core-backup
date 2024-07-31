@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   create_forks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/06 22:04:07 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/07/22 15:40:15 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/07/22 14:39:14 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/07/22 15:20:57 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
-int	main(int ac, char **av)
+pthread_mutex_t	*create_forks(t_args *args)
 {
-	t_args			*args;
-	pthread_t		*philo_id;
-	t_philo			**philo;
-	
-	check_args(ac, av);
-	args = parse_data(ac, av);
-	if (!args)
-		exit(EXIT_FAILURE);
-	args->forks = create_forks(args);
-	if (!args->forks)
-		exit(EXIT_FAILURE);
-	philo_id = create_thread(args);
-	if (!philo_id)
-		exit(EXIT_FAILURE);
-	philo = init_philo(args, philo_id);
+	int				i;
+	pthread_mutex_t	*fork;
+
+	i = 0;
+	fork = malloc(sizeof(pthread_mutex_t) * (args->n_philo + 1));
+	if (!fork)
+		return (NULL);
+	while (i < args->n_philo)
+	{
+		if (pthread_mutex_init(&fork[i], NULL))
+			retrun (NULL);
+		i++;
+	}
+	return (fork);
 }

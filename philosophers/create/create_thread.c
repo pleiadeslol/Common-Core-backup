@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   create_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/06 22:04:07 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/07/22 15:40:15 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/07/22 14:55:41 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/07/22 15:22:42 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
-int	main(int ac, char **av)
+pthread_t	*create_thread(t_args *args)
 {
-	t_args			*args;
-	pthread_t		*philo_id;
-	t_philo			**philo;
-	
-	check_args(ac, av);
-	args = parse_data(ac, av);
-	if (!args)
-		exit(EXIT_FAILURE);
-	args->forks = create_forks(args);
-	if (!args->forks)
-		exit(EXIT_FAILURE);
-	philo_id = create_thread(args);
+	pthread_t	*philo_id;
+	int			i;
+
+	i = 0;
+	philo_id = malloc(sizeof(pthread_t) * (args->n_philo + 1));
 	if (!philo_id)
-		exit(EXIT_FAILURE);
-	philo = init_philo(args, philo_id);
+		return (NULL);
+	while (i < args->n_philo)
+	{
+		if (pthread_create(&philo_id[i], NULL, philo_routine, args))
+			return (NULL);
+		i++;
+	}
+	i = 0;
+	while (i < args->n_philo)
+	{
+		if (pthread_join(&philo_id[i], NULL))
+			return (NULL);
+		i++;
+	}
+	return (philo_id);
 }

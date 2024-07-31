@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/07/13 10:38:53 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:37:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ typedef struct	s_args
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	nb_philo_eat;
+	pthread_mutex_t	*forks;
 	t_philo	*philo;
 }	t_args;
 
 typedef struct	s_philo
 {
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	fork;
+	int				status;
 	t_args			*args;
 }	t_philo;
 
@@ -50,5 +52,9 @@ void	check_args(int ac, char **av);
 int		ft_isdigit(int c);
 t_args	*parse_data(int ac, char **av);
 int		ft_atoi(const char *str);
+pthread_mutex_t	*create_forks(t_args *args);
+pthread_t	*create_thread(t_args *args);
+void	*philo_routine(void *data);
+t_philo	*init_philo(t_args *args, pthread_t *philo_id);
 
 #endif
