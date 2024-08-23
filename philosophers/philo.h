@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/07/22 15:37:59 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/08/22 08:49:44 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct	s_args
 
 typedef struct	s_philo
 {
-	pthread_mutex_t	fork;
-	int				status;
+	pthread_mutex_t*	fork;
+	int				*id;
 	t_args			*args;
 }	t_philo;
 
@@ -55,6 +55,6 @@ int		ft_atoi(const char *str);
 pthread_mutex_t	*create_forks(t_args *args);
 pthread_t	*create_thread(t_args *args);
 void	*philo_routine(void *data);
-t_philo	*init_philo(t_args *args, pthread_t *philo_id);
+t_philo	**init_philo(t_args *args);
 
 #endif

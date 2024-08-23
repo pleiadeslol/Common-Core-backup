@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:55:41 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/07/22 15:22:42 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:30:23 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ pthread_t	*create_thread(t_args *args)
 	i = 0;
 	while (i < args->n_philo)
 	{
-		if (pthread_join(&philo_id[i], NULL))
+		if (pthread_join(philo_id[i], NULL))
 			return (NULL);
 		i++;
 	}
