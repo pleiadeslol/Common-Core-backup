@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/08/22 08:49:44 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:04:41 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct	s_philo
 {
 	pthread_mutex_t*	fork;
 	int				*id;
-	t_args			*args;
 }	t_philo;
 
 enum	e_state
