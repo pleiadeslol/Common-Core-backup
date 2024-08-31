@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:35:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/08/31 00:33:42 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/08/31 01:22:23 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,12 @@ t_philo	**init_philo(t_args *args)
 		philo[i] = malloc(sizeof(t_philo));
 		if (!philo[i])
 			return (NULL);
-		philo[i]->id = malloc(sizeof(int) * args->n_philo);
-		if (!philo[i]->id)
-			return (NULL);
-		philo[i]->id[i] = i;
+		philo[i]->id = i;
 		philo[i]->fork = malloc(sizeof(pthread_mutex_t) * args->n_philo);
 		if (!philo[i]->fork)
 			return (NULL);
 		philo[i]->fork[i] = args->forks[i];
 		i++;
 	}
-	return (philo); 
+	return (philo);
 }

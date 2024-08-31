@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/08/31 00:26:38 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/08/31 01:17:20 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ typedef struct	s_args
 	int	time_to_sleep;
 	int	nb_philo_eat;
 	pthread_mutex_t	*forks;
-	t_philo	*philo;
+	t_philo	**philo;
 }	t_args;
 
 typedef struct	s_philo
 {
 	pthread_mutex_t*	fork;
-	int				*id;
+	int				id;
 }	t_philo;
 
 enum	e_state
