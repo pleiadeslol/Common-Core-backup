@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ro <ro@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:52:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/07/13 09:52:56 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:20:13 by ro               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,9 @@ size_t	ft_strlen(const char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+long	ft_get_time()
+{
+	
 }
