@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 00:42:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/21 21:58:09 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/21 23:01:07 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,8 @@ void	*philo_routine(void *data)
 
 void	take_fork(t_philo philo)
 {
-	
+	pthread_mutex_lock(philo.r_fork);
+	printf("%llu %d has taken a fork\n", get_tstart(), philo.id);
+	pthread_mutex_lock(philo.l_fork);
+	printf("%llu %d has taken a fork\n", get_tstart(), philo.id);
 }
