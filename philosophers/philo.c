@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:07 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/08/31 01:00:23 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/21 21:37:38 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	t_args			*args;
 	pthread_t		*philo_id;
-	t_philo			**philo;
+	t_philo			*philo;
 	
 	check_args(ac, av);
 	args = parse_data(ac, av);

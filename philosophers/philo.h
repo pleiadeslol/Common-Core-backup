@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ro <ro@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/09 18:53:56 by ro               ###   ########.fr       */
+/*   Updated: 2024/09/21 21:57:05 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <limits.h>
+# include <stdbool.h>
 
 typedef	struct	s_philo t_philo;
 
@@ -28,14 +29,18 @@ typedef struct	s_args
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	nb_philo_eat;
+	long long	t_start;
 	pthread_mutex_t	*forks;
-	t_philo	**philo;
+	t_philo	*philo;
 }	t_args;
 
 typedef struct	s_philo
 {
-	pthread_mutex_t*	fork;
+	pthread_mutex_t*	l_fork;
+	pthread_mutex_t*	r_fork;
 	int				id;
+	int				meals_eaten;
+	long long	last_meal;
 }	t_philo;
 
 enum	e_state
@@ -54,6 +59,9 @@ int		ft_atoi(const char *str);
 pthread_mutex_t	*create_forks(t_args *args);
 pthread_t	*create_thread(t_args *args);
 void	*philo_routine(void *data);
-t_philo	**init_philo(t_args *args);
+t_philo	*init_philo(t_args *args);
+int		die_flag(t_args	*args);
+void	take_fork(t_philo philo);
+long long	get_tstart();
 
 #endif

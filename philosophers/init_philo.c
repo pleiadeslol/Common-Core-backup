@@ -6,32 +6,28 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:35:35 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/08/31 01:22:23 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/21 21:48:29 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo	**init_philo(t_args *args)
+t_philo	*init_philo(t_args *args)
 {
-	t_philo	**philo;
 	int		i;
 
 	i = 0;
-	philo = malloc(sizeof(t_philo *));
-	if (!philo)
-		return (NULL);
+	args->philo = malloc(args->n_philo * sizeof(t_philo));
 	while (i < args->n_philo)
 	{
-		philo[i] = malloc(sizeof(t_philo));
-		if (!philo[i])
-			return (NULL);
-		philo[i]->id = i;
-		philo[i]->fork = malloc(sizeof(pthread_mutex_t) * args->n_philo);
-		if (!philo[i]->fork)
-			return (NULL);
-		philo[i]->fork[i] = args->forks[i];
+		args->philo[i].id = i;
+		args->philo[i].meals_eaten = 0;
+		args->philo[i].last_meal = args->t_start;
+		args->philo[i].l_fork = &args->forks[i];
+		if (i == 0)
+			args->philo[i].r_fork = &args->forks[args->n_philo - 1];
+		args->philo[i].r_fork = &args->forks[i - 1];
 		i++;
 	}
-	return (philo);
+	return (args->philo);
 }

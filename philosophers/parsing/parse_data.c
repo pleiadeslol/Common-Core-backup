@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:56:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/07/13 10:39:03 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/21 21:32:54 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_args	*parse_data(int ac, char **av)
 	args = malloc(sizeof(t_args));
 	if (!args)
 		return (NULL);
+	args->t_start = get_tstart();
 	args->n_philo = ft_atoi(av[1]);
 	args->time_to_die = ft_atoi(av[2]);
 	args->time_to_eat = ft_atoi(av[3]);

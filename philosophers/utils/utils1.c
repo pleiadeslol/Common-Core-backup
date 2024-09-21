@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ro <ro@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:52:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/10 19:20:13 by ro               ###   ########.fr       */
+/*   Updated: 2024/09/21 21:36:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,30 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-long	ft_get_time()
+long long	get_tstart()
 {
-	
+	struct timeval tv;
+
+	if (gettimeofday(&tv, NULL) != 0)
+		return (0);
+	return (tv.tv_sec * 1000 + tv.tv_sec / 1000);
+}
+
+long long time_diff_ms(struct timeval *start, struct timeval *end) {
+    return (end->tv_sec - start->tv_sec) * 1000LL + 
+           (end->tv_usec - start->tv_usec) / 1000LL;
+}
+
+int	die_flag(t_args	*args)
+{
+	struct timeval	start;
+	struct timeval	time;
+	long long	check;
+
+	gettimeofday(&start, NULL);
+	// time = get_last_meal(args->philo);
+	check = time_diff_ms(&start, &time);
+	if (check >= args->time_to_die)
+		return (0);
+	return (1);
 }
