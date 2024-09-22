@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/06 22:04:07 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/22 00:49:07 by rzarhoun         ###   ########.fr       */
+/*   Created: 2024/09/22 02:36:44 by rzarhoun          #+#    #+#             */
+/*   Updated: 2024/09/22 02:52:01 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+void	monitor(t_args *args)
 {
-	t_args	*args;
-	int		status;
-	
-	check_args(ac, av);
-	args = parse_data(ac, av);
-	if (!args)
-		return(EXIT_FAILURE);
-	status = create_forks(args);
-	if (status == 0)
-		return(EXIT_FAILURE);
-	status = init_philo(args);
-	if (!status)
-		return(EXIT_FAILURE);
-	status = run_philo(args);
-	if (!status)
-		return(EXIT_FAILURE);
+	bool	run;
+
+	run = true;
+	while(run)
+	{
+		if (check_death(args) || check_eat_goal(args))
+			run = false;
+		ft_usleep(1);
+	}
 }

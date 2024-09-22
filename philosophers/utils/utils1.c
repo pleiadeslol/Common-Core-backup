@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:52:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/21 21:36:14 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/22 02:50:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,56 @@ long long	get_tstart()
 	struct timeval tv;
 
 	if (gettimeofday(&tv, NULL) != 0)
-		return (0);
+		return (-1);
 	return (tv.tv_sec * 1000 + tv.tv_sec / 1000);
 }
 
-long long time_diff_ms(struct timeval *start, struct timeval *end) {
-    return (end->tv_sec - start->tv_sec) * 1000LL + 
-           (end->tv_usec - start->tv_usec) / 1000LL;
+void	ft_usleep(size_t ms)
+{
+	long long	start;
+
+	start = get_tstart();
+	if (start == -1)
+		return ;
+	while((get_tstart() - start) < (long long)ms)
+		usleep(500);
 }
 
-int	die_flag(t_args	*args)
+bool	check_death(t_args *args)
 {
-	struct timeval	start;
-	struct timeval	time;
-	long long	check;
+	long long	current_time;
+	int			i;
 
-	gettimeofday(&start, NULL);
-	// time = get_last_meal(args->philo);
-	check = time_diff_ms(&start, &time);
-	if (check >= args->time_to_die)
-		return (0);
-	return (1);
+	current_time = get_tstart();
+	i = 0;
+	if (current_time == -1)
+		return (true);
+	while (i < args->n_philo)
+	{
+		if (current_time - args->philo[i].last_meal > args->time_to_die)
+		{
+			printf("%llu %d died\n", get_tstart() - args->t_start, args->philo->id);
+			args->end = true;
+			return (true);
+		}
+		i++;
+	}
+	return (false);
+}
+
+bool	check_eat_goal(t_args *args)
+{
+	int	i;
+
+	i = 0;
+	if (args->nb_philo_eat == -1)
+		return (false);
+	while (i < args->n_philo)
+	{
+		if (args->philo[i].meals_eaten < args->nb_philo_eat)
+			return (false);
+		i++;
+	}
+	args->end = true;
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/21 23:09:51 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/22 02:52:04 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_args
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	nb_philo_eat;
+	bool	end;
 	long long	t_start;
 	pthread_mutex_t	*forks;
 	t_philo	*philo;
@@ -41,6 +42,7 @@ typedef struct	s_philo
 	int				id;
 	int				meals_eaten;
 	long long	last_meal;
+	t_args		*args;
 }	t_philo;
 
 enum	e_state
@@ -56,12 +58,20 @@ void	check_args(int ac, char **av);
 int		ft_isdigit(int c);
 t_args	*parse_data(int ac, char **av);
 int		ft_atoi(const char *str);
-pthread_mutex_t	*create_forks(t_args *args);
-pthread_t	*create_thread(t_args *args);
+int	create_forks(t_args *args);
+int	run_philo(t_args *args);
 void	*philo_routine(void *data);
-t_philo	*init_philo(t_args *args);
+int	init_philo(t_args *args);
 int		die_flag(t_args	*args);
-void	take_fork(t_philo philo);
+void	take_fork(t_philo *philo);
 long long	get_tstart();
+void	ft_usleep(size_t ms);
+void	eat(t_philo *philo);
+void	put_fork(t_philo *philo);
+void	philo_sleep(t_philo *philo);
+void	think(t_philo *philo);
+void	monitor(t_args *args);
+bool	check_death(t_args *args);
+bool	check_eat_goal(t_args *args);
 
 #endif
