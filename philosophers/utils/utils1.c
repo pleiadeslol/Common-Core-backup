@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:52:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:44:14 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 04:45:50 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,8 @@ bool	check_eat_goal(t_args *args)
 	if (args->nb_philo_eat == -1)
 		return (false);
 	while (i < args->n_philo)
-	{
-		if (args->philo[i].meals_eaten < args->nb_philo_eat)
+		if (args->philo[i++].meals_eaten < args->nb_philo_eat)
 			return (false);
-		i++;
-	}
 	pthread_mutex_lock(&args->state[DEATH]);
 	args->end = true;
 	pthread_mutex_unlock(&args->state[DEATH]);
@@ -99,6 +96,7 @@ void	print_state(t_args *args, int id, char *state)
 	if (t == -1)
 		return ;
 	pthread_mutex_lock(&args->state[PRINT]);
-	printf("%llu %d %s\n", t, id + 1, state);
+	if (!routine_end(args))
+		printf("%lld %d %s\n", t, id + 1, state);
 	pthread_mutex_unlock(&args->state[PRINT]);
 }

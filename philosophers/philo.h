@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:56:31 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 04:46:26 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		put_fork(t_philo *philo);
 void		philo_sleep(t_philo *philo);
 void		think(t_philo *philo);
 void		monitor(t_args *args);
+bool		routine_end(t_args *args);
 bool		check_death(t_args *args);
 bool		check_eat_goal(t_args *args);
 
