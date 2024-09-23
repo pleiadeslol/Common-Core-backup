@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:52:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/22 02:50:14 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:09:20 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,31 @@ long long	get_tstart()
 
 	if (gettimeofday(&tv, NULL) != 0)
 		return (-1);
-	return (tv.tv_sec * 1000 + tv.tv_sec / 1000);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	ft_usleep(size_t ms)
+long long	get_time(t_args *args)
+{
+	struct timeval tv;
+
+	if (gettimeofday(&tv, NULL) != 0)
+	{
+		pthread_mutex_lock(&args->state[DEATH]);
+		args->end = true;
+		pthread_mutex_unlock(&args->state[DEATH]);
+		return (-1);
+	}
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	ft_usleep(size_t ms, t_args *args)
 {
 	long long	start;
 
-	start = get_tstart();
+	start = get_time(args);
 	if (start == -1)
 		return ;
-	while((get_tstart() - start) < (long long)ms)
+	while((get_time(args) - start) < (long long)ms)
 		usleep(500);
 }
 
@@ -83,7 +97,7 @@ bool	check_death(t_args *args)
 	long long	current_time;
 	int			i;
 
-	current_time = get_tstart();
+	current_time = get_time(args);
 	i = 0;
 	if (current_time == -1)
 		return (true);
@@ -91,8 +105,10 @@ bool	check_death(t_args *args)
 	{
 		if (current_time - args->philo[i].last_meal > args->time_to_die)
 		{
-			printf("%llu %d died\n", get_tstart() - args->t_start, args->philo->id);
+			print_state(args, args->philo[i].id, "died");
+			pthread_mutex_lock(&args->state[DEATH]);
 			args->end = true;
+			pthread_mutex_unlock(&args->state[DEATH]);
 			return (true);
 		}
 		i++;
@@ -113,6 +129,20 @@ bool	check_eat_goal(t_args *args)
 			return (false);
 		i++;
 	}
+	pthread_mutex_lock(&args->state[DEATH]);
 	args->end = true;
+	pthread_mutex_unlock(&args->state[DEATH]);
 	return (true);
+}
+
+void	print_state(t_args *args, int id, char *state)
+{
+	long long	t;
+
+	t = get_time(args) - args->t_start;
+	if (t == -1)
+		return ;
+	pthread_mutex_lock(&args->state[PRINT]);
+	printf("%llu %d %s\n", t, id + 1, state);
+	pthread_mutex_unlock(&args->state[PRINT]);
 }

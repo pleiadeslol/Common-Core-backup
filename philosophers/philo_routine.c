@@ -6,32 +6,30 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 00:42:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/22 02:53:55 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:05:46 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	stop_run(t_args *args)
+bool	routine_end(t_args *args)
 {
-	bool	ended;
+	bool	end;
 
-	ended = args->end;
-	return (ended);
+	pthread_mutex_lock(&args->state[DEATH]);
+	end = args->end;
+	pthread_mutex_unlock(&args->state[DEATH]);
+	return (end);
 }
 
 void	*philo_routine(void *data)
 {
-	t_args	*args;
 	t_philo	*philo;
-	int		i;
 
-	args = (t_args *)data;
-	i = 0;
-	philo = args->philo;
+	philo = (t_philo *)data;
 	if (philo->id % 2 == 0)
-		ft_usleep(1);
-	while(1)
+		ft_usleep(1, philo->args);
+	while(!routine_end(philo->args))
 	{
 		take_fork(philo);
 		eat(philo);
@@ -45,9 +43,15 @@ void	*philo_routine(void *data)
 void	take_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
-	printf("%llu %d has taken a fork\n", get_tstart() - philo->args->t_start, philo->id);
+	print_state(philo->args, philo->id, "has taken a fork");
+	if (philo->args->n_philo == 1)
+	{
+		ft_usleep(philo->args->time_to_die + 1, philo->args);
+		pthread_mutex_unlock(philo->r_fork);
+		return ;
+	}
 	pthread_mutex_lock(philo->l_fork);
-	printf("%llu %d has taken a fork\n", get_tstart() - philo->args->t_start, philo->id);
+	print_state(philo->args, philo->id, "has taken a fork");
 }
 
 void	eat(t_philo *philo)
@@ -55,16 +59,18 @@ void	eat(t_philo *philo)
 	t_args	*args;
 
 	args = philo->args;
-	printf("%llu %d is eating\n", get_tstart() - philo->args->t_start, philo->id);
-	philo->last_meal = get_tstart();
+	print_state(args, philo->id, "is eating");
+	pthread_mutex_lock(&args->state[EAT]);
+	philo->last_meal = get_time(args);
 	philo->meals_eaten++;
-	ft_usleep(args->time_to_eat);
+	pthread_mutex_unlock(&args->state[EAT]);
+	ft_usleep(args->time_to_eat, args);
 }
 
 void	put_fork(t_philo *philo)
 {
-	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
+	pthread_mutex_unlock(philo->r_fork);
 }
 
 void	philo_sleep(t_philo *philo)
@@ -72,11 +78,11 @@ void	philo_sleep(t_philo *philo)
 	t_args	*args;
 
 	args = philo->args;
-	printf("%llu %d is sleeping\n", get_tstart() - philo->args->t_start, philo->id);
-	ft_usleep(args->time_to_sleep);
+	print_state(args, philo->id, "is sleeping");
+	ft_usleep(args->time_to_sleep, args);
 }
 
 void	think(t_philo *philo)
 {
-	printf("%llu %d is thinking\n", get_tstart() - philo->args->t_start, philo->id);
+	print_state(philo->args, philo->id, "is thinking");
 }

@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:56:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/22 02:47:19 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 02:42:59 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ t_args	*parse_data(int ac, char **av)
 	args = malloc(sizeof(t_args));
 	if (!args)
 		return (NULL);
-	args->t_start = get_tstart();
-	args->end = false;
 	args->n_philo = ft_atoi(av[1]);
 	args->time_to_die = ft_atoi(av[2]);
 	args->time_to_eat = ft_atoi(av[3]);
@@ -40,6 +38,12 @@ t_args	*parse_data(int ac, char **av)
 		printf("Error: time needs to be more than 60 ms\n");
 		exit(EXIT_FAILURE);
 	}
+	args->t_start = get_tstart();
+	args->end = false;
+	if (pthread_mutex_init(&args->state[DEATH], NULL) ||
+		pthread_mutex_init(&args->state[EAT], NULL) ||
+		pthread_mutex_init(&args->state[PRINT], NULL))
+		return (NULL);
 	return (args);
 }
 
