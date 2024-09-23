@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 00:42:28 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:05:46 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:35:47 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*philo_routine(void *data)
 	philo = (t_philo *)data;
 	if (philo->id % 2 == 0)
 		ft_usleep(1, philo->args);
-	while(!routine_end(philo->args))
+	while (!routine_end(philo->args))
 	{
 		take_fork(philo);
 		eat(philo);

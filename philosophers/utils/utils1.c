@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:52:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:09:20 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:31:43 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-long long	get_tstart()
+long long	get_tstart(void)
 {
 	struct timeval tv;
 
