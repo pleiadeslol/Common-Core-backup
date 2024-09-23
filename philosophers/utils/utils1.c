@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:52:27 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:31:43 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:44:14 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,50 +46,6 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (res * sign);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-long long	get_tstart(void)
-{
-	struct timeval tv;
-
-	if (gettimeofday(&tv, NULL) != 0)
-		return (-1);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-}
-
-long long	get_time(t_args *args)
-{
-	struct timeval tv;
-
-	if (gettimeofday(&tv, NULL) != 0)
-	{
-		pthread_mutex_lock(&args->state[DEATH]);
-		args->end = true;
-		pthread_mutex_unlock(&args->state[DEATH]);
-		return (-1);
-	}
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-}
-
-void	ft_usleep(size_t ms, t_args *args)
-{
-	long long	start;
-
-	start = get_time(args);
-	if (start == -1)
-		return ;
-	while((get_time(args) - start) < (long long)ms)
-		usleep(500);
 }
 
 bool	check_death(t_args *args)

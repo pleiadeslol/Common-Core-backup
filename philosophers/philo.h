@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:34:50 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:56:31 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_philo
 
 void		check_args(int ac, char **av);
 int			ft_isdigit(int c);
-t_args		*parse_data(int ac, char **av);
+t_args		*init_args(int ac, char **av);
 int			ft_atoi(const char *str);
 int			create_forks(t_args *args);
 int			run_philo(t_args *args);

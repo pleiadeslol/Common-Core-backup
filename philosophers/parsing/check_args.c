@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:47:08 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/07/13 09:55:40 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:49:21 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_args(int ac, char **av)
 	while (av[i])
 	{
 		j = 0;
-		while(av[i][j])
+		while (av[i][j])
 		{
 			if (!ft_isdigit(av[i][j]))
 			{
@@ -38,4 +38,3 @@ void	check_args(int ac, char **av)
 		i++;
 	}
 }
-

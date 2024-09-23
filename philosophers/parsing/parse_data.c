@@ -6,13 +6,29 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:56:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 02:42:59 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:59:40 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-t_args	*parse_data(int ac, char **av)
+int	check(t_args *args)
+{
+	if (args->n_philo < 1 || args->n_philo > 200)
+	{
+		printf("Error: number of philosophers needs to be between 1 and 200\n");
+		return (0);
+	}
+	else if (args->time_to_die < 60 || args->time_to_eat < 60
+		|| args->time_to_sleep < 60)
+	{
+		printf("Error: time needs to be more than 60 ms\n");
+		return (0);
+	}
+	return (1);
+}
+
+t_args	*init_args(int ac, char **av)
 {
 	t_args	*args;
 
@@ -27,23 +43,13 @@ t_args	*parse_data(int ac, char **av)
 		args->nb_philo_eat = ft_atoi(av[5]);
 	else
 		args->nb_philo_eat = -1;
-	if (args->n_philo < 1 || args->n_philo > 200)
-	{
-		printf("Error: number of philosophers needs to be between 1 and 200\n");
-		exit(EXIT_FAILURE);
-	}
-	else if (args->time_to_die < 60 || args->time_to_eat < 60 ||
-			args->time_to_sleep < 60)
-	{
-		printf("Error: time needs to be more than 60 ms\n");
-		exit(EXIT_FAILURE);
-	}
+	if (check(args) == 0)
+		return (NULL);
 	args->t_start = get_tstart();
 	args->end = false;
-	if (pthread_mutex_init(&args->state[DEATH], NULL) ||
-		pthread_mutex_init(&args->state[EAT], NULL) ||
-		pthread_mutex_init(&args->state[PRINT], NULL))
+	if (pthread_mutex_init(&args->state[DEATH], NULL)
+		|| pthread_mutex_init(&args->state[EAT], NULL)
+		|| pthread_mutex_init(&args->state[PRINT], NULL))
 		return (NULL);
 	return (args);
 }
-

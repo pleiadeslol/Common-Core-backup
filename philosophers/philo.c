@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:07 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:29:22 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:56:19 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 	int		status;
 
 	check_args(ac, av);
-	args = parse_data(ac, av);
+	args = init_args(ac, av);
 	if (!args)
 		return (EXIT_FAILURE);
 	status = create_forks(args);
