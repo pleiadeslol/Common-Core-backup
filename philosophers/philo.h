@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:04:21 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 04:46:26 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:37:31 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_philo
 	t_args				*args;
 }	t_philo;
 
-void		check_args(int ac, char **av);
+int			check_args(int ac, char **av);
 int			ft_isdigit(int c);
 t_args		*init_args(int ac, char **av);
 int			ft_atoi(const char *str);
@@ -76,5 +76,6 @@ void		monitor(t_args *args);
 bool		routine_end(t_args *args);
 bool		check_death(t_args *args);
 bool		check_eat_goal(t_args *args);
+void		clean_main(t_args *args);
 
 #endif

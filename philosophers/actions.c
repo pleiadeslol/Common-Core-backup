@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 03:47:50 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:48:00 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:34:57 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ void	eat(t_philo *philo)
 
 void	put_fork(t_philo *philo)
 {
-	pthread_mutex_unlock(philo->l_fork);
-	pthread_mutex_unlock(philo->r_fork);
+	if (philo->args->n_philo > 1)
+	{
+		pthread_mutex_unlock(philo->l_fork);
+		pthread_mutex_unlock(philo->r_fork);
+	}
 }
 
 void	philo_sleep(t_philo *philo)

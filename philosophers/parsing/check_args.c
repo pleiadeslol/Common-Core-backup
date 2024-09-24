@@ -6,13 +6,13 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:47:08 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:49:21 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:38:04 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	check_args(int ac, char **av)
+int	check_args(int ac, char **av)
 {
 	int	i;
 	int	j;
@@ -21,7 +21,7 @@ void	check_args(int ac, char **av)
 	if (ac < 5 || ac > 6)
 	{
 		printf("Error: 5 or 6 arguments needed\n");
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	while (av[i])
 	{
@@ -31,7 +31,7 @@ void	check_args(int ac, char **av)
 			if (!ft_isdigit(av[i][j]))
 			{
 				printf("Error: argument needs to be a number\n");
-				exit(EXIT_FAILURE);
+				return (0);
 			}
 			j++;
 		}

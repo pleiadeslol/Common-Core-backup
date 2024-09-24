@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:56:57 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/09/23 03:59:40 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:09:24 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ t_args	*init_args(int ac, char **av)
 	else
 		args->nb_philo_eat = -1;
 	if (check(args) == 0)
+	{
+		free(args);
 		return (NULL);
+	}
 	args->t_start = get_tstart();
 	args->end = false;
 	if (pthread_mutex_init(&args->state[DEATH], NULL)
