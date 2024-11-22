@@ -16,7 +16,6 @@ void	handle_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
-		set_status(sig + 128);
 		ft_putendl_fd("", 1);
 		rl_replace_line("", 0);
 		if (!g_global->running)
@@ -25,6 +24,7 @@ void	handle_sigint(int sig)
 			rl_redisplay();
 		}
 	}
+	set_status(sig + 128);
 }
 
 void	handle_sigquit(int sig)
@@ -32,13 +32,13 @@ void	handle_sigquit(int sig)
 	if (sig == SIGQUIT && g_global->running)
 	{
 		printf("Quit (core dumped)\n");
-		set_status(sig + 128);
 	}
 	else
 	{
 		rl_on_new_line();
 		rl_redisplay();
 	}
+	set_status(sig + 128);
 }
 
 void	handle_signals(void)

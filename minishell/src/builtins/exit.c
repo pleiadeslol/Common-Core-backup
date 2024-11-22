@@ -31,6 +31,7 @@ void	ft_exit(t_cmd *cmd)
 	}
 	else
 	{
+		printf("exit\n");
 		printf("minishell: exit: %s: numeric argument required\n", cmd->args);
 		exit (2);
 	}

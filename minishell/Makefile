@@ -16,7 +16,7 @@ Objects = ${SRCS:.c=.o}
 
 NAME = minishell
 
-CFLAGS = -Wall -Wextra -Werror -g3 $(HEAD)
+CFLAGS = -Wall -Wextra -Werror $(HEAD)
 
 Includes = includes/lexer.h
 

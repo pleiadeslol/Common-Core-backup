@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:39 by root              #+#    #+#             */
-/*   Updated: 2024/11/20 20:39:36 by root             ###   ########.fr       */
+/*   Updated: 2024/11/22 15:56:45 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+
+static void	status_check(int *status_code)
+{
+	int	status;
+
+	status = ft_atoi(g_global->status);
+	if (status == 0 || (status < 128 && *status_code != 0))
+		set_status(*status_code);
+}
 
 int	cleanup_exec_data(t_data *data, int status_code)
 {
@@ -36,7 +45,7 @@ int	cleanup_exec_data(t_data *data, int status_code)
 	}
 	(free(data->cmds), free(data->path));
 	(free(data->pipe_fd), free(data->pid), free(data));
-	set_status(status_code);
+	status_check(&status_code);
 	return (status_code);
 }
 
