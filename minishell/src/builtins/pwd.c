@@ -14,13 +14,14 @@
 
 void	ft_pwd(void)
 {
-	char	*s;
-	char	*pwd;
+	char	pwd[100];
 
-	s = NULL;
-	pwd = getcwd(s, 0);
+	if (getcwd(pwd, sizeof(pwd)) == NULL)
+	{
+		printf("Error: Unable to get current working directory\n");
+		set_status(1);
+		return ;
+	}
 	printf("%s\n", pwd);
-	free(s);
-	free(pwd);
 	set_status(0);
 }

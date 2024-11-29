@@ -4,6 +4,7 @@
         "stdlib.h": "c",
         "time.h": "c",
         "ft_printf.h": "c",
-        "pthread.h": "c"
+        "pthread.h": "c",
+        "libft.h": "c"
     }
 }

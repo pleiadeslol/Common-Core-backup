@@ -12,46 +12,84 @@
 
 #include "lexer.h"
 
+bool	check_n_arg(char *str);
+
 void	ft_ech_n(t_cmd *cmd)
 {
-	int		i;
-	char	**args;
+	t_args	*args;
 
-	i = 0;
-	args = ft_split(cmd->args, ' ');
-	while (args[i] && ft_strncmp(args[i], "-n", 2) == 0)
-		i++;
-	while (args[i])
+	args = cmd->args_node;
+	while (args && ft_strncmp(args->word, "-n", 2) == 0
+		&& check_n_arg(args->word))
+		args = args->next;
+	while (args)
 	{
-		write (STDOUT_FILENO, args[i], ft_strlen(args[i]));
-		if (args[i + 1])
+		write (STDOUT_FILENO, args->word, ft_strlen(args->word));
+		if (args->next)
 			write (STDOUT_FILENO, " ", 1);
-		i++;
+		args = args->next;
 	}
-	i = 0;
-	while (args[i])
+}
+
+bool	check_n_arg(char *str)
+{
+	int	i;
+
+	i = 1;
+	while (str[i])
 	{
-		free(args[i]);
+		if (str[i] != 'n')
+			return (false);
 		i++;
 	}
-	free(args);
+	return (true);
+}
+
+static void	print_arg(char *str, int is_last)
+{
+	if (ft_strncmp(str, "$?", 2) == 0)
+		write(STDERR_FILENO, g_global->status, ft_strlen(g_global->status));
+	else
+		write(STDOUT_FILENO, str, ft_strlen(str));
+	if (!is_last)
+		write(STDOUT_FILENO, " ", 1);
+}
+
+static void	ft_ech_normal(t_cmd *cmd)
+{
+	t_args	*tmp;
+
+	while (cmd->args_node)
+	{
+		if (!cmd->args_node->word)
+		{
+			tmp = cmd->args_node;
+			cmd->args_node = cmd->args_node->next;
+			free(tmp->word);
+			free(tmp);
+		}
+		else
+		{
+			print_arg(cmd->args_node->word, cmd->args_node->next == NULL);
+			tmp = cmd->args_node;
+			cmd->args_node = cmd->args_node->next;
+			free(tmp->word);
+			free(tmp);
+		}
+	}
+	write(STDOUT_FILENO, "\n", 1);
 }
 
 void	ft_echo(t_cmd *cmd)
 {
-	if (cmd->args == NULL)
-		write (STDOUT_FILENO, "\n", 1);
-	else if (ft_strncmp(cmd->args, "-n", 2) == 0)
+	if (cmd->args_node == NULL)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+	}
+	else if (cmd->args_node->word
+		&& ft_strncmp(cmd->args_node->word, "-n", 2) == 0)
 		ft_ech_n(cmd);
-	else if (ft_strncmp(cmd->args, "$?", 2) == 0)
-	{
-		write (STDERR_FILENO, g_global->status, ft_strlen(g_global->status));
-		write (STDOUT_FILENO, "\n", 1);
-	}
 	else
-	{
-		write (STDOUT_FILENO, cmd->args, ft_strlen(cmd->args));
-		write (STDOUT_FILENO, "\n", 1);
-	}
+		ft_ech_normal(cmd);
 	set_status(0);
 }

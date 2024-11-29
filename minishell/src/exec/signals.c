@@ -21,7 +21,8 @@ void	handle_sigint(int sig)
 		if (!g_global->running)
 		{
 			rl_on_new_line();
-			rl_redisplay();
+			if (!g_global->here_doc)
+				rl_redisplay();
 		}
 	}
 	set_status(sig + 128);

@@ -12,21 +12,21 @@
 
 #include "lexer.h"
 
-void	ft_unset(char	***env, char *str)
+void	run_unset(char	***env, char *str)
 {
 	int		i;
 	int		j;
+	char	*key;
 
 	i = 0;
-	if (!str)
-		return ;
 	if (find_env((*env), str))
 	{
 		while ((*env)[i])
 		{
-			if (ft_strncmp((*env)[i], str, ft_strlen(str)) == 0)
+			key = get_key((*env)[i]);
+			if (ft_strcmp(key, str) == 0)
 			{
-				free((*env)[i]);
+				(free(key), free((*env)[i]));
 				j = i;
 				while ((*env)[j])
 				{
@@ -35,8 +35,19 @@ void	ft_unset(char	***env, char *str)
 				}
 				break ;
 			}
-			i++;
+			(free(key), i++);
 		}
 	}
 	set_status(0);
+}
+
+void	ft_unset(t_args *args, char ***env)
+{
+	if (!args)
+		return ;
+	while (args)
+	{
+		run_unset(env, args->word);
+		args = args->next;
+	}
 }

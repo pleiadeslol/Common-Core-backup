@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:56:32 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/11/21 17:11:00 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/11/29 00:59:27 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <string.h>
 # include <errno.h>
 # include <signal.h>
+# include <termios.h>
 # include "../src/get_next_line/get_next_line.h"
 
 enum e_symbol
@@ -44,6 +45,14 @@ enum e_symbol
 	arg = 14,
 };
 
+typedef struct s_args
+{
+	char			*word;
+	enum e_symbol	type;
+	int				empty_arg;
+	struct s_args	*next;
+}			t_args;
+
 typedef struct s_redir
 {
 	enum e_symbol	type;
@@ -60,10 +69,12 @@ typedef struct s_cmd
 {
 	char			*cmd;
 	char			*args;
+	t_args			*args_node;
 	int				isbuiltin;
 	t_redir			*redir;
 	struct s_cmd	*next;
 	bool			wrong_cmd;
+	int				empty_arg;
 }			t_cmd;
 
 typedef struct s_node
@@ -86,8 +97,10 @@ typedef struct s_env
 
 typedef struct s_global
 {
-	char	*status;
-	int		running;
+	char			*status;
+	int				running;
+	bool			here_doc;
+	struct termios	term;
 }	t_global;
 
 extern t_global	*g_global;
@@ -143,17 +156,18 @@ void	ft_cmdadd_back(t_cmd **lst, t_cmd *new);
 int		var_lenth(char *s, char c);
 t_redir	*ft_rednew(enum e_symbol type);
 void	ft_redadd_back(t_redir **lst, t_redir *new);
-void	ft_cd(t_cmd *cmd, char ***env, t_pathAndEnv **pEnv);
+void	ft_cd(t_args *args, char ***env, t_pathAndEnv **pEnv);
 void	ft_echo(t_cmd *cmd);
 char	*find_env(char **env, char *str);
 void	ft_pwd(void);
 void	ft_env(char **env);
-void	ft_exit(t_cmd *cmd);
+void	ft_exit(t_cmd *cmd, int flag);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
-void	ft_export(t_pathAndEnv **pEnv, char *str);
-void	ft_unset(char	***env, char *str);
-void	exec_builtins(t_cmd *cmd, t_pathAndEnv *pEnv);
+int		ft_isalpha(int c);
+void	ft_export(t_pathAndEnv **pEnv, t_args *args);
+void	ft_unset(t_args *args, char	***env);
+void	exec_builtins(t_cmd *cmd, t_pathAndEnv *pEnv, int flag);
 void	exec_cmd(t_cmd *cmd, t_pathAndEnv **pEnv);
 int		check_path(char *cmd, char **p, t_pathAndEnv *env);
 char	*ft_itoa(int n);
@@ -173,8 +187,6 @@ void	ft_envclear(t_env **lst);
 void	ft_clear_path_env(t_pathAndEnv **lst);
 void	ft_redirdelone(t_redir *lst);
 void	ft_clear_redir(t_redir **lst);
-void	ft_cmddelone(t_cmd *lst);
-void	ft_cmdclear(t_cmd **lst);
 char	*ft_strjoin_2(char *s1, char *s2);
 int		find_emptycmd(char *s);
 char	*ft_strndup(char *s, size_t len);
@@ -185,7 +197,7 @@ void	check_quotes_line_before(t_node **first, char **s);
 void	check_pipe_char_line(t_node **first, char **s);
 void	ft_start_while(t_node **node, int *len, char **dup);
 int		ft_condition1(t_node *node);
-int		ft_condition2(t_node *node);
+int		ft_condition2(t_node *node, char *dup);
 int		ft_condition3(t_node *node);
 int		ft_condition4(t_node *node);
 t_node	*initialize_node(char **s);
@@ -198,16 +210,11 @@ int		ft_parse_line2(char *line, int i);
 int		parse_line(char *line);
 void	expand_2(char **s, char **env);
 void	expand_var(char **s, char **env);
-t_cmd	*get_structure(t_node *node);
 int		handle_redirections(t_cmd **cmd, char **env);
-void	ft_get_struct_helper0(t_redir **red0, char **c, char **args, int *b);
-t_cmd	*ft_get_struct_helper4(char **c, char **args, t_redir *red0, int b);
-void	ft_get_struct_helper3(t_node *node, t_redir **red0, char **args);
 void	ft_get_struct_helper2(t_redir **red0, t_node *node);
 void	ft_get_struct_helper1(char **c, t_node *node, int *b);
 void	handle_quotes_vars(t_cmd **cmds, char **env);
 void	ft_handle_quotes_helper2(char *s, char **rslt, char **env);
-void	expand_args(t_cmd **cmds, char **env);
 void	expand_files(t_cmd **cmds, char **env);
 void	initialize_p_env(t_pathAndEnv **p_env, char **env);
 void	main_helper1(char **line, t_node **node);
@@ -241,5 +248,29 @@ int		check_execpath(t_cmd *cmd, t_data **data, t_pathAndEnv *pEnv);
 char	**get_cmd(t_cmd *cmd);
 void	check_str(char *str);
 void	ft_heredoc_no_quotes(char *s, char **rslt);
+void	expand_args1(t_cmd **cmds, char **env);
+t_cmd	*get_structure1(t_node *node);
+void	ft_cmdclear1(t_cmd **lst);
+void	ft_cmddelone1(t_cmd *lst);
+void	ft_argsdelone(t_args *lst);
+void	ft_clear_args(t_args **lst);
+t_args	*ft_argnew(char *word, enum e_symbol type);
+void	ft_argadd_back(t_args **lst, t_args *new);
+void	ft_helper_args(t_cmd **cmds, char *s, char *rslt);
+void	ft_get_struct_args(t_args **args, t_node *node);
+t_cmd	*ft_get_struct_helper4_1(char **c, t_args *args, t_redir *red0, int b);
+void	ft_get_struct_helper3_1(t_node *node, t_redir **red0, t_args **args);
+void	ft_get_struct_helper0_1(t_redir **red0,
+			char **c, t_args **args, int *b);
+int		ft_help_parse(char *line, int *i, char c);
+int		set_terminal_attributes(void);
+void	handle_sigint(int sig);
+char	*get_key(char *str);
+int		is_valid_numeric_arg(char *str);
+void	print_exit_error(char *str, int flag);
+int		normalize_exit_code(int num);
+void	handle_exit_with_status(int flag);
+void	handle_single_numeric_arg(t_cmd *cmd, int flag);
+int		check_export(char *str);
 
 #endif

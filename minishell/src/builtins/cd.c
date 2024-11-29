@@ -12,23 +12,47 @@
 
 #include "lexer.h"
 
-static void	check_home(char *home)
+static int	check_cd(t_args *args, char *home)
 {
+	char	s[100];
+
+	if (getcwd(s, 100) == NULL)
+	{
+		printf("minishell: cd: Unable to determine current directory\n");
+		set_status(1);
+		return (1);
+	}
+	if (!args)
+	{
+		if (!home)
+		{
+			printf("minishell: cd: HOME not set\n");
+			set_status(1);
+			return (1);
+		}
+		chdir(home);
+		return (1);
+	}
+	if (args && args->next)
+	{
+		printf("minishell: cd: too many arguments\n");
+		return (set_status(1), 1);
+	}
+	return (0);
+}
+
+void	cd_home(char *args, char *home)
+{
+	char	*tmp;
+
 	if (!home)
 	{
 		printf("minishell: cd: HOME not set\n");
 		set_status(1);
 		return ;
 	}
-}
-
-void	cd_home(t_cmd *cmd, char *home)
-{
-	char	*tmp;
-
-	check_home(home);
-	tmp = ft_strtrim(cmd->args, "~");
-	cmd->args = ft_strjoin(home, tmp);
+	tmp = ft_strtrim(args, "~");
+	args = ft_strjoin(home, tmp);
 	free(tmp);
 	chdir(home);
 }
@@ -48,38 +72,33 @@ void	cd_oldpwd(char ***env)
 	printf("%s\n", tmp);
 }
 
-void	cd_path(t_cmd *cmd)
+void	cd_path(char *args)
 {
-	if (chdir(cmd->args) == -1)
+	if (chdir(args) == -1)
 	{
-		printf("minishell: cd: %s: %s\n", cmd->args, strerror(errno));
+		printf("minishell: cd: %s: %s\n", args, strerror(errno));
 		set_status(1);
 		return ;
 	}
 }
 
-void	ft_cd(t_cmd *cmd, char ***env, t_pathAndEnv **pEnv)
+void	ft_cd(t_args *args, char ***env, t_pathAndEnv **pEnv)
 {
 	char	*home;
-	char	*pwd;
 	char	*old_pwd;
 	char	s[100];
 
 	home = find_env((*env), "HOME=");
 	old_pwd = getcwd(s, 100);
-	if (!cmd->args)
-		(check_home(home), chdir(home));
-	else if (ft_strchr(cmd->args, '~'))
-		cd_home(cmd, home);
-	else if (ft_strchr(cmd->args, '-'))
+	if (check_cd(args, home))
+		return ;
+	else if (ft_strchr(args->word, '~'))
+		cd_home(args->word, home);
+	else if (ft_strchr(args->word, '-'))
 		cd_oldpwd(env);
 	else
-		cd_path(cmd);
-	old_pwd = ft_strjoin("OLDPWD=", old_pwd);
-	pwd = ft_strjoin("PWD=", getcwd(s, 100));
-	ft_export(pEnv, old_pwd);
-	ft_export(pEnv, pwd);
-	free(old_pwd);
-	free(pwd);
+		cd_path(args->word);
+	update_env(pEnv, "OLDPWD", old_pwd);
+	update_env(pEnv, "PWD", getcwd(s, 100));
 	set_status(0);
 }

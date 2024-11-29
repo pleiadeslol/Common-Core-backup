@@ -19,9 +19,9 @@ static int	handle_path1(char *cmd, char **p)
 		printf("%s: permission denied\n", cmd);
 		return (126);
 	}
-	if (access(cmd, X_OK) == -1)
+	if (access(cmd, X_OK) == -1 && (cmd[0] != '.' || ft_strchr(cmd, '/')))
 	{
-		printf("%s: command not found\n", cmd);
+		printf("%s: No such file or directory\n", cmd);
 		return (127);
 	}
 	*p = ft_strdup(cmd);
@@ -99,7 +99,7 @@ int	check_path(char *cmd, char **p, t_pathAndEnv *env)
 
 	if (cmd == NULL)
 		cmd = ft_strdup(" ");
-	if (cmd[0] == '/' || cmd[0] == '.')
+	if (ft_strchr(cmd, '/') || cmd[0] == '.')
 		return (handle_path1(cmd, p));
 	*p = NULL;
 	path = find_path(env);

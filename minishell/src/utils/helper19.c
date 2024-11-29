@@ -43,25 +43,30 @@ void	ft_get_struct_helper2(t_redir **red0, t_node *node)
 	ft_redadd_back(red0, red);
 }
 
-void	ft_get_struct_helper3(t_node *node, t_redir **red0, char **args)
+void	ft_get_struct_helper0_1(t_redir **red0, char **c, t_args **args, int *b)
+{
+	*red0 = NULL;
+	*c = ft_strdup("");
+	*args = NULL;
+	*b = -1;
+}
+
+void	ft_get_struct_helper3_1(t_node *node, t_redir **red0, t_args **args)
 {
 	if (node->type == 2 || node->type == 3
 		|| node->type == 4 || node->type == 5)
 		ft_get_struct_helper2(red0, node);
 	else if (node->type == opt || node->type == arg
 		|| node->type == file)
-	{
-		if (ft_strncmp(*args, "", 2) != 0)
-			*args = ft_strjoin_2(*args, " ");
-		*args = ft_strjoin_2(*args, node->word);
-	}
+		ft_get_struct_args(args, node);
 }
 
-t_cmd	*ft_get_struct_helper4(char **c, char **args, t_redir *red0, int b)
+t_cmd	*ft_get_struct_helper4_1(char **c, t_args *args, t_redir *red0, int b)
 {
 	t_cmd	*cmds;
 
 	cmds = ft_cmdnew(*c);
+	cmds->empty_arg = 0;
 	free(*c);
 	if (b == -1)
 	{
@@ -73,22 +78,13 @@ t_cmd	*ft_get_struct_helper4(char **c, char **args, t_redir *red0, int b)
 		cmds->isbuiltin = 1;
 	else
 		cmds->isbuiltin = 0;
-	if (ft_strncmp(*args, "", 2) == 0)
-		cmds->args = NULL;
+	if (args)
+		cmds->args_node = args;
 	else
-		cmds->args = ft_strdup(*args);
+		cmds->args_node = NULL;
 	if (red0)
 		cmds->redir = red0;
 	else
 		cmds->redir = ft_rednew(0);
-	free(*args);
 	return (cmds);
-}
-
-void	ft_get_struct_helper0(t_redir **red0, char **c, char **args, int *b)
-{
-	*red0 = NULL;
-	*c = ft_strdup("");
-	*args = ft_strdup("");
-	*b = -1;
 }

@@ -61,10 +61,27 @@ int	find_emptycmd(char *s)
 	int	i;
 
 	i = 0;
-	if (s[i] == '\'' && s[ft_strlen(s) - 1] == '\'' && ft_strlen(s) == 2)
-		return (1);
-	else if (s[i] == '\"' && s[ft_strlen(s) - 1] == '\"' && ft_strlen(s) == 2)
-		return (1);
+	if (s[i] == '\'' && s[ft_strlen(s) - 1] == '\'')
+	{
+		if (ft_strlen(s) == 2)
+			return (1);
+		i += 1;
+		while (s[i] && (s[i] == 32 || (s[i] >= 9 && s[i] <= 13)))
+			i++;
+		if (s[i] == '\'' && !s[i + 1])
+			return (1);
+	}
+	i = 0;
+	if (s[i] == '\"' && s[ft_strlen(s) - 1] == '\"')
+	{
+		if (ft_strlen(s) == 2)
+			return (1);
+		i += 1;
+		while (s[i] && (s[i] == 32 || (s[i] >= 9 && s[i] <= 13)))
+			i++;
+		if (s[i] == '\"' && !s[i + 1])
+			return (1);
+	}
 	return (0);
 }
 

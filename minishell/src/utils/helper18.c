@@ -82,10 +82,10 @@ void	expand_var(char **s, char **env)
 	free_tab(tab);
 }
 
-t_cmd	*get_structure(t_node *node)
+t_cmd	*get_structure1(t_node *node)
 {
 	t_cmd	*first;
-	char	*args;
+	t_args	*args_node;
 	char	*c;
 	t_redir	*red0;
 	int		b;
@@ -93,18 +93,18 @@ t_cmd	*get_structure(t_node *node)
 	first = NULL;
 	while (node)
 	{
-		ft_get_struct_helper0(&red0, &c, &args, &b);
+		ft_get_struct_helper0_1(&red0, &c, &args_node, &b);
 		while (node && node->type != p)
 		{
 			if (node->type == CMD || node->type == builtin)
 				ft_get_struct_helper1(&c, node, &b);
 			else
-				ft_get_struct_helper3(node, &red0, &args);
+				ft_get_struct_helper3_1(node, &red0, &args_node);
 			node = node->next;
 		}
 		if (node && node->type == p)
 			node = node->next;
-		ft_cmdadd_back(&first, ft_get_struct_helper4(&c, &args, red0, b));
+		ft_cmdadd_back(&first, ft_get_struct_helper4_1(&c, args_node, red0, b));
 	}
 	return (first);
 }

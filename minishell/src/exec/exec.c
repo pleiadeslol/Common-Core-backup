@@ -12,25 +12,44 @@
 
 #include "lexer.h"
 
+static int	ft_argsize(t_args *lst)
+{
+	int	size;
+
+	size = 0;
+	if (!lst)
+		return (0);
+	while (lst)
+	{
+		size++;
+		lst = lst->next;
+	}
+	return (size);
+}
+
 char	**get_cmd(t_cmd *cmd)
 {
+	int		i;
 	char	**str;
-	char	*c;
-	char	*tmp;
+	t_args	*args;
 
-	c = ft_strjoin(cmd->cmd, " ");
-	if (cmd->args)
+	args = cmd->args_node;
+	i = ft_argsize(args) + 1;
+	str = malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	str[i] = ft_strdup(cmd->cmd);
+	i++;
+	while (args)
 	{
-		tmp = c;
-		c = ft_strjoin(c, cmd->args);
-		free(tmp);
+		str[i] = ft_strdup(args->word);
+		i++;
+		args = args->next;
 	}
-	str = ft_split(c, ' ');
-	free(c);
+	str[i] = NULL;
 	return (str);
 }
 
-void	exec_builtins(t_cmd *cmd, t_pathAndEnv *pEnv)
+void	exec_builtins(t_cmd *cmd, t_pathAndEnv *pEnv, int flag)
 {
 	char	***env;
 
@@ -38,17 +57,19 @@ void	exec_builtins(t_cmd *cmd, t_pathAndEnv *pEnv)
 	if (ft_strncmp(cmd->cmd, "echo", 5) == 0)
 		ft_echo(cmd);
 	else if (ft_strncmp(cmd->cmd, "cd", 3) == 0)
-		ft_cd(cmd, env, &pEnv);
+		ft_cd(cmd->args_node, env, &pEnv);
 	else if (ft_strncmp(cmd->cmd, "pwd", 4) == 0)
 		ft_pwd();
 	else if (ft_strncmp(cmd->cmd, "env", 4) == 0)
 		ft_env(*env);
 	else if (ft_strncmp(cmd->cmd, "exit", 5) == 0)
-		ft_exit(cmd);
+		ft_exit(cmd, flag);
 	else if (ft_strncmp(cmd->cmd, "export", 7) == 0)
-		ft_export(&pEnv, cmd->args);
+	{
+		ft_export(&pEnv, cmd->args_node);
+	}
 	else if (ft_strncmp(cmd->cmd, "unset", 6) == 0)
-		ft_unset(env, cmd->args);
+		ft_unset(cmd->args_node, env);
 }
 
 void	ft_env_ro(t_pathAndEnv **lst)
@@ -62,12 +83,6 @@ void	ft_env_ro(t_pathAndEnv **lst)
 		i++;
 	}
 	free((*lst)->envp);
-}
-
-void	set_status(int status_code)
-{
-	free(g_global->status);
-	g_global->status = ft_itoa(status_code);
 }
 
 void	exec_cmd(t_cmd *cmd, t_pathAndEnv **pEnv)

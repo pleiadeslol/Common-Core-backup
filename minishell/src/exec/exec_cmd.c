@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:13:37 by root              #+#    #+#             */
-/*   Updated: 2024/11/21 18:47:17 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/11/29 00:26:12 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ void	redirect_pipe(int i, t_data *data)
 	}
 }
 
+void	error_managment(t_data *data, int i)
+{
+	if (ft_strchr(data->path[i], '/'))
+		printf("minishell: %s: Is a directory\n", data->path[i]);
+	else if (!ft_strcmp(data->path[i], "."))
+		printf("minishell: .: filename argument required\n");
+	else if (ft_strchr(data->path[i], '.')
+		&& (data->path[i][1] == '.' || data->path[i][0] == '.'))
+		printf("minishell: %s: command not found\n", data->path[i]);
+	else
+		perror("minishell");
+}
+
 void	exec_simplecmd(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
 {
 	reset_signals();
@@ -38,6 +51,7 @@ void	exec_simplecmd(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
 	{
 		if (execve(data->path[i], data->cmds[i], (*pEnv)->envp) < 0)
 		{
+			error_managment(data, i);
 			free(data->path);
 			exit (1);
 		}
@@ -49,17 +63,20 @@ void	exec_simplecmd(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
 void	exec_pipe(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
 {
 	if (cmd->redir->type)
-		if (handle_redirections(&cmd, (*pEnv)->envp) == 1)
+		if (handle_redirections(&cmd, (*pEnv)->envp) == -1)
 			return ;
 	if (cmd->cmd && (ft_strcmp(cmd->cmd, "bash") == 0
 			|| ft_strcmp(cmd->cmd, "./minishell")))
 		update_shlvl(pEnv);
-	if (cmd->isbuiltin == 1 && data->count != 1)
-		exec_pipebuiltin(cmd, data, pEnv, i);
-	else
+	if (!g_global->here_doc)
 	{
 		data->pid[i] = fork();
 		if (data->pid[i] == 0)
-			exec_simplecmd(cmd, data, pEnv, i);
+		{
+			if (cmd->isbuiltin == 1)
+				exec_pipebuiltin(cmd, data, pEnv, i);
+			else
+				exec_simplecmd(cmd, data, pEnv, i);
+		}
 	}
 }

@@ -19,10 +19,7 @@ void	check_unclosed_quote_helper(char *line, int *i, int *count, char c)
 	while (line[*i] && line[*i] != c)
 		(*i)++;
 	if (line[*i] && line[*i] == c)
-	{
-		*i += 1;
 		*count += 1;
-	}
 }
 
 int	check_unclosed_quote(char *line)
@@ -34,9 +31,9 @@ int	check_unclosed_quote(char *line)
 	count = 0;
 	while (line[i])
 	{
-		if (line[i] == '\'')
+		if (line[i] && line[i] == '\'')
 			check_unclosed_quote_helper(line, &i, &count, '\'');
-		if (line[i] == '\"')
+		if (line[i] && line[i] == '\"')
 			check_unclosed_quote_helper(line, &i, &count, '\"');
 		if (!line[i])
 			break ;
@@ -86,6 +83,9 @@ int	parse_line(char *line)
 		return (-1);
 	while (line[i])
 	{
+		if (ft_help_parse(line, &i, '\'') == 0
+			|| ft_help_parse(line, &i, '\"') == 0)
+			return (0);
 		if (line[i] == '<' && ft_parse_line2(line, i) != 0)
 			return (-1);
 		else if (line[i] == '>' && line[i + 1] == '>' && line[i + 2] == '>')
@@ -95,7 +95,7 @@ int	parse_line(char *line)
 			i += 1;
 			while (line[i] == ' ')
 				i++;
-			if (line[i] == '|')
+			if (!line[i] || line[i] == '|')
 				return (printf("minishell: parse error near `|'\n"), -1);
 		}
 		i++;

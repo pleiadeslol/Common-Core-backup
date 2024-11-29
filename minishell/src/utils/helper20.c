@@ -80,7 +80,6 @@ void	ft_handle_quotes_helper2(char *s, char **rslt, char **env)
 		}
 		i++;
 	}
-	ft_trim_space(rslt);
 }
 
 void	handle_quotes_vars(t_cmd **cmds, char **env)
@@ -98,6 +97,7 @@ void	handle_quotes_vars(t_cmd **cmds, char **env)
 			ft_strlcpy(s, (*cmds)->cmd, ft_strlen((*cmds)->cmd) + 1);
 			rslt = ft_strdup("");
 			ft_handle_quotes_helper2(s, &rslt, env);
+			ft_trim_space(&rslt);
 			if (find_emptycmd(s) != 1)
 			{
 				free((*cmds)->cmd);

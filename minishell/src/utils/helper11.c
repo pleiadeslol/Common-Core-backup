@@ -27,17 +27,17 @@ void	ft_clear_redir(t_redir **lst)
 	*lst = NULL;
 }
 
-void	ft_cmddelone(t_cmd *lst)
+void	ft_cmddelone1(t_cmd *lst)
 {
 	if (!lst)
 		return ;
 	free(lst->cmd);
-	free(lst->args);
 	ft_clear_redir(&(lst->redir));
+	ft_clear_args(&(lst->args_node));
 	free(lst);
 }
 
-void	ft_cmdclear(t_cmd **lst)
+void	ft_cmdclear1(t_cmd **lst)
 {
 	t_cmd	*temp;
 
@@ -46,7 +46,7 @@ void	ft_cmdclear(t_cmd **lst)
 	while (*lst)
 	{
 		temp = (*lst)->next;
-		ft_cmddelone(*lst);
+		ft_cmddelone1(*lst);
 		*lst = temp;
 	}
 	*lst = NULL;

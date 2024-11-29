@@ -60,7 +60,9 @@ int	ft_check_args_main(int *argc, char ***argv,
 	if (!g_global)
 		exit(EXIT_FAILURE);
 	ft_bzero(g_global, sizeof(t_global));
+	set_terminal_attributes();
 	g_global->running = 0;
+	g_global->here_doc = false;
 	set_status(0);
 	return (0);
 }

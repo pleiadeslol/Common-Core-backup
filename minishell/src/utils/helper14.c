@@ -22,13 +22,14 @@ int	ft_condition1(t_node *node)
 	return (0);
 }
 
-int	ft_condition2(t_node *node)
+int	ft_condition2(t_node *node, char *dup)
 {
 	if (node->prev && node->prev->prev
 		&& (node->prev->prev->type == great
 			|| node->prev->prev->type == Ggreat
 			|| node->prev->prev->type == less
-			|| node->prev->prev->type == Lless))
+			|| node->prev->prev->type == Lless)
+		&& node->word[0] != '-' && dup[0] != '-')
 		return (1);
 	return (0);
 }

@@ -31,7 +31,8 @@ void	ft_expand2_loop2(char **s, char **dup, char **env, int *i)
 	j = *i;
 	*i += 1;
 	while ((*s)[(*i)] && (*s)[(*i)] != '$' && (*s)[(*i)] != ' '
-			&& (*s)[(*i)] != '\'' && (*s)[(*i)] != '\"')
+			&& (*s)[(*i)] != '\'' && (*s)[(*i)] != '\"'
+			&& (*s)[(*i)] != '/' && (*s)[(*i)] != '=')
 		(*i)++;
 	*dup = ft_substr((*s), j, (*i) - j);
 	expand_var(dup, env);
@@ -75,4 +76,11 @@ void	expand_2(char **s, char **env)
 	free(*s);
 	(*s) = ft_strdup(rslt);
 	free(rslt);
+}
+
+int	ft_isalpha(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }

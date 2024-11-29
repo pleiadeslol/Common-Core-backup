@@ -12,27 +12,17 @@
 
 #include "lexer.h"
 
-void	ft_exit(t_cmd *cmd)
+void	ft_exit(t_cmd *cmd, int flag)
 {
-	int	num;
-
-	if (!cmd->args && g_global->status)
-	{
-		printf("exit\n");
-		exit (ft_atoi(g_global->status));
-	}
-	else if (ft_isdigit(cmd->args[0]))
-	{
-		num = ft_atoi(cmd->args);
-		if (num <= 0 || num >= 255)
-			num = 0;
-		printf("exit\n");
-		exit (num);
-	}
+	if (!cmd->args_node && g_global->status)
+		handle_exit_with_status(flag);
+	else if ((cmd->args_node->word[0] == '+'
+			|| cmd->args_node->word[0] == '-'
+			|| ft_isdigit(cmd->args_node->word[0])))
+		handle_single_numeric_arg(cmd, flag);
 	else
 	{
-		printf("exit\n");
-		printf("minishell: exit: %s: numeric argument required\n", cmd->args);
-		exit (2);
+		print_exit_error(cmd->args_node->word, flag);
+		exit(2);
 	}
 }

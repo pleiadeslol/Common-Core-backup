@@ -91,3 +91,19 @@ char	**get_env(t_env *envp)
 	env[i] = NULL;
 	return (env);
 }
+
+int	set_terminal_attributes(void)
+{
+	if (tcgetattr(STDIN_FILENO, &g_global->term) == -1)
+	{
+		perror("tcgetattr");
+		return (-1);
+	}
+	g_global->term.c_lflag &= ~ECHOCTL;
+	if (tcsetattr(STDIN_FILENO, TCSANOW, &g_global->term) == -1)
+	{
+		perror("tcsetattr");
+		return (-1);
+	}
+	return (0);
+}

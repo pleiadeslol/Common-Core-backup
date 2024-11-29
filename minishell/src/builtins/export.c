@@ -12,83 +12,26 @@
 
 #include "lexer.h"
 
-void	check_export(char *str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isalnum(str[i]))
-		{
-			j = i + 1;
-			while (str[j])
-			{
-				if (str[j] == '=')
-				{
-					printf("minishell: export: not a valid identifier\n");
-					set_status(1);
-					return ;
-				}
-				j++;
-			}
-		}
-		i++;
-	}
-}
-
 char	*get_key(char *str)
 {
-	int		i;
-	char	*key;
+	long	len;
+	char	*tmp;
 
-	i = 0;
-	while (str && str[i])
-	{
-		if (str[i] == '=')
-			break ;
-		i++;
-	}
-	key = malloc(sizeof(char) * (i + 1));
-	i = 0;
-	while (str && str[i])
-	{
-		key[i] = str[i];
-		if (str[i] == '=')
-			break ;
-		i++;
-	}
-	key[i] = '\0';
-	return (key);
+	tmp = ft_strchr(str, '=');
+	len = tmp - str + 1;
+	tmp = malloc(sizeof(char) * len);
+	ft_strlcpy(tmp, str, len);
+	return (tmp);
 }
 
 char	*get_value(char *str, t_pathAndEnv **pEnv)
 {
-	int		i;
-	int		j;
 	char	*value;
 
-	i = 0;
-	while (str && str[i])
-	{
-		if (str[i] == '=')
-			break ;
-		i++;
-	}
-	i++;
-	if (str[i] == ' ')
-		return (ft_strdup(""));
-	value = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
-	j = 0;
-	while (str && str[i])
-	{
-		value[j] = str[i];
-		j++;
-		i++;
-	}
-	value[j] = '\0';
-	expand_2(&value, (*pEnv)->envp);
+	value = ft_strchr(str, '=');
+	value = ft_strdup(++value);
+	if (pEnv)
+		expand_2(&value, (*pEnv)->envp);
 	return (value);
 }
 
@@ -115,28 +58,52 @@ void	new_value(t_pathAndEnv **pEnv, char *str)
 	(*pEnv)->envp = new_env;
 }
 
-void	ft_export(t_pathAndEnv **pEnv, char *str)
+void	run_export(t_pathAndEnv **pEnv, char *str)
+{
+	char	*key;
+	char	*value;
+
+	if (check_export(str) == 1)
+		return ;
+	if (!ft_strchr(str, '='))
+	{
+		update_env(pEnv, str, "");
+		return (set_status(0));
+	}
+	key = get_key(str);
+	value = get_value(str, pEnv);
+	if (key)
+		update_env(pEnv, key, value);
+	else
+		new_value(pEnv, str);
+	(free(key), free(value), set_status(0));
+}
+
+void	ft_export(t_pathAndEnv **env, t_args *args)
 {
 	int		i;
 	char	*key;
-	char	*value1;
+	char	*value;
 
 	i = 0;
-	if (!str)
+	key = NULL;
+	value = NULL;
+	if (!args)
 	{
-		while ((*pEnv)->envp[i])
-			printf("declare -x %s\n", (*pEnv)->envp[i++]);
+		while ((*env)->envp[i])
+		{
+			key = get_key((*env)->envp[i]);
+			value = get_value((*env)->envp[i], NULL);
+			printf("declare -x %s=\"%s\"\n", key, value);
+			(free(key), free(value));
+			i++;
+		}
 		set_status(0);
 		return ;
 	}
-	if (!ft_strchr(str, '='))
-		return ;
-	check_export(str);
-	key = get_key(str);
-	value1 = get_value(str, pEnv);
-	if (key)
-		update_env(pEnv, key, value1);
-	else
-		new_value(pEnv, str);
-	(free(key), free(value1), set_status(0));
+	while (args)
+	{
+		run_export(env, args->word);
+		args = args->next;
+	}
 }

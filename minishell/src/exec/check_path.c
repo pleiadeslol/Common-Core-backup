@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:17:04 by root              #+#    #+#             */
-/*   Updated: 2024/11/21 14:26:14 by root             ###   ########.fr       */
+/*   Updated: 2024/11/26 06:44:54 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_execpath(t_cmd *cmd, t_data **data, t_pathAndEnv *pEnv)
 
 	i = 0;
 	cmd->wrong_cmd = false;
-	while (cmd && cmd->next)
+	while (cmd && cmd->cmd && cmd->next)
 	{
 		if (!cmd->isbuiltin)
 		{
@@ -30,7 +30,7 @@ int	check_execpath(t_cmd *cmd, t_data **data, t_pathAndEnv *pEnv)
 		cmd = cmd->next;
 		i++;
 	}
-	if (cmd && !cmd->isbuiltin)
+	if (cmd && !cmd->isbuiltin && cmd->cmd)
 	{
 		status = check_path(cmd->cmd, &(*data)->path[(*data)->count - 1], pEnv);
 		if (status == 126 || status == 127)

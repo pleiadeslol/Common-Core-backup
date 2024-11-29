@@ -25,7 +25,7 @@ void	micro_lexer(t_node *node, char *dup, int len)
 	else if (ft_strncmp(node->word, "<<", len) == 0)
 		node->type = Lless;
 	else if (!(node->prev) || (node->prev && node->prev->type == p)
-		|| ft_condition1(node) || ft_condition2(node))
+		|| ft_condition1(node) || ft_condition2(node, dup))
 		node->type = CMD;
 	else if (node->word[0] == '-' || dup[0] == '-')
 		node->type = opt;

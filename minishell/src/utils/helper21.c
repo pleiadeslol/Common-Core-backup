@@ -60,26 +60,30 @@ void	replace_tab_space(char **line)
 	free(s);
 }
 
-void	expand_args(t_cmd **cmds, char **env)
+void	expand_args1(t_cmd **cmds, char **env)
 {
 	t_cmd	*tmp;
+	t_args	*tmp_args;
 	char	*s;
 	char	*rslt;
 
 	tmp = *cmds;
 	while (*cmds)
 	{
-		if ((*cmds)->args)
+		tmp_args = (*cmds)->args_node;
+		while ((*cmds)->args_node)
 		{
-			s = ft_calloc(sizeof(char), ft_strlen((*cmds)->args) + 2);
-			ft_strlcpy(s, (*cmds)->args, ft_strlen((*cmds)->args) + 1);
+			s = ft_calloc(sizeof(char),
+					ft_strlen((*cmds)->args_node->word) + 2);
+			ft_strlcpy(s, (*cmds)->args_node->word,
+				ft_strlen((*cmds)->args_node->word) + 1);
 			rslt = ft_strdup("");
 			ft_handle_quotes_helper2(s, &rslt, env);
-			free((*cmds)->args);
-			(*cmds)->args = ft_strdup(rslt);
-			free(s);
-			free(rslt);
+			ft_helper_args(cmds, s, rslt);
+			(free(s), free(rslt));
+			(*cmds)->args_node = ((*cmds)->args_node)->next;
 		}
+		(*cmds)->args_node = tmp_args;
 		*cmds = (*cmds)->next;
 	}
 	*cmds = tmp;
