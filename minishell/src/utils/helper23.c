@@ -63,6 +63,7 @@ int	ft_check_args_main(int *argc, char ***argv,
 	set_terminal_attributes();
 	g_global->running = 0;
 	g_global->here_doc = false;
+	g_global->pid = get_pid();
 	set_status(0);
 	return (0);
 }

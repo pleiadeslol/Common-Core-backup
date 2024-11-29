@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 00:28:43 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/11/29 00:57:08 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/11/29 03:01:40 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,9 @@ int	check_export(char *str)
 	int	i;
 
 	i = 0;
-	if (ft_strcmp(str, "") == 0 || str[0] == '=')
-	{
-		printf("minishell: export: not a valid identifier\n");
-		set_status(1);
-		return (1);
-	}
 	while (str[i])
 	{
-		if (str[i] == '=' || str[i] == '\'' || str[i] == '\"' || str[i] == ' ')
+		if (str[i] == '\'' || str[i] == '\"' || str[i] == '_')
 			i++;
 		if (ft_isdigit(str[0]) || !ft_isalnum(str[i]))
 		{

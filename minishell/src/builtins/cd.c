@@ -41,7 +41,7 @@ static int	check_cd(t_args *args, char *home)
 	return (0);
 }
 
-void	cd_home(char *args, char *home)
+int	cd_home(char *args, char *home)
 {
 	char	*tmp;
 
@@ -49,15 +49,16 @@ void	cd_home(char *args, char *home)
 	{
 		printf("minishell: cd: HOME not set\n");
 		set_status(1);
-		return ;
+		return (1);
 	}
 	tmp = ft_strtrim(args, "~");
 	args = ft_strjoin(home, tmp);
 	free(tmp);
 	chdir(home);
+	return (0);
 }
 
-void	cd_oldpwd(char ***env)
+int	cd_oldpwd(char ***env)
 {
 	char	*tmp;
 
@@ -66,20 +67,22 @@ void	cd_oldpwd(char ***env)
 	{
 		printf("minishell: cd: OLDPWD not set\n");
 		set_status(1);
-		return ;
+		return (1);
 	}
 	chdir(tmp);
 	printf("%s\n", tmp);
+	return (0);
 }
 
-void	cd_path(char *args)
+int	cd_path(char *args)
 {
 	if (chdir(args) == -1)
 	{
 		printf("minishell: cd: %s: %s\n", args, strerror(errno));
 		set_status(1);
-		return ;
+		return (1);
 	}
+	return (0);
 }
 
 void	ft_cd(t_args *args, char ***env, t_pathAndEnv **pEnv)
@@ -87,17 +90,21 @@ void	ft_cd(t_args *args, char ***env, t_pathAndEnv **pEnv)
 	char	*home;
 	char	*old_pwd;
 	char	s[100];
+	int		status;
 
+	status = 0;
 	home = find_env((*env), "HOME=");
 	old_pwd = getcwd(s, 100);
 	if (check_cd(args, home))
 		return ;
 	else if (ft_strchr(args->word, '~'))
-		cd_home(args->word, home);
+		status = cd_home(args->word, home);
 	else if (ft_strchr(args->word, '-'))
-		cd_oldpwd(env);
+		status = cd_oldpwd(env);
 	else
-		cd_path(args->word);
+		status = cd_path(args->word);
+	if (status)
+		return ;
 	update_env(pEnv, "OLDPWD", old_pwd);
 	update_env(pEnv, "PWD", getcwd(s, 100));
 	set_status(0);

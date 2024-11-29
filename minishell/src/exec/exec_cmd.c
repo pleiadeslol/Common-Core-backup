@@ -6,11 +6,31 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:13:37 by root              #+#    #+#             */
-/*   Updated: 2024/11/29 00:26:12 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/11/29 05:19:47 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+
+char	*get_pid(void)
+{
+	int		fd;
+	long	len;
+	ssize_t	end;
+	char	pid[42];
+	char	*str;
+
+	fd = open("/proc/self/stat", O_RDONLY);
+	end = read(fd, pid, sizeof(pid) - 1);
+	if (end < 0)
+		return (NULL);
+	str = ft_strchr(pid, ' ');
+	len = str - pid + 1;
+	str = malloc(sizeof(char) * (len + 1));
+	ft_strlcpy(str, pid, len);
+	close (fd);
+	return (str);
+}
 
 void	redirect_pipe(int i, t_data *data)
 {
@@ -25,17 +45,21 @@ void	redirect_pipe(int i, t_data *data)
 	}
 }
 
-void	error_managment(t_data *data, int i)
+int	error_managment(t_data *data, int i)
 {
 	if (ft_strchr(data->path[i], '/'))
 		printf("minishell: %s: Is a directory\n", data->path[i]);
 	else if (!ft_strcmp(data->path[i], "."))
+	{
 		printf("minishell: .: filename argument required\n");
+		return (2);
+	}
 	else if (ft_strchr(data->path[i], '.')
 		&& (data->path[i][1] == '.' || data->path[i][0] == '.'))
 		printf("minishell: %s: command not found\n", data->path[i]);
 	else
 		perror("minishell");
+	return (127);
 }
 
 void	exec_simplecmd(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
@@ -51,9 +75,8 @@ void	exec_simplecmd(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
 	{
 		if (execve(data->path[i], data->cmds[i], (*pEnv)->envp) < 0)
 		{
-			error_managment(data, i);
-			free(data->path);
-			exit (1);
+			cleanup_exec_data(data, error_managment(data, i));
+			exit (ft_atoi(g_global->status));
 		}
 	}
 	else

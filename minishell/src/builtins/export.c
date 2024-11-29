@@ -16,11 +16,28 @@ char	*get_key(char *str)
 {
 	long	len;
 	char	*tmp;
+	int		i;
 
+	i = 0;
 	tmp = ft_strchr(str, '=');
 	len = tmp - str + 1;
 	tmp = malloc(sizeof(char) * len);
+	if (!tmp)
+		return (NULL);
 	ft_strlcpy(tmp, str, len);
+	while (tmp[i] == '\'' || tmp[i] == '\"' || tmp[i] == '_')
+		i++;
+	while (tmp[i])
+	{
+		if (tmp[i] == '\'' || tmp[i] == '\"' || tmp[i] == '_')
+			i++;
+		if (ft_isdigit(tmp[0]) || !ft_isalnum(tmp[i]))
+		{
+			printf("minishell: export: not a valid identifier\n");
+			return (set_status(1), NULL);
+		}
+		i++;
+	}
 	return (tmp);
 }
 
@@ -63,14 +80,22 @@ void	run_export(t_pathAndEnv **pEnv, char *str)
 	char	*key;
 	char	*value;
 
-	if (check_export(str) == 1)
+	if (ft_strcmp(str, "") == 0 || str[0] == '=')
+	{
+		printf("minishell: export: not a valid identifier\n");
+		set_status(1);
 		return ;
+	}
 	if (!ft_strchr(str, '='))
 	{
+		if (check_export(str) == 1)
+			return ;
 		update_env(pEnv, str, "");
 		return (set_status(0));
 	}
 	key = get_key(str);
+	if (!key)
+		return ;
 	value = get_value(str, pEnv);
 	if (key)
 		update_env(pEnv, key, value);

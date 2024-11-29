@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:56:32 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/11/29 00:59:27 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/11/29 04:51:45 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_env
 typedef struct s_global
 {
 	char			*status;
+	char			*pid;
 	int				running;
 	bool			here_doc;
 	struct termios	term;
@@ -272,5 +273,6 @@ int		normalize_exit_code(int num);
 void	handle_exit_with_status(int flag);
 void	handle_single_numeric_arg(t_cmd *cmd, int flag);
 int		check_export(char *str);
+char	*get_pid(void);
 
 #endif

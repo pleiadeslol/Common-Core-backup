@@ -78,8 +78,7 @@ void	expand_var(char **s, char **env)
 		free(dup);
 		i++;
 	}
-	ft_expand_var_tool2(tab, &rslt, s);
-	free_tab(tab);
+	(ft_expand_var_tool2(tab, &rslt, s), free_tab(tab));
 }
 
 t_cmd	*get_structure1(t_node *node)

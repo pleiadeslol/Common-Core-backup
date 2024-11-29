@@ -49,6 +49,8 @@ static void	print_arg(char *str, int is_last)
 {
 	if (ft_strncmp(str, "$?", 2) == 0)
 		write(STDERR_FILENO, g_global->status, ft_strlen(g_global->status));
+	else if (ft_strncmp(str, "$$", 2) == 0)
+		write(STDERR_FILENO, g_global->pid, ft_strlen(g_global->pid));
 	else
 		write(STDOUT_FILENO, str, ft_strlen(str));
 	if (!is_last)
