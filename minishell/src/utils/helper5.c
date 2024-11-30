@@ -52,7 +52,7 @@ void	fill_the_blanks(char **s, char c)
 		i++;
 	while (((*s)[i] && (*s)[i] != c))
 	{
-		if ((*s)[i] == 32)
+		if ((*s)[i] == 32 || ((*s)[i] >= 9 && (*s)[i] <= 13))
 			(*s)[i] *= (-1);
 		i++;
 	}
@@ -69,7 +69,7 @@ void	reverse_fill_the_blanks(char **s, char c)
 		i++;
 	while (((*s)[i] && (*s)[i] != c))
 	{
-		if ((*s)[i] == -32)
+		if ((*s)[i] == -32 || ((*s)[i] >= -13 && (*s)[i] <= -9))
 			(*s)[i] *= (-1);
 		i++;
 	}

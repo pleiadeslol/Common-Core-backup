@@ -89,7 +89,8 @@ void	ft_echo(t_cmd *cmd)
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	else if (cmd->args_node->word
-		&& ft_strncmp(cmd->args_node->word, "-n", 2) == 0)
+		&& ft_strncmp(cmd->args_node->word, "-n", 2) == 0
+		&& check_n_arg(cmd->args_node->word))
 		ft_ech_n(cmd);
 	else
 		ft_ech_normal(cmd);

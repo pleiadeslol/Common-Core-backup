@@ -32,17 +32,11 @@ int	handle_redirections(t_cmd **cmd, char **env)
 	redir = (*cmd)->redir;
 	while (redir)
 	{
-		if (redir->type != 5 && !redir->file)
-		{
-			printf("minishell: ambiguous redirect\n");
-			set_status(1);
-			return (1);
-		}
 		redir->fd = get_fd(redir, env);
 		if (redir->fd == -1)
 		{
 			perror("Failed to open file");
-			return (-1);
+			exit (1);
 		}
 		redir = redir->next;
 	}

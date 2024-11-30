@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:13:37 by root              #+#    #+#             */
-/*   Updated: 2024/11/29 05:19:47 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/11/30 06:22:25 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*get_pid(void)
 	char	pid[42];
 	char	*str;
 
+	ft_bzero(pid, sizeof(pid));
 	fd = open("/proc/self/stat", O_RDONLY);
 	end = read(fd, pid, sizeof(pid) - 1);
 	if (end < 0)
@@ -48,7 +49,10 @@ void	redirect_pipe(int i, t_data *data)
 int	error_managment(t_data *data, int i)
 {
 	if (ft_strchr(data->path[i], '/'))
+	{
 		printf("minishell: %s: Is a directory\n", data->path[i]);
+		return (126);
+	}
 	else if (!ft_strcmp(data->path[i], "."))
 	{
 		printf("minishell: .: filename argument required\n");
@@ -56,10 +60,13 @@ int	error_managment(t_data *data, int i)
 	}
 	else if (ft_strchr(data->path[i], '.')
 		&& (data->path[i][1] == '.' || data->path[i][0] == '.'))
+	{
 		printf("minishell: %s: command not found\n", data->path[i]);
+		return (127);
+	}
 	else
 		perror("minishell");
-	return (127);
+	return (WEXITSTATUS(ft_atoi(g_global->status)));
 }
 
 void	exec_simplecmd(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
@@ -85,21 +92,29 @@ void	exec_simplecmd(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
 
 void	exec_pipe(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
 {
-	if (cmd->redir->type)
-		if (handle_redirections(&cmd, (*pEnv)->envp) == -1)
-			return ;
-	if (cmd->cmd && (ft_strcmp(cmd->cmd, "bash") == 0
-			|| ft_strcmp(cmd->cmd, "./minishell")))
-		update_shlvl(pEnv);
-	if (!g_global->here_doc)
+	if (cmd->redir->type != 5)
+		handle_sig_quit();
+	else
 	{
-		data->pid[i] = fork();
-		if (data->pid[i] == 0)
+		reset_signals();
+		handle_signals();
+	}
+	data->pid[i] = fork();
+	if (data->pid[i] == 0)
+	{
+		if (cmd->redir->type)
 		{
-			if (cmd->isbuiltin == 1)
-				exec_pipebuiltin(cmd, data, pEnv, i);
-			else
-				exec_simplecmd(cmd, data, pEnv, i);
+			if (handle_redirections(&cmd, (*pEnv)->envp) == -1)
+				return ;
+			// if (!ft_strcmp(cmd->cmd, ""))
+			// 	exit(ft_atoi(g_global->status));
 		}
+		if (cmd->cmd && (ft_strcmp(cmd->cmd, "bash") == 0
+				|| ft_strcmp(cmd->cmd, "./minishell")))
+			update_shlvl(pEnv);
+		if (cmd->isbuiltin == 1)
+			exec_pipebuiltin(cmd, data, pEnv, i);
+		else
+			exec_simplecmd(cmd, data, pEnv, i);
 	}
 }

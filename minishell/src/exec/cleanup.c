@@ -6,11 +6,20 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:39 by root              #+#    #+#             */
-/*   Updated: 2024/11/29 05:19:00 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/11/30 02:50:08 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+
+static void	status_check(int *status_code)
+{
+	int	status;
+
+	status = ft_atoi(g_global->status);
+	if (status == 0 || (status < 128 && *status_code != 0))
+		set_status(*status_code);
+}
 
 int	cleanup_exec_data(t_data *data, int status_code)
 {
@@ -36,7 +45,7 @@ int	cleanup_exec_data(t_data *data, int status_code)
 	}
 	(free(data->cmds), free(data->path));
 	(free(data->pipe_fd), free(data->pid), free(data));
-	set_status(status_code);
+	status_check(&status_code);
 	return (status_code);
 }
 

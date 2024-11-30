@@ -65,9 +65,7 @@ void	exec_builtins(t_cmd *cmd, t_pathAndEnv *pEnv, int flag)
 	else if (ft_strncmp(cmd->cmd, "exit", 5) == 0)
 		ft_exit(cmd, flag);
 	else if (ft_strncmp(cmd->cmd, "export", 7) == 0)
-	{
 		ft_export(&pEnv, cmd->args_node);
-	}
 	else if (ft_strncmp(cmd->cmd, "unset", 6) == 0)
 		ft_unset(cmd->args_node, env);
 }

@@ -21,23 +21,8 @@ void	handle_sigint(int sig)
 		if (!g_global->running)
 		{
 			rl_on_new_line();
-			if (!g_global->here_doc)
-				rl_redisplay();
+			rl_redisplay();
 		}
-	}
-	set_status(sig + 128);
-}
-
-void	handle_sigquit(int sig)
-{
-	if (sig == SIGQUIT && g_global->running)
-	{
-		printf("Quit (core dumped)\n");
-	}
-	else
-	{
-		rl_on_new_line();
-		rl_redisplay();
 	}
 	set_status(sig + 128);
 }
@@ -45,14 +30,11 @@ void	handle_sigquit(int sig)
 void	handle_signals(void)
 {
 	struct sigaction	act_int;
-	struct sigaction	act_quit;
 
 	ft_bzero(&act_int, sizeof(act_int));
-	ft_bzero(&act_quit, sizeof(act_quit));
 	act_int.sa_handler = handle_sigint;
 	sigaction(SIGINT, &act_int, NULL);
-	act_quit.sa_handler = handle_sigquit;
-	sigaction(SIGQUIT, &act_quit, NULL);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	reset_signals(void)

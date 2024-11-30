@@ -5,7 +5,7 @@ SRCS = src/parsing/lexer.c src/utils/helper1.c src/utils/helper2.c src/utils/hel
 		src/builtins/echo.c src/builtins/cd.c \
 		src/exec/find_env.c src/builtins/pwd.c src/builtins/env.c \
 		src/builtins/exit.c src/exec/path.c src/exec/exec.c src/exec/signals.c \
-		src/builtins/export.c src/builtins/unset.c src/exec/redirections.c \
+		src/builtins/export.c src/builtins/unset.c src/exec/redirections.c src/exec/sigquit.c\
 		src/exec/here_doc.c src/get_next_line/get_next_line.c src/exec/putfd.c \
 		src/exec/init_exec.c src/exec/cleanup.c src/exec/update_env.c src/exec/check_path.c \
 		src/exec/exec_builtins.c src/exec/exec_cmd.c src/exec/set_status.c src/builtins/exit_helper.c

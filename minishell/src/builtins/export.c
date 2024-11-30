@@ -88,7 +88,7 @@ void	run_export(t_pathAndEnv **pEnv, char *str)
 	}
 	if (!ft_strchr(str, '='))
 	{
-		if (check_export(str) == 1)
+		if (find_env((*pEnv)->envp, str) || check_export(str) == 1)
 			return ;
 		update_env(pEnv, str, "");
 		return (set_status(0));
