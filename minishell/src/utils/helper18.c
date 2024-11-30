@@ -69,8 +69,8 @@ void	expand_var(char **s, char **env)
 	tab = ft_split(*s, '$');
 	while (tab[i])
 	{
-		if (ft_strncmp(tab[i], "?", 2) == 0)
-			dup = ft_strdup(g_global->status);
+		if (ft_strncmp(tab[i], "?", 1) == 0)
+			dup = ft_replace_char(tab[i]);
 		else
 			ft_expand_var_tool1(env, tab[i], &dup);
 		free(tab[i]);

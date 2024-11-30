@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:13:37 by root              #+#    #+#             */
-/*   Updated: 2024/11/30 06:22:25 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/11/30 20:32:05 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,8 @@ void	exec_pipe(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
 	if (data->pid[i] == 0)
 	{
 		if (cmd->redir->type)
-		{
 			if (handle_redirections(&cmd, (*pEnv)->envp) == -1)
 				return ;
-			// if (!ft_strcmp(cmd->cmd, ""))
-			// 	exit(ft_atoi(g_global->status));
-		}
 		if (cmd->cmd && (ft_strcmp(cmd->cmd, "bash") == 0
 				|| ft_strcmp(cmd->cmd, "./minishell")))
 			update_shlvl(pEnv);

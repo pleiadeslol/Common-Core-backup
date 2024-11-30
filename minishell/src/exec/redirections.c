@@ -36,7 +36,13 @@ int	handle_redirections(t_cmd **cmd, char **env)
 		if (redir->fd == -1)
 		{
 			perror("Failed to open file");
-			exit (1);
+			if ((*cmd)->isbuiltin && !(*cmd)->next)
+			{
+				set_status(1);
+				return (-1);
+			}
+			else
+				exit (1);
 		}
 		redir = redir->next;
 	}

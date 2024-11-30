@@ -71,7 +71,10 @@ void	check_quotes_line_before(t_node **first, char **s)
 	if (s[i] && find_char(s[i]) == 1)
 	{
 		dup = add_space(s[i]);
+		fill_the_blanks(&dup, '\"');
+		fill_the_blanks(&dup, '\'');
 		tokens = ft_split(dup, ' ');
+		tokens = rev_split(tokens);
 		free(dup);
 		j = 0;
 		while (tokens[j])
@@ -99,14 +102,14 @@ void	check_pipe_char_line(t_node **first, char **s)
 		if (s[i] && find_char(s[i]) == 1)
 		{
 			dup = add_space(s[i]);
+			fill_the_blanks(&dup, '\"');
+			fill_the_blanks(&dup, '\'');
 			tokens = ft_split(dup, ' ');
+			tokens = rev_split(tokens);
 			free(dup);
 			j = 0;
 			while (tokens[j])
-			{
-				ft_nodeadd_back(first, ft_nodenew(tokens[j]));
-				j++;
-			}
+				ft_nodeadd_back(first, ft_nodenew(tokens[j++]));
 			free_tab(tokens);
 		}
 		else
