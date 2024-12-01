@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:13:37 by root              #+#    #+#             */
-/*   Updated: 2024/11/30 20:32:05 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/12/01 20:25:43 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ void	exec_simplecmd(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
 		}
 	}
 	else
+	{
+		set_status(0);
 		exit (0);
+	}
 }
 
 void	exec_pipe(t_cmd *cmd, t_data *data, t_pathAndEnv **pEnv, int i)
