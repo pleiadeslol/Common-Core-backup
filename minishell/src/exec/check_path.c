@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:17:04 by root              #+#    #+#             */
-/*   Updated: 2024/11/26 06:44:54 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/12/01 22:32:32 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	check_execpath(t_cmd *cmd, t_data **data, t_pathAndEnv *pEnv)
 
 	i = 0;
 	cmd->wrong_cmd = false;
-	while (cmd && cmd->cmd && cmd->next)
+	while (cmd && cmd->next)
 	{
-		if (!cmd->isbuiltin)
+		if (!cmd->isbuiltin && (cmd->cmd && ft_strcmp(cmd->cmd, "") != 0))
 		{
 			if (check_path(cmd->cmd, &(*data)->path[i], pEnv) != 0)
 				cmd->wrong_cmd = true;
@@ -30,7 +30,7 @@ int	check_execpath(t_cmd *cmd, t_data **data, t_pathAndEnv *pEnv)
 		cmd = cmd->next;
 		i++;
 	}
-	if (cmd && !cmd->isbuiltin && cmd->cmd)
+	if (cmd && cmd->cmd && ft_strcmp(cmd->cmd, "") != 0 && !cmd->isbuiltin)
 	{
 		status = check_path(cmd->cmd, &(*data)->path[(*data)->count - 1], pEnv);
 		if (status == 126 || status == 127)

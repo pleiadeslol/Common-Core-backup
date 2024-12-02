@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:39 by root              #+#    #+#             */
-/*   Updated: 2024/11/30 02:50:08 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/12/01 22:54:39 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ static void	status_check(int *status_code)
 	int	status;
 
 	status = ft_atoi(g_global->status);
-	if (status == 0 || (status < 128 && *status_code != 0))
+	if (*status_code < 128 && *status_code != 0)
 		set_status(*status_code);
+	else if (status)
+		set_status(status);
+	else if (*status_code == 0)
+		set_status(0);
 }
 
 int	cleanup_exec_data(t_data *data, int status_code)

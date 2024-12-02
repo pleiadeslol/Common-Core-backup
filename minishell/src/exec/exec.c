@@ -90,12 +90,9 @@ void	exec_cmd(t_cmd *cmd, t_pathAndEnv **pEnv)
 
 	data = init_execdata(cmd);
 	init_pipes(&data);
-	if (cmd->cmd && ft_strcmp(cmd->cmd, "") != 0)
-	{
-		i = check_execpath(cmd, &data, *pEnv);
-		if (i == 126 || i == 127)
-			return ;
-	}
+	i = check_execpath(cmd, &data, *pEnv);
+	if (i == 126 || i == 127)
+		return ;
 	if (!cmd->next && cmd->isbuiltin == 1)
 	{
 		exec_simplebuiltin(cmd, pEnv, data);

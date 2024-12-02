@@ -28,25 +28,19 @@ static	int	get_fd(t_redir *redir, char **env)
 int	handle_redirections(t_cmd **cmd, char **env)
 {
 	t_redir	*redir;
-	char	*file;
 
 	redir = (*cmd)->redir;
-	file = ft_strchr(redir->file, ' ');
 	while (redir)
 	{
-
-		if (redir->type != 5 && (!ft_strcmp(redir->file, "") || (file && file[1])))
-		{
-			printf("minishell: ambiguous redirect\n");
-			set_status(1);
-			return (1);
-		}
 		redir->fd = get_fd(redir, env);
 		if (redir->fd == -1)
 		{
-			perror("Failed to open file");
 			set_status(1);
-			return (-1);
+			perror("Failed to open file");
+			if ((*cmd)->isbuiltin && !(*cmd)->next)
+				return (-1);
+			else
+				exit (1);
 		}
 		redir = redir->next;
 	}

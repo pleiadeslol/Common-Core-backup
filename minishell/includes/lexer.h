@@ -6,7 +6,7 @@
 /*   By: rzarhoun <rzarhoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:56:32 by rzarhoun          #+#    #+#             */
-/*   Updated: 2024/11/30 05:24:00 by rzarhoun         ###   ########.fr       */
+/*   Updated: 2024/11/30 20:45:37 by rzarhoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ typedef struct s_global
 	char			*pid;
 	bool			here_doc;
 	int				running;
-	struct termios	term;
 }	t_global;
 
 extern t_global	*g_global;
@@ -264,7 +263,6 @@ void	ft_get_struct_helper3_1(t_node *node, t_redir **red0, t_args **args);
 void	ft_get_struct_helper0_1(t_redir **red0,
 			char **c, t_args **args, int *b);
 int		ft_help_parse(char *line, int *i, char c);
-int		set_terminal_attributes(void);
 void	handle_sigint(int sig);
 char	*get_key(char *str);
 int		is_valid_numeric_arg(char *str);
@@ -275,5 +273,9 @@ void	handle_single_numeric_arg(t_cmd *cmd, int flag);
 int		check_export(char *str);
 char	*get_pid(void);
 void	handle_sig_quit(void);
+int		handle_path1(char *cmd, char **p);
+int		handle_path_err(char **p, char *cmd);
+int		handle_path_err1(char **p, char *cmd);
+char	*ft_replace_char(char *s);
 
 #endif

@@ -23,7 +23,6 @@ void	ft_expand_file_file(t_cmd **cmds, char **env)
 		ft_strlen((*cmds)->redir->file) + 1);
 	rslt = ft_strdup("");
 	ft_handle_quotes_helper2(s, &rslt, env);
-	ft_trim_space(&rslt);
 	(*cmds)->redir->file = ft_strdup(rslt);
 	free(rslt);
 	free(s);

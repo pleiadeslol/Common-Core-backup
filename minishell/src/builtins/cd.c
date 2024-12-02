@@ -12,26 +12,27 @@
 
 #include "lexer.h"
 
-static int	check_cd(t_args *args, char *home)
+static int	check_cd(t_args *args, char *home, char *old_pwd,
+		t_pathAndEnv **pEnv)
 {
 	char	s[100];
 
-	if (getcwd(s, 100) == NULL)
-	{
-		printf("minishell: cd: Unable to determine current directory\n");
-		set_status(1);
-		return (1);
-	}
 	if (!args)
 	{
 		if (!home)
 		{
 			printf("minishell: cd: HOME not set\n");
-			set_status(1);
-			return (1);
+			return (set_status(1), 1);
 		}
 		chdir(home);
+		update_env(pEnv, "OLDPWD", old_pwd);
+		update_env(pEnv, "PWD", getcwd(s, 100));
 		return (1);
+	}
+	if (getcwd(s, 100) == NULL)
+	{
+		printf("minishell: cd: Unable to determine current directory\n");
+		return (set_status(1), 1);
 	}
 	if (args && args->next)
 	{
@@ -95,7 +96,7 @@ void	ft_cd(t_args *args, char ***env, t_pathAndEnv **pEnv)
 	status = 0;
 	home = find_env((*env), "HOME=");
 	old_pwd = getcwd(s, 100);
-	if (check_cd(args, home))
+	if (check_cd(args, home, old_pwd, pEnv))
 		return ;
 	else if (ft_strchr(args->word, '~'))
 		status = cd_home(args->word, home);
