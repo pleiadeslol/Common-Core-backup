@@ -12,6 +12,37 @@
 
 #include "lexer.h"
 
+static int	handle_path1(char *cmd, char **p)
+{
+	if (access(cmd, F_OK) == 0 && access(cmd, X_OK) == -1)
+	{
+		printf("%s: permission denied\n", cmd);
+		return (126);
+	}
+	if (access(cmd, X_OK) == -1 && (cmd[0] != '.' || ft_strchr(cmd, '/')))
+	{
+		printf("%s: No such file or directory\n", cmd);
+		return (127);
+	}
+	*p = ft_strdup(cmd);
+	return (0);
+}
+
+static int	handle_path_err(char **p, char *cmd)
+{
+	if (access(*p, F_OK) == 0 && access(*p, X_OK) == -1)
+	{
+		printf("%s: permission denied\n", cmd);
+		return (126);
+	}
+	else if (access(*p, X_OK) == -1)
+	{
+		printf("%s: command not found\n", cmd);
+		return (127);
+	}
+	return (0);
+}
+
 static char	**find_path(t_pathAndEnv *env)
 {
 	char	*p;
@@ -82,5 +113,5 @@ int	check_path(char *cmd, char **p, t_pathAndEnv *env)
 		i++;
 	}
 	free(path);
-	return (handle_path_err1(p, cmd));
+	return (handle_path_err(p, cmd));
 }

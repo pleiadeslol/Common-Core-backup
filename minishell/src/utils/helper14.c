@@ -29,7 +29,6 @@ int	ft_condition2(t_node *node, char *dup)
 			|| node->prev->prev->type == Ggreat
 			|| node->prev->prev->type == less
 			|| node->prev->prev->type == Lless)
-		&& !node->prev->prev->prev
 		&& node->word[0] != '-' && dup[0] != '-')
 		return (1);
 	return (0);
